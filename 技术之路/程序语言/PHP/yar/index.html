@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>YAR | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="php,yar,php_ext">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="What一个轻量级可并行的 RPC 框架，支持三种打包协议（msgpack,json,php）,传输协议支持 http（tcp/unix以后会支持）​  github 地址：https://github.com/laruence/yarphp 官网：http://php.net/manual/zh/book.yar.php  Why鸟哥举了两个场景(传统 web 应用)：    一个进程，一个请求">
+<meta name="keywords" content="php,yar,php_ext">
+<meta property="og:type" content="article">
+<meta property="og:title" content="YAR">
+<meta property="og:url" content="http://yoursite.com/技术之路/程序语言/PHP/yar/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="What一个轻量级可并行的 RPC 框架，支持三种打包协议（msgpack,json,php）,传输协议支持 http（tcp/unix以后会支持）​  github 地址：https://github.com/laruence/yarphp 官网：http://php.net/manual/zh/book.yar.php  Why鸟哥举了两个场景(传统 web 应用)：    一个进程，一个请求">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-08T16:36:09.540Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="YAR">
+<meta name="twitter:description" content="What一个轻量级可并行的 RPC 框架，支持三种打包协议（msgpack,json,php）,传输协议支持 http（tcp/unix以后会支持）​  github 地址：https://github.com/laruence/yarphp 官网：http://php.net/manual/zh/book.yar.php  Why鸟哥举了两个场景(传统 web 应用)：    一个进程，一个请求">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源软件简析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/开源软件简析/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/开源软件简析/pandoc/">Pandoc</a></li>  <li class="file"><a href="/开源软件简析/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/开源软件简析/wiki/">Wiki 系统之 Simiki</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            技术之路
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/程序语言/PHP/php-psr/">PSR</a></li>  <li class="file active"><a href="/技术之路/程序语言/PHP/yar/">YAR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/技术之路/面向对象/oo-principle/">设计原则</a></li>  <li class="file"><a href="/技术之路/面向对象/uml/">UML</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">Intro</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-技术之路/程序语言/PHP/yar" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/技术之路/">技术之路</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术之路/程序语言/">程序语言</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/技术之路/程序语言/PHP/">PHP</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/技术之路/程序语言/PHP/yar.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            YAR
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#What"><span class="toc-number">1.</span> <span class="toc-text">What</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Why"><span class="toc-number">2.</span> <span class="toc-text">Why</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#How"><span class="toc-number">3.</span> <span class="toc-text">How</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#server"><span class="toc-number">3.1.</span> <span class="toc-text">server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#client"><span class="toc-number">3.2.</span> <span class="toc-text">client</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#高级进阶"><span class="toc-number">4.</span> <span class="toc-text">高级进阶</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Yar-协议分析"><span class="toc-number">4.1.</span> <span class="toc-text">Yar 协议分析</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安全性"><span class="toc-number">4.2.</span> <span class="toc-text">安全性</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#跨语言"><span class="toc-number">4.3.</span> <span class="toc-text">跨语言</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-number">5.</span> <span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><p>一个轻量级可并行的 RPC 框架，支持三种打包协议（msgpack,json,php）,传输协议支持 http（tcp/unix以后会支持）<br>​</p>
+<blockquote>
+<p>github 地址：<a href="https://github.com/laruence/yar" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/laruence/yar</a><br>php 官网：<a href="http://php.net/manual/zh/book.yar.php" rel="external nofollow noopener noreferrer" target="_blank">http://php.net/manual/zh/book.yar.php</a></p>
+</blockquote>
+<h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>鸟哥举了两个场景(传统 web 应用)：  </p>
+<ol>
+<li><p>一个进程，一个请求，但是涉及到多个没有依赖性的数据源，只能串行处理（依次等待所有数据源处理）完毕后才能响应；  </p>
+<blockquote>
+<p>yar 可以并行处理，减少时间开销</p>
+</blockquote>
+</li>
+<li><p>一个应用系统随着业务的增加，人员流失，只做加法，等到不可维护性的时候，只能重构</p>
+<blockquote>
+<p>yar 可以给系统进行解耦（实际上是 soa 思想）</p>
+</blockquote>
+</li>
+</ol>
+<h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><p>放置在 web 服务器上，通过 http 访问(默认get访问会输出 doc 信息)</p>
+<h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><ol>
+<li>串行调用</li>
+<li>并行调用（yar 内部使用 libcurl + epoll ）</li>
+</ol>
+<h1 id="高级进阶"><a href="#高级进阶" class="headerlink" title="高级进阶"></a>高级进阶</h1><h2 id="Yar-协议分析"><a href="#Yar-协议分析" class="headerlink" title="Yar 协议分析"></a>Yar 协议分析</h2><p>Yar整个协议由82字节长度的yar_header + 8字节的数据打包协议(MSGPACK、JSON、PHP)  + N字节的Body组成。</p>
+<h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><blockquote>
+<p>未验证</p>
+</blockquote>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _yar_header &#123;</span><br><span class="line">  unsigned int   id;            // transaction id</span><br><span class="line">  unsigned short version;       // protocl version</span><br><span class="line">  unsigned int   magic_num;     // default is: 0x80DFEC60</span><br><span class="line">  unsigned int   reserved;</span><br><span class="line">  unsigned char  provider[32];  // reqeust from who</span><br><span class="line">  unsigned char  token[32];     // request token, used for authentication</span><br><span class="line">  unsigned int   body_len;      // request body len</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>struct <code>_yar_header</code>中需要注意的是magic_num值。该值在Client与Server都应该保持一致。否则视为不合法的数据。我们可以通过修改这个值，定制一个yar框架，防止其他人恶意请求。</p>
+</blockquote>
+<h2 id="跨语言"><a href="#跨语言" class="headerlink" title="跨语言"></a>跨语言</h2><blockquote>
+<p>利用 yar 可以接收 struct 实现</p>
+</blockquote>
+<ul>
+<li>client</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array(</span><br><span class="line">  &quot;i&quot; =&gt; &apos;&apos;, // transaction id</span><br><span class="line">  &quot;m&quot; =&gt; &apos;&apos;,  // the method which being called</span><br><span class="line">  &quot;p&quot; =&gt; array(), // parameters</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<ul>
+<li>server</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">array(</span><br><span class="line">   &quot;i&quot; =&gt; &apos;&apos;,</span><br><span class="line">   &quot;s&quot; =&gt; &apos;&apos;, //status</span><br><span class="line">   &quot;r&quot; =&gt; &apos;&apos;, //return value</span><br><span class="line">   &quot;o&quot; =&gt; &apos;&apos;, //output</span><br><span class="line">   &quot;e&quot; =&gt; &apos;&apos;, //error or exception</span><br><span class="line">)</span><br></pre></td></tr></table></figure>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="http://www.laruence.com/2012/09/15/2779.html" rel="external nofollow noopener noreferrer" target="_blank">Yar – 并行的RPC框架(Concurrent RPC framework)</a></li>
+<li><a href="http://www.searchtb.com/2013/10/yar-%E5%B9%B6%E8%A1%8Crpc%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6.html" rel="external nofollow noopener noreferrer" target="_blank">YAR 并行RPC框架研究</a></li>
+<li><a href="http://blog.weixinhost.com/wei-ming-ming/" rel="external nofollow noopener noreferrer" target="_blank">Yar协议分析与跨语言实现</a></li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/php/">php</a>, <a class="tag-link" href="/tags/php-ext/">php_ext</a>, <a class="tag-link" href="/tags/yar/">yar</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/技术之路/程序语言/PHP/yar/">
+            <time datetime="2017-11-07T14:35:00.000Z" itemprop="datePublished">2017-11-07</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
