@@ -1,0 +1,5 @@
+#!/usr/bin/env bash
+cd $WIKI_PATH
+git checkout master
+git pull
+open $WIKI_PATH -a Atom

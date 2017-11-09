@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+cd $WIKI_PATH
+git push origin master
+hexo d -g
