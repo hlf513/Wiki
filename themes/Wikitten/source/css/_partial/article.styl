@@ -132,13 +132,16 @@ div.article-meta-button
         max-width: 100%
         border-collapse: collapse
         border-spacing: 0
+        overflow: auto
     th
         font-weight: bold
-        border-bottom: 3px solid color-border
-        padding-bottom: 0.5em
+        border: 1px solid color-border
+        padding: 0.5em
     td
-        border-bottom: 1px solid color-border
-        padding: 10px 0
+        border: 1px solid color-border
+        padding: 0.5em
+    tr:nth-child(2n)
+        background-color: #f8f8f8
     blockquote
         position: static
         font-family: font-serif
