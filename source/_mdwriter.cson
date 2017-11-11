@@ -13,20 +13,20 @@
 
 # Static engine of your blog
 # - One of: general, html, jekyll, octopress, hexo
-siteEngine: "general"
+siteEngine: "hexo"
 # Website URL of your blog
-siteUrl: ""
+siteUrl: "http://wiki.helongfei.com"
 
 # Root directory to your blog
 # - Leave it empty to use the current project path (recommended)
 siteLocalDir: ""
 # Directory to drafts from siteLocalDir
-siteDraftsDir: "source/_drafts/"
+siteDraftsDir: "_drafts/"
 # Directory to posts from siteLocalDir
-sitePostsDir: "source/_posts/"
+sitePostsDir: "_posts/"
 # Directory to images from siteLocalDir
 # - E.g. to use the current filename directory, can use {directory}
-siteImagesDir: "source/images/{year}/{month}/"
+siteImagesDir: "images/{year}/{month}/"
 
 # URLs to tags/posts/categories JSON files
 # https://github.com/zhuochun/md-writer/wiki/Settings-for-Front-Matters
@@ -53,6 +53,7 @@ title: "{title}"
 date: "{date}"
 toc: true
 tags:
+top: 0
 ---
 """
 
@@ -141,7 +142,7 @@ lineStyles:
   blockquote: before: "> "
 
 # Image tag template
-imageTag: "![{alt}]({src})"
+imageTag: "![{alt}](/{src})"
 # Use relative path to image from the opened file
 relativeImagePath: false
 # Rename copyed image based on title/alt
@@ -166,7 +167,7 @@ footnoteInsertPosition: "paragraph"
 # Table default alignments: "empty", "left", "right", "center"
 tableAlignment: "empty"
 # Insert extra pipes at the beginning and the end of table rows
-tableExtraPipes: false
+tableExtraPipes: true
 
 # Template variables is a key-value map used in template string
 templateVariables:

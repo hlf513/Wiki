@@ -2,4 +2,4 @@
 cd $WIKI_PATH
 git checkout master
 git pull
-open $WIKI_PATH -a Atom
+open $WIKI_PATH/source -a Atom
