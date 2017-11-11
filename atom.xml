@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-09T12:04:59.895Z</updated>
+  <updated>2017-11-11T07:23:17.695Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,82 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Http 协议</title>
+    <link href="http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/http-%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://yoursite.com/技术之路/计算机网络/http-协议/</id>
+    <published>2017-11-11T07:18:00.000Z</published>
+    <updated>2017-11-11T07:23:17.695Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Http-各版本区别"><a href="#Http-各版本区别" class="headerlink" title="Http 各版本区别"></a>Http 各版本区别</h1><h1 id="URL-URI-URN"><a href="#URL-URI-URN" class="headerlink" title="URL / URI / URN"></a>URL / URI / URN</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>uniform resource identifier（统一资源标识符） URI<br>uniform resource locator （统一资源定位符）URL<br>uniform resource name（统一资源名称）URN</p><h2 id="区别"><a href="#区别" class="headerlink" title="区别"></a>区别</h2><p>URL、URN 是 URI 的子集</p><blockquote><p>URI可被视为定位符（URL），名称（URN）或两者兼备。统一资源名（URN）如同一个人的名称，而统一资源定位符（URL）代表一个人的住址。换言之，<strong>URN定义某事物的身份，而URL提供查找该事物的方法。</strong></p></blockquote><p><img src="/images/2017/11/11/uri.png" alt="URI"></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><!--以下是脚注-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;Http-各版本区别&quot;&gt;&lt;a href=&quot;#Http-各版本区别&quot;
+      
+    
+    </summary>
+    
+      <category term="技术之路" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/"/>
+    
+      <category term="计算机网络" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>TCP/IP 协议</title>
+    <link href="http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/tcp-ip-%E5%8D%8F%E8%AE%AE/"/>
+    <id>http://yoursite.com/技术之路/计算机网络/tcp-ip-协议/</id>
+    <published>2017-11-11T03:00:00.000Z</published>
+    <updated>2017-11-11T07:17:01.447Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>指代整个协议族；由两个重要的协议：传输层的 <strong>TCP协议</strong> 和网络层的 <strong>IP协议</strong> 组成。</p><h1 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h1><h2 id="TCP-协议"><a href="#TCP-协议" class="headerlink" title="TCP 协议"></a>TCP 协议</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><blockquote><p>TCP（Transmission Control Protocol 传输控制协议）是一种面向连接的、可靠的、基于字节流的传输层通信协议，由IETF的RFC 793定义</p></blockquote><h3 id="数据传输"><a href="#数据传输" class="headerlink" title="数据传输"></a>数据传输</h3><p><img src="/images/2017/11/tcp-transfer.png" alt="tcp-transfer"></p><h4 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h4><p><strong>WHY</strong></p><blockquote><p><strong>为什么要三次握手？</strong><br>为了防止已失效的客户端连接请求突然又传送到了服务端，若没有客户端确认，则会占用服务端的资源。</p></blockquote><p><strong>HOW</strong></p><p><img src="/images/2017/11/tcp-三次握手.png" alt="tcp 三次握手"></p><table><thead><tr><th>客户端</th><th>传输</th><th>服务端</th></tr></thead><tbody><tr><td>SYN(x)</td><td>-&gt;</td><td>SYN(x)</td></tr><tr><td>SYN(y)-ACK(x+1)</td><td>&lt;-</td><td>SYN(y)+ACK(x+1)</td></tr><tr><td>ACK(y+1)</td><td>-&gt;</td><td>ACK(Y+1)</td></tr></tbody></table><blockquote><p>必须是客户端发起的SYN</p></blockquote><p>SYN: 同步序列编号（Synchronize Sequence Numbers）<br>ACK: 确认编号（Acknowledgement Number）</p><h4 id="四次挥手"><a href="#四次挥手" class="headerlink" title="四次挥手"></a>四次挥手</h4><p><strong>WHY</strong></p><blockquote><p><strong>为什么要四次挥手？</strong><br>全双工通信，所以必须双方都确认 FIN 才可以关闭连接</p></blockquote><p><strong>HOW</strong></p><p><img src="/images/2017/11/tcp-四次挥手.png" alt="tcp-四次挥手"></p><table><thead><tr><th>客户端</th><th>传输</th><th>服务端</th></tr></thead><tbody><tr><td>FIN(客户端传输完毕)</td><td>-&gt;</td><td>FIN</td></tr><tr><td>ACK</td><td>&lt;-</td><td>ACK（先确认）</td></tr><tr><td>FIN</td><td>&lt;-</td><td>FIN （服务端传输完毕）</td></tr><tr><td>ACK</td><td>-&gt;</td><td>ACK</td></tr></tbody></table><blockquote><p>客户端、服务端都可以发起 FIN</p></blockquote><p>FIN: 数据传输完毕 (Finsh)</p><h3 id="包头结构"><a href="#包头结构" class="headerlink" title="包头结构"></a>包头结构</h3><table><thead><tr><th>名称</th><th>长度</th></tr></thead><tbody><tr><td>源端口</td><td>16位</td></tr><tr><td>目标端口</td><td>16位</td></tr><tr><td>序列号</td><td>32位</td></tr><tr><td>回应序号</td><td>32位</td></tr><tr><td>TCP头长度</td><td>4位</td></tr><tr><td>reserved</td><td>6位</td></tr><tr><td>控制代码</td><td>6位</td></tr><tr><td>窗口大小</td><td>16位</td></tr><tr><td>偏移量</td><td>16位</td></tr><tr><td>校验和</td><td>16位</td></tr><tr><td>选项</td><td>32位(可选)</td></tr></tbody></table><blockquote><p>TCP包头的最小长度，为20字节。</p></blockquote><h2 id="UDP-协议"><a href="#UDP-协议" class="headerlink" title="UDP 协议"></a>UDP 协议</h2><h3 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h3><p>一种无连接的传输层协议；可靠性通过「应用层」保证。</p><h3 id="数据传输-1"><a href="#数据传输-1" class="headerlink" title="数据传输"></a>数据传输</h3><p>不提供数据包分组、组装和不能对数据包进行排序</p><h3 id="包头结构-1"><a href="#包头结构-1" class="headerlink" title="包头结构"></a>包头结构</h3><table><thead><tr><th>名称</th><th>长度</th></tr></thead><tbody><tr><td>源端口</td><td>16位</td></tr><tr><td>目的端口</td><td>16位</td></tr><tr><td>长度</td><td>16位</td></tr><tr><td>校验和</td><td>16位</td></tr></tbody></table><blockquote><p>UDP包头只有8个字节</p></blockquote><h3 id="常见的协议"><a href="#常见的协议" class="headerlink" title="常见的协议"></a>常见的协议</h3><p>DNS</p><h3 id="应用场景："><a href="#应用场景：" class="headerlink" title="应用场景："></a>应用场景：</h3><ol><li>面向数据报方式</li><li>网络数据大多为短消息</li><li>拥有大量Client</li><li>对数据安全性无特殊要求</li><li>网络负担非常重，但对响应速度要求高</li></ol><h2 id="TCP-vs-UDP"><a href="#TCP-vs-UDP" class="headerlink" title="TCP vs UDP"></a>TCP vs UDP</h2><table><thead><tr><th>-</th><th>TCP</th><th>UDP</th></tr></thead><tbody><tr><td>可靠性</td><td>可靠（面向连接）</td><td>不可靠（无连接）</td></tr><tr><td>有序性</td><td>有序</td><td>无序</td></tr><tr><td>占用资源</td><td>多</td><td>少</td></tr><tr><td>程序结构</td><td>复杂</td><td>简单</td></tr><tr><td>数据模式</td><td>数据流<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="可以合并多个请求数据(放在缓冲区中)，一次/多次读取完">[1]</span></a></sup>（字节流）</td><td>数据报文<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="发送几次请求，就需要接收几次；一次只能读取一个完整的报文">[2]</span></a></sup></td></tr><tr><td>通信模式</td><td>点对点</td><td>一对一，一对多，多对一，多对多</td></tr><tr><td>首部开销</td><td>20字节</td><td>8字节</td></tr><tr><td>通信信道</td><td>全双工</td><td>不可靠信道</td></tr></tbody></table><h1 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h1><h2 id="IP-协议"><a href="#IP-协议" class="headerlink" title="IP 协议"></a>IP 协议</h2><h3 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h3><p>IP协议是<code>TCP/IP协议簇</code>中的核心协议，也是<code>TCP/IP</code>的载体。<br>所有的<code>TCP，UDP，ICMP及IGMP数据</code>都以 <strong>IP数据报</strong> 格式传输。<br>IP提供<strong>不可靠</strong>的，<strong>无连接</strong>的数据传送服务；如果<strong>发生某种错误，IP会丢失该数据，然后发送ICMP消息给信源端</strong></p><h3 id="IP数据报"><a href="#IP数据报" class="headerlink" title="IP数据报"></a>IP数据报</h3><p><img src="/images/2017/11/ip1.png" alt="ip1"><br><img src="/images/2017/11/ip2.png" alt="ip2"></p><h3 id="IP路由选择"><a href="#IP路由选择" class="headerlink" title="IP路由选择"></a>IP路由选择</h3><h4 id="局域网"><a href="#局域网" class="headerlink" title="局域网"></a>局域网</h4><p>经过<strong>ARP协议</strong>将目的主机的IP地址解析为MAC地址</p><h4 id="非局域网"><a href="#非局域网" class="headerlink" title="非局域网"></a>非局域网</h4><p>主机通过IP数据报连接目的主机时，按照如下步骤搜索:</p><ol><li>搜索路由表，优先搜索<strong>匹配主机</strong>，如果能找到和IP地址完全一致的目标主机，则将该包发向目标主机</li><li>搜索路由表，如果匹配主机失败，则匹配<strong>同子网的路由器</strong>，这需要子网掩码的协助。如果找到路由器，则将该包发向路由器。</li><li>搜索路由表，如果匹配同子网路由器失败，则匹配<strong>同网号路由器</strong>，如果找到路由器，则将该包发向路由器。</li><li>搜索路由表，如果以上都失败了，就<strong>搜索默认路由</strong>，如果默认路由存在，则发包</li><li>如果都失败了，就丢掉这个包。</li></ol><h3 id="如何查看路由表"><a href="#如何查看路由表" class="headerlink" title="如何查看路由表"></a>如何查看路由表</h3><p><img src="/images/2017/11/ip-router.png" alt="ip-router"></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="https://en.wikipedia.org/wiki/Transmission_Control_Protocol" rel="external nofollow noopener noreferrer" target="_blank">维基百科-TCP</a></li><li><a href="https://baike.baidu.com/item/TCP/33012?fr=aladdin" rel="external nofollow noopener noreferrer" target="_blank">百科-TCP</a></li><li><a href="http://network.51cto.com/art/201411/456783.htm" rel="external nofollow noopener noreferrer" target="_blank">CDSN-TCP</a></li><li><a href="http://blog.csdn.net/houdong/article/details/1505798" rel="external nofollow noopener noreferrer" target="_blank">IP协议-CSDN</a></li><li><a href="https://jingyan.baidu.com/article/36d6ed1f56b9fe1bce48837f.html" rel="external nofollow noopener noreferrer" target="_blank">IP协议-百度经验</a></li></ul><!--以下是脚注--><div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">可以合并多个请求数据(放在缓冲区中)，一次/多次读取完<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">发送几次请求，就需要接收几次；一次只能读取一个完整的报文<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;p&gt;指代整个协议族；由两个重要的协议：传输层的 &lt;strong&gt;TCP协议&lt;/s
+      
+    
+    </summary>
+    
+      <category term="技术之路" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/"/>
+    
+      <category term="计算机网络" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>网络参考模型</title>
+    <link href="http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/%E7%BD%91%E7%BB%9C%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B/"/>
+    <id>http://yoursite.com/技术之路/计算机网络/网络参考模型/</id>
+    <published>2017-11-10T18:52:00.000Z</published>
+    <updated>2017-11-11T03:22:45.046Z</updated>
+    
+    <content type="html"><![CDATA[<h1 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h1><blockquote><p><strong>国际标准化组织(ISO)</strong> 和 <strong>国际电报电话咨询委员会(CCITT)</strong> 联合制定了 <strong>OSI（Open System Interconnect）</strong></p></blockquote><h2 id="WHY"><a href="#WHY" class="headerlink" title="WHY"></a>WHY</h2><p>OSI参考模型是计算机网路体系结构发展的产物；其目的是为异种计算机互连提供 <strong>一个共同的基础和标准框架</strong> ，并为保持相关标准的一致性和兼容性提供共同的参考。</p><h2 id="WHAT"><a href="#WHAT" class="headerlink" title="WHAT"></a>WHAT</h2><p>实现「开放系统互连」所建立的「通信功能」的「分层模型」；分七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。</p><h2 id="HOW"><a href="#HOW" class="headerlink" title="HOW"></a>HOW</h2><ul><li>每一层的功能是独立的，利用下一层为上一层提供<strong>服务</strong>；</li><li>同等层实体之间通信由该层的<strong>协议</strong>管理。</li><li>除物理层之外，每层都会在原始数据前添加一串属于自己的<strong>协议头</strong>；接收端向上传递过程中会删除自己的协议头<blockquote><p><strong>服务</strong>：下一层向上一层提供的「通信功能」和「层之间的会话规定」。<br><strong>协议</strong>：两个开放系统中的 <strong>同等层之间的通信规则和约定</strong><br>  1～4层协议称为<strong>下层协议</strong><br>  5～7层协议称为<strong>上层协议</strong></p></blockquote></li></ul><h2 id="分层说明"><a href="#分层说明" class="headerlink" title="分层说明"></a>分层说明</h2><h3 id="应用层-Application"><a href="#应用层-Application" class="headerlink" title="应用层 (Application)"></a>应用层 (Application)</h3><p>网络服务与最终用户的一个接口。<br>协议有：HTTP FTP TFTP SMTP SNMP DNS TELNET HTTPS POP3 DHCP</p><h3 id="表示层（Presentation-Layer）"><a href="#表示层（Presentation-Layer）" class="headerlink" title="表示层（Presentation Layer）"></a>表示层（Presentation Layer）</h3><p>数据的表示、安全、压缩。（在五层模型里面已经合并到了应用层）<br>格式有，JPEG、ASCll、DECOIC、加密格式等</p><h3 id="会话层（Session-Layer）"><a href="#会话层（Session-Layer）" class="headerlink" title="会话层（Session Layer）"></a>会话层（Session Layer）</h3><p>建立、管理、终止会话。（在五层模型里面已经合并到了应用层）<br>对应主机进程，指本地主机与远程主机正在进行的会话</p><h3 id="传输层-Transport"><a href="#传输层-Transport" class="headerlink" title="传输层 (Transport)"></a>传输层 (Transport)</h3><p>定义传输数据的协议端口号，以及流控和差错校验。<br>协议有：TCP UDP，数据包一旦离开网卡即进入网络传输层</p><h3 id="网络层-Network"><a href="#网络层-Network" class="headerlink" title="网络层 (Network)"></a>网络层 (Network)</h3><p>进行逻辑地址寻址，实现不同网络之间的路径选择。<br>协议有：ICMP IGMP IP（IPV4 IPV6） ARP RARP</p><h3 id="数据链路层-Link"><a href="#数据链路层-Link" class="headerlink" title="数据链路层 (Link)"></a>数据链路层 (Link)</h3><p>建立逻辑连接、进行硬件地址寻址、差错校验等功能。（由底层网络定义协议）<br>将比特组合成字节进而组合成帧，用MAC地址访问介质，错误发现但不能纠正。</p><h3 id="物理层（Physical-Layer）"><a href="#物理层（Physical-Layer）" class="headerlink" title="物理层（Physical Layer）"></a>物理层（Physical Layer）</h3><p>建立、维护、断开物理连接。（由底层网络定义协议）</p><p><img src="/images/2017/11/osi.png" alt="OSI"></p><h1 id="TCP-IP-参考模型"><a href="#TCP-IP-参考模型" class="headerlink" title="TCP/IP 参考模型"></a>TCP/IP 参考模型</h1><blockquote><p>TCP/IP是先有了协议，才制定TCP/IP模型。目前是互联网的事实标准</p></blockquote><h2 id="WHY-1"><a href="#WHY-1" class="headerlink" title="WHY"></a>WHY</h2><p>ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。逐渐地它通过租用的电话线连结了数百所大学和政府部门。当无线网络和卫星出现以后，现有的协议在和它们相连的时候出现了问题，所以需要一种新的参考体系结构。</p><h2 id="WHAT-1"><a href="#WHAT-1" class="headerlink" title="WHAT"></a>WHAT</h2><p>由 TCP、IP 两个协议演进过来的，共分为四层：网络访问层、互联网层、传输层和应用层</p><h2 id="HOW-1"><a href="#HOW-1" class="headerlink" title="HOW"></a>HOW</h2><p><img src="/images/2017/11/osi-translate.png" alt="osi-translate"></p><h2 id="分层说明-1"><a href="#分层说明-1" class="headerlink" title="分层说明"></a>分层说明</h2><h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>为用户提供所需要的各种服务<br>协议有：HTTP、FTP、Telnet、DNS、SMTP等.</p><h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>为应用层提供端到端的通信功能<br>协议有：TCP、UDP</p><h3 id="网络互联层"><a href="#网络互联层" class="headerlink" title="网络互联层"></a>网络互联层</h3><p>负责分配地址和传送二进制数据。<br>协议有：IP、IGMP、ICMP<br><strong>IP协议</strong>是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p><h3 id="网络接口层"><a href="#网络接口层" class="headerlink" title="网络接口层"></a>网络接口层</h3><p>负责监视数据在主机和网络之间的交换。<strong>事实上，TCP/IP本身并未定义该层的协议</strong>，所以其具体实现的方法随着网络类型的不同而不同。</p><h1 id="OSI-比对-TCP-IP"><a href="#OSI-比对-TCP-IP" class="headerlink" title="OSI 比对 TCP/IP"></a>OSI 比对 TCP/IP</h1><p><img src="/images/2017/11/osi-tcp-ip.png" alt="OSI-TCP/IP"></p><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul><li><a href="http://www.colasoft.com.cn/download/protocols_map.php" rel="external nofollow noopener noreferrer" target="_blank">科来协议图</a></li><li><a href="https://baike.baidu.com/item/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/1441391?fr=aladdin" rel="external nofollow noopener noreferrer" target="_blank">百科-七层模型</a></li><li><a href="https://baike.baidu.com/item/TCP%2FIP%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B" rel="external nofollow noopener noreferrer" target="_blank">百科-TCP/IP参考模型</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h1 id=&quot;OSI-参考模型&quot;&gt;&lt;a href=&quot;#OSI-参考模型&quot; class=&quot;headerlink&quot; title=&quot;OSI 参考模型&quot;&gt;&lt;/a&gt;OSI 参考模型&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;国际标准化组织(ISO)&lt;/strong&gt; 和 &lt;
+      
+    
+    </summary>
+    
+      <category term="技术之路" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/"/>
+    
+      <category term="计算机网络" scheme="http://yoursite.com/categories/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/%E8%AE%A1%E7%AE%97%E6%9C%BA%E7%BD%91%E7%BB%9C/"/>
+    
+    
+  </entry>
   
   <entry>
     <title>欢迎来到我的知识库！</title>
