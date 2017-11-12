@@ -21,7 +21,7 @@ toc: true
 * [Leanote](https://leanote.com/)：笔记
 * [MarginNote Pro](https://marginnote.com/)：学习 pdf 神器（收费）
 * [MindNode](https://mindnode.com/)：思维导图（收费）
-
+* [kiwix](http://wiki.kiwix.org/wiki/Main_Page/zh-cn)：离线维基百科
 
 # 工作
 
