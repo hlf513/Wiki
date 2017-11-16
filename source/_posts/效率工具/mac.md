@@ -12,7 +12,9 @@ toc: true
 * [Enpass](https://www.enpass.io/)：密码管理工具
 * [TeamViewer](https://www.teamviewer.com/zhCN/)：远程控制
 * [Tickeys](http://www.yingdev.com/projects/tickeys)：打字音效
-* [Lantern](https://getlantern.org/)：“VPN”
+* [Lantern](https://getlantern.org/)：出国工具
+* Irvue：自动切换壁纸
+* OmniDiskSweeper: 查看磁盘占用工具
 
 # 学习
 
