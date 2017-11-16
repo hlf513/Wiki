@@ -2,6 +2,13 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/GIT/git/</loc>
+    
+    <lastmod>2017-11-16T15:19:43.218Z</lastmod>
+    
+  </url>
+  
+  <url>
     <loc>http://yoursite.com/%E5%BC%80%E6%BA%90%E8%BD%AF%E4%BB%B6%E7%AE%80%E6%9E%90/pandoc/</loc>
     
     <lastmod>2017-11-16T15:13:34.535Z</lastmod>
@@ -12,13 +19,6 @@
     <loc>http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/GIT/git-flow/</loc>
     
     <lastmod>2017-11-16T15:12:25.165Z</lastmod>
-    
-  </url>
-  
-  <url>
-    <loc>http://yoursite.com/%E6%8A%80%E6%9C%AF%E4%B9%8B%E8%B7%AF/GIT/git/</loc>
-    
-    <lastmod>2017-11-16T15:08:29.059Z</lastmod>
     
   </url>
   
