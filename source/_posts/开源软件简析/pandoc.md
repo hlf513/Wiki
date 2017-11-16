@@ -9,7 +9,7 @@ tag:
 toc: true
 ---
 
-# Pandoc
+# Pandoc 简介
 
 pandoc 是一个 markdown 文档转换工具，可以把 markdown 转换为诸多的格式，可以定制格式，编写过滤器等。
 pandoc 支持的格式，可以参考官网：http://www.pandoc.org
@@ -25,7 +25,7 @@ Html 可以指定 css 文件进行样式修改
 
 **方式一：引入 css 文件**
 
-```css  
+```css
 table{border-collapse:collapse;border:1px solid #CCC;background:#efefef;}
 table caption{text-align:left; background-color:#fff; line-height:2em; font-size:14px; font-weight:bold; }
 table th{text-align:left; font-weight:bold;height:26px; line-height:26px; font-size:12px; border:1px solid #CCC;}
