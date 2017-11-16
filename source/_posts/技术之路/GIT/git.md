@@ -1,9 +1,10 @@
 ---
-layout: "post"
-title: "Git 常用命令"
-date: "2017-11-16 21:21"
+layout: post
+title: Git 常用命令
+date: '2017-11-16 21:21'
 toc: true
 tags:
+  - git
 top: 9999
 ---
 
