@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>GitFlow | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="git">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="目前收集到的工作流有以下几种，其中最常用的是 Gitflow 和 Forking + Pull request    Git工作流集中式  svn 形式的代码管理 所有的代码都在 master 分支上开发（线性开发）  功能分支  以集中式工作流为基础，不同的是新功能在新分支上开发 开发完毕发起 pull request 讨论通过后合并到 master  Gitflow 来源2010 年初，荷兰的">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="GitFlow">
+<meta property="og:url" content="http://yoursite.com/GIT/git-flow/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="目前收集到的工作流有以下几种，其中最常用的是 Gitflow 和 Forking + Pull request    Git工作流集中式  svn 形式的代码管理 所有的代码都在 master 分支上开发（线性开发）  功能分支  以集中式工作流为基础，不同的是新功能在新分支上开发 开发完毕发起 pull request 讨论通过后合并到 master  Gitflow 来源2010 年初，荷兰的">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/git-svn.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/git-branch.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/git-flow.png">
+<meta property="og:updated_time" content="2017-11-17T13:46:21.545Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="GitFlow">
+<meta name="twitter:description" content="目前收集到的工作流有以下几种，其中最常用的是 Gitflow 和 Forking + Pull request    Git工作流集中式  svn 形式的代码管理 所有的代码都在 master 分支上开发（线性开发）  功能分支  以集中式工作流为基础，不同的是新功能在新分支上开发 开发完毕发起 pull request 讨论通过后合并到 master  Gitflow 来源2010 年初，荷兰的">
+<meta name="twitter:image" content="http://yoursite.com/images/2017/11/git-svn.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/GIT/git/">Git 常用命令</a></li>  <li class="file active"><a href="/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源软件简析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/开源软件简析/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/开源软件简析/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/开源软件简析/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/开源软件简析/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/面向对象/uml/">UML</a></li>  <li class="file"><a href="/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-GIT/git-flow" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/GIT/">GIT</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/GIT/git-flow.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            GitFlow
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Git工作流"><span class="toc-text">Git工作流</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#集中式"><span class="toc-text">集中式</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#功能分支"><span class="toc-text">功能分支</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Gitflow"><span class="toc-text">Gitflow</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#来源"><span class="toc-text">来源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#简述"><span class="toc-text">简述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5个分支说明"><span class="toc-text">5个分支说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#插件"><span class="toc-text">插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Forking-Pull-request"><span class="toc-text">Forking + Pull request</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#本地添加远程项目"><span class="toc-text">本地添加远程项目</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pull-request的注意事项"><span class="toc-text">pull request的注意事项</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用-merge-还是-rebase？"><span class="toc-text">使用 merge 还是 rebase？</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>目前收集到的工作流有以下几种，其中最常用的是 Gitflow 和 Forking + Pull request   </p>
+<h1 id="Git工作流"><a href="#Git工作流" class="headerlink" title="Git工作流"></a>Git工作流</h1><h2 id="集中式"><a href="#集中式" class="headerlink" title="集中式"></a>集中式</h2><p><img src="/images/2017/11/git-svn.png" alt="git-svn"></p>
+<ol>
+<li>svn 形式的代码管理</li>
+<li>所有的代码都在 master 分支上开发（线性开发）</li>
+</ol>
+<h2 id="功能分支"><a href="#功能分支" class="headerlink" title="功能分支"></a>功能分支</h2><p><img src="/images/2017/11/git-branch.png" alt="git-branch"></p>
+<ol>
+<li>以集中式工作流为基础，不同的是新功能在新分支上开发</li>
+<li>开发完毕发起 pull request</li>
+<li>讨论通过后合并到 master</li>
+</ol>
+<h2 id="Gitflow"><a href="#Gitflow" class="headerlink" title="Gitflow"></a>Gitflow</h2><p><img src="/images/2017/11/git-flow.png" alt="git-flow"></p>
+<h3 id="来源"><a href="#来源" class="headerlink" title="来源"></a>来源</h3><p>2010 年初，荷兰的程序员 Vincent Driessen 在他自己的博客 <a href="http://nvie.com/" rel="external nofollow noopener noreferrer" target="_blank">http://nvie.com/</a> 发表了一篇文章 《A successful Git branching model》</p>
+<h3 id="简述"><a href="#简述" class="headerlink" title="简述"></a>简述</h3><ol>
+<li>在功能分支的基础上，增加了维护和开发的便利性</li>
+<li>两个长期分支：master 和 develop；三个短期分支：feature，release，hotfix</li>
+</ol>
+<h3 id="5个分支说明"><a href="#5个分支说明" class="headerlink" title="5个分支说明"></a>5个分支说明</h3><ul>
+<li>master 分支只做发布</li>
+<li>develop 分支做开发功能集成</li>
+<li>feature 分支来自 develop 分支，用于新特性开发，被合并到 develop 分支</li>
+<li>release 分支来自 develop 分支，用于预发布与测试，被合并到 master 分支和 develop 分支</li>
+<li>hotfix 分支来自 master 分支，用于修改线上bug，被合并回 master 分支 和 develop 分支/release 分支</li>
+</ul>
+<h3 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">git flow feature start  // 开始一个特性的开发</span><br><span class="line">git flow feature finish // 完成一个特性的开发</span><br><span class="line">git flow release start // 开始一次 release</span><br><span class="line">git flow release finish // 完成一次 release</span><br><span class="line">git flow hotfix start // 开始一个线上bug修复</span><br><span class="line">git flow hotfix finish // 完成一个线上bug修复</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>详情见 git flow</p>
+</blockquote>
+<h2 id="Forking-Pull-request"><a href="#Forking-Pull-request" class="headerlink" title="Forking + Pull request"></a>Forking + Pull request</h2><ol>
+<li>利用分支合并，方便接受其他贡献者的提交，而无须开放项目权限</li>
+<li>贡献者 push 自己的代码到自己的服务端仓库，发起 pull request</li>
+<li>项目的维护者review 后合并</li>
+</ol>
+<blockquote>
+<p>github，osc 等都使用此种工作流</p>
+</blockquote>
+<h3 id="本地添加远程项目"><a href="#本地添加远程项目" class="headerlink" title="本地添加远程项目"></a>本地添加远程项目</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git remote add [upstream-name] [upstream-url]</span><br></pre></td></tr></table></figure>
+<h3 id="pull-request的注意事项"><a href="#pull-request的注意事项" class="headerlink" title="pull request的注意事项"></a>pull request的注意事项</h3><ol>
+<li><p>base fork 与 head fork 的区别  </p>
+<p><strong>base fork</strong> : 请求 pull requeat 的分支，通常是被 fork 的分支（维护者）； <strong>head fork</strong> ：希望被合并的分支，通常是自己fork 的分支（贡献者）</p>
+</li>
+<li><p>fork 的项目和原有项目保持同步  </p>
+</li>
+</ol>
+<p><strong>方式1：分步处理</strong></p>
+<p>需要预览和对比，则使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote update [upstream-name]</span><br><span class="line">$ git checkout [branch-name]</span><br><span class="line">$ git rebase [upstream/branch-name]</span><br></pre></td></tr></table></figure>
+<p>​<strong>方式2：一步处理</strong></p>
+<p>不需要预览则使用：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git pull --rebase [upstream-name] [branch-name]</span><br></pre></td></tr></table></figure>
+<p><strong>方式3：脚本处理</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#!/bin/bash</span><br><span class="line">gup() &#123;</span><br><span class="line">  local br</span><br><span class="line">  br=\`git branch 2&gt; /dev/null|\\grep &apos;^*&apos;|sed -e &apos;s/..//;s/\\n//&apos;\`</span><br><span class="line">  tainted=\`git status --porcelain | \\grep -v &apos;^\\?\\?&apos;\`</span><br><span class="line">  if [[ $br == master ]]; then</span><br><span class="line">    if [[ $tainted == &apos;&apos; ]]; then</span><br><span class="line">      echo git stash</span><br><span class="line">      git stash</span><br><span class="line">    fi</span><br><span class="line">    echo git fetch</span><br><span class="line">    git fetch</span><br><span class="line">    echo git rebase FETCH_HEAD $br</span><br><span class="line">    git rebase FETCH_HEAD $br</span><br><span class="line">  else</span><br><span class="line">    if [[ -n $br ]]; then</span><br><span class="line">      if [[ $tainted == &apos;&apos; ]]; then</span><br><span class="line">        echo git stash</span><br><span class="line">        git stash</span><br><span class="line">      fi</span><br><span class="line">      echo git pull --rebase origin $br</span><br><span class="line">      git pull --rebase origin $br</span><br><span class="line">    else</span><br><span class="line">      echo seems not in any branch</span><br><span class="line">    fi</span><br><span class="line">  fi</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>方式4：使用 github 等自带的页面处理</strong></p>
+<blockquote>
+<p><strong>base fork</strong> 选择自己的 fork 分支（贡献者）； <strong>head fork</strong> 选择被 fork 的分支（维护者）；然后发起 pull request</p>
+</blockquote>
+<h3 id="使用-merge-还是-rebase？"><a href="#使用-merge-还是-rebase？" class="headerlink" title="使用 merge 还是 rebase？"></a>使用 merge 还是 rebase？</h3><ul>
+<li>开发以 pull request + review 为主的模式，merge 最合适</li>
+<li>第一次合并/单人开发/同步上游改动时，rebase 最合适</li>
+</ul>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="http://www.juvenxu.com/2010/11/28/a-successful-git-branching-model/" rel="external nofollow noopener noreferrer" target="_blank">一个成功的 Git 分支模型</a></li>
+<li><a href="http://danielkummer.github.io/git-flow-cheatsheet/index.zh_CN.html" rel="external nofollow noopener noreferrer" target="_blank">git-flow 备忘清单</a></li>
+<li><a href="https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md" rel="external nofollow noopener noreferrer" target="_blank">Git Workflows and Tutorials</a></li>
+<li><a href="https://ruby-china.org/topics/22748" rel="external nofollow noopener noreferrer" target="_blank">git 里 push request 注意事项</a></li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/GIT/git-flow/">
+            <time datetime="2016-01-02T09:06:00.000Z" itemprop="datePublished">2016-01-02</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>

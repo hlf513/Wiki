@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Codeception 之验收测试 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="php,Codeception">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Acceptance Testing验收测试针对整个站点进行测试，模拟真实用户的访问流程。 写测试的人员不需要知道网站的内部实现。 两种测试类型PhpBrowser配置tests/acceptance.suite.yml 123456class_name: AcceptanceTestermodules:    enabled:        - PhpBrowser:            ur">
+<meta name="keywords" content="php,Codeception">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Codeception 之验收测试">
+<meta property="og:url" content="http://yoursite.com/测试/codeception/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="Acceptance Testing验收测试针对整个站点进行测试，模拟真实用户的访问流程。 写测试的人员不需要知道网站的内部实现。 两种测试类型PhpBrowser配置tests/acceptance.suite.yml 123456class_name: AcceptanceTestermodules:    enabled:        - PhpBrowser:            ur">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-17T13:46:21.550Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Codeception 之验收测试">
+<meta name="twitter:description" content="Acceptance Testing验收测试针对整个站点进行测试，模拟真实用户的访问流程。 写测试的人员不需要知道网站的内部实现。 两种测试类型PhpBrowser配置tests/acceptance.suite.yml 123456class_name: AcceptanceTestermodules:    enabled:        - PhpBrowser:            ur">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源软件简析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/开源软件简析/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/开源软件简析/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/开源软件简析/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/开源软件简析/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/面向对象/uml/">UML</a></li>  <li class="file"><a href="/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-测试/codeception" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/测试/">测试</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/测试/codeception.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Codeception 之验收测试
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Acceptance-Testing"><span class="toc-text">Acceptance Testing</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#两种测试类型"><span class="toc-text">两种测试类型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PhpBrowser"><span class="toc-text">PhpBrowser</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selenium-WebDriver"><span class="toc-text">Selenium WebDriver</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#编写测试"><span class="toc-text">编写测试</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#PhpBrowser测试"><span class="toc-text">PhpBrowser测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Selenium-WebDriver测试"><span class="toc-text">Selenium WebDriver测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#其他"><span class="toc-text">其他</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DB配置"><span class="toc-text">DB配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debug"><span class="toc-text">Debug</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Acceptance-Testing"><a href="#Acceptance-Testing" class="headerlink" title="Acceptance Testing"></a>Acceptance Testing</h1><p>验收测试针对整个站点进行测试，模拟真实用户的访问流程。</p>
+<p>写测试的人员不需要知道网站的内部实现。</p>
+<h1 id="两种测试类型"><a href="#两种测试类型" class="headerlink" title="两种测试类型"></a>两种测试类型</h1><h2 id="PhpBrowser"><a href="#PhpBrowser" class="headerlink" title="PhpBrowser"></a>PhpBrowser</h2><p>配置<code>tests/acceptance.suite.yml</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">class_name: AcceptanceTester</span><br><span class="line">modules:</span><br><span class="line">    enabled:</span><br><span class="line">        - PhpBrowser:</span><br><span class="line">            url:</span><br><span class="line">        - \Helper\Acceptance</span><br></pre></td></tr></table></figure>
+<h2 id="Selenium-WebDriver"><a href="#Selenium-WebDriver" class="headerlink" title="Selenium WebDriver"></a>Selenium WebDriver</h2><p>配置<code>tests/acceptance.suite.yml</code>  </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">class_name: AcceptanceTester</span><br><span class="line">modules:</span><br><span class="line">    enabled:</span><br><span class="line">        - WebDriver:</span><br><span class="line">            url:</span><br><span class="line">            browser: chrome</span><br><span class="line">        - \Helper\Acceptance</span><br></pre></td></tr></table></figure>
+<p>配置<code>Selenium</code>环境</p>
+<ol>
+<li>下载<a href="http://docs.seleniumhq.org/download/" rel="external nofollow noopener noreferrer" target="_blank">Selenium Standalone Server</a></li>
+<li>下载<a href="https://sites.google.com/a/chromium.org/chromedriver/" rel="external nofollow noopener noreferrer" target="_blank">Google Chrome Driver</a></li>
+<li>启动：</li>
+</ol>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">//启动selenium-server</span><br><span class="line">java -jar selenium-server-standalone-2.53.0.jar</span><br><span class="line">//启动Chrome Driver</span><br><span class="line">./chromedriver</span><br></pre></td></tr></table></figure>
+<h1 id="编写测试"><a href="#编写测试" class="headerlink" title="编写测试"></a>编写测试</h1><blockquote>
+<p>测试写在<code>tests/acceptance</code>,后缀为<code>Cept</code>，例如：<code>SiginCept.php</code></p>
+</blockquote>
+<h2 id="PhpBrowser测试"><a href="#PhpBrowser测试" class="headerlink" title="PhpBrowser测试"></a>PhpBrowser测试</h2><p>文档参考：PHP Browser</p>
+<ul>
+<li>actions</li>
+<li>Assertions  </li>
+<li>Grabbers</li>
+<li>Comments</li>
+<li>Cookies, Urls, Title</li>
+</ul>
+<h2 id="Selenium-WebDriver测试"><a href="#Selenium-WebDriver测试" class="headerlink" title="Selenium WebDriver测试"></a>Selenium WebDriver测试</h2><p>文档参考：Selenium WebDriver</p>
+<ul>
+<li>Session Snapshots</li>
+</ul>
+<h2 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h2><h3 id="DB配置"><a href="#DB配置" class="headerlink" title="DB配置"></a>DB配置</h3><ol>
+<li>SQL语句<br>放在 <code>/tests/_data</code> 下</li>
+<li>DB-config<br>修改<code>codeception.yml</code></li>
+</ol>
+<h3 id="Debug"><a href="#Debug" class="headerlink" title="Debug"></a>Debug</h3><ol>
+<li>命令行增加 <code>--debug</code></li>
+<li>手动输出 <code>codecept_debug()</code></li>
+<li>手动下一步 <a href="http://codeception.com/docs/modules/WebDriver#pauseExecution" rel="external nofollow noopener noreferrer" target="_blank">pauseExecution</a></li>
+<li>记录测试 <a href="http://codeception.com/addons#CodeceptionExtensionRecorder" rel="external nofollow noopener noreferrer" target="_blank">Recorder extension</a></li>
+</ol>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol>
+<li><a href="http://codeception.com/docs/03-AcceptanceTests" rel="external nofollow noopener noreferrer" target="_blank">Acceptance Testing介绍</a></li>
+<li><a href="http://codeception.com/docs/03-AcceptanceTests#PHP-Browser" rel="external nofollow noopener noreferrer" target="_blank">PHP Browser介绍</a></li>
+<li><a href="http://codeception.com/docs/modules/PhpBrowser" rel="external nofollow noopener noreferrer" target="_blank">PHP Browser文档</a></li>
+<li><a href="http://codeception.com/docs/modules/WebDriver" rel="external nofollow noopener noreferrer" target="_blank">Selenium WebDriver文档</a></li>
+</ol>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Codeception/">Codeception</a>, <a class="tag-link" href="/tags/php/">php</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/测试/codeception/">
+            <time datetime="2016-05-02T07:38:09.000Z" itemprop="datePublished">2016-05-02</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>

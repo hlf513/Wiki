@@ -1,0 +1,1497 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>性能优化 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="mysql">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="优化步骤 第一步，完成数据库查询的优化，需要理解索引结构，才能学会判断影响结果集。而影响结果集对查询效率线性相关，掌握这一点，编写数据查询语句就很容易判断系统开销，了解业务压力趋势。 第二步，在SQL语句已经足够优化的基础上，学会对数据库整体状况的分析，能够对异常和负载的波动有正确的认识和解读；能够对系统资源的分配和瓶颈有正确的认识。学会通过监控和数据来进行系统的评估和优化方案设计，杜绝拍脑袋，学">
+<meta name="keywords" content="mysql">
+<meta property="og:type" content="article">
+<meta property="og:title" content="性能优化">
+<meta property="og:url" content="http://yoursite.com/数据库/Mysql/性能优化/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="优化步骤 第一步，完成数据库查询的优化，需要理解索引结构，才能学会判断影响结果集。而影响结果集对查询效率线性相关，掌握这一点，编写数据查询语句就很容易判断系统开销，了解业务压力趋势。 第二步，在SQL语句已经足够优化的基础上，学会对数据库整体状况的分析，能够对异常和负载的波动有正确的认识和解读；能够对系统资源的分配和瓶颈有正确的认识。学会通过监控和数据来进行系统的评估和优化方案设计，杜绝拍脑袋，学">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-17T16:35:29.155Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="性能优化">
+<meta name="twitter:description" content="优化步骤 第一步，完成数据库查询的优化，需要理解索引结构，才能学会判断影响结果集。而影响结果集对查询效率线性相关，掌握这一点，编写数据查询语句就很容易判断系统开销，了解业务压力趋势。 第二步，在SQL语句已经足够优化的基础上，学会对数据库整体状况的分析，能够对异常和负载的波动有正确的认识和解读；能够对系统资源的分配和瓶颈有正确的认识。学会通过监控和数据来进行系统的评估和优化方案设计，杜绝拍脑袋，学">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            开源软件简析
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/开源软件简析/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/开源软件简析/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/开源软件简析/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/开源软件简析/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file active"><a href="/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/面向对象/uml/">UML</a></li>  <li class="file"><a href="/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-数据库/Mysql/性能优化" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/数据库/">数据库</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/数据库/Mysql/">Mysql</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/数据库/Mysql/性能优化.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            性能优化
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#优化步骤"><span class="toc-text">优化步骤</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#优化SQL"><span class="toc-text">优化SQL</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#建立慢查询优化系统"><span class="toc-text">建立慢查询优化系统</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SELECT"><span class="toc-text">SELECT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#JOIN"><span class="toc-text">JOIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#排序"><span class="toc-text">排序</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#EXPLAIN"><span class="toc-text">EXPLAIN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查询-优化影响结果集"><span class="toc-text">查询/优化影响结果集</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查询"><span class="toc-text">查询</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化"><span class="toc-text">优化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#案例"><span class="toc-text">案例</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#实时排行榜"><span class="toc-text">实时排行榜</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#大数据量翻页"><span class="toc-text">大数据量翻页</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常见杀手级SQL"><span class="toc-text">常见杀手级SQL</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启-分析慢查询"><span class="toc-text">开启/分析慢查询</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#开启"><span class="toc-text">开启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分析"><span class="toc-text">分析</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#优化索引"><span class="toc-text">优化索引</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#数据库优化"><span class="toc-text">数据库优化</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#内存优化"><span class="toc-text">内存优化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看-分析资源消耗"><span class="toc-text">查看/分析资源消耗</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#说明"><span class="toc-text">说明</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#开启-1"><span class="toc-text">开启</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#关闭"><span class="toc-text">关闭</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#用法"><span class="toc-text">用法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看执行状态"><span class="toc-text">查看执行状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#查看命令"><span class="toc-text">查看命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Command"><span class="toc-text">Command</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#State"><span class="toc-text">State</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看mysql状态"><span class="toc-text">查看mysql状态</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#show-status-与-show-global-status-区别"><span class="toc-text">show status 与 show global status 区别</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#show-status-详解"><span class="toc-text">show status 详解</span></a></li></ol></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="优化步骤"><a href="#优化步骤" class="headerlink" title="优化步骤"></a>优化步骤</h1><ul>
+<li>第一步，完成数据库查询的优化，需要理解索引结构，才能学会判断影响结果集。而影响结果集对查询效率线性相关，掌握这一点，编写数据查询语句就很容易判断系统开销，了解业务压力趋势。</li>
+<li>第二步，在SQL语句已经足够优化的基础上，学会对数据库整体状况的分析，能够对异常和负载的波动有正确的认识和解读；能够对系统资源的分配和瓶颈有正确的认识。学会通过监控和数据来进行系统的评估和优化方案设计，杜绝拍脑袋，学会抓大放小，把握要点的处理方法。</li>
+<li>第三步，在彻底掌握数据库语句优化和运维优化的基础上，学会分布式架构设计，掌握复杂，大容量数据库系统的搭建方法。</li>
+</ul>
+<h1 id="优化SQL"><a href="#优化SQL" class="headerlink" title="优化SQL"></a>优化SQL</h1><h2 id="建立慢查询优化系统"><a href="#建立慢查询优化系统" class="headerlink" title="建立慢查询优化系统"></a>建立慢查询优化系统</h2><p>利用 <a href="https://www.percona.com/doc/percona-toolkit/2.2/pt-query-digest.html" rel="external nofollow noopener noreferrer" target="_blank">pt-query-digest</a> 定期分析slow query log，并结合 <a href="https://github.com/box/Anemometer" rel="external nofollow noopener noreferrer" target="_blank">Box Anemometer</a> 构建slow query log分析及优化系统。</p>
+<h2 id="SELECT"><a href="#SELECT" class="headerlink" title="SELECT"></a>SELECT</h2><p>只选择自己需要的列，不要盲目的使用* ，因为不需要的列可能会导致内存 buffer pool 被这些“无效”数据把真正的热点数据给洗出去了（尤其有 text/blob 列时）</p>
+<h2 id="JOIN"><a href="#JOIN" class="headerlink" title="JOIN"></a>JOIN</h2><p>要把过滤性最大（不一定是数据量最小哦，而是只加了WHERE条件后过滤性最大的那个）的表选为驱动表。此外，如果JOIN之后有排序，排序字段一定要属于驱动表，才能利用驱动表上的索引完成排序。</p>
+<h2 id="排序"><a href="#排序" class="headerlink" title="排序"></a>排序</h2><p>绝大多数情况下，排序的代价通常要来的更高，因此如果看到执行计划中有 Using filesort，优先创建排序索引吧。</p>
+<h2 id="EXPLAIN"><a href="#EXPLAIN" class="headerlink" title="EXPLAIN"></a>EXPLAIN</h2><p>详情见：<a href="http://dev.mysql.com/doc/refman/5.6/en/explain-output.html#explain-join-types" rel="external nofollow noopener noreferrer" target="_blank">mysql5.6 explain</a></p>
+<p>结果解析：</p>
+<table>
+<thead>
+<tr>
+<th>字段名</th>
+<th>值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>type</td>
+<td>ALL</td>
+<td>表示预计会进行全表扫描（full table scan）。通常全表扫描的代价是比较大的，建议创建适当的索引，通过索引检索避免全表扫描。此外，全索引扫描（full index scan）的代价有时候是比全表扫描还要高的，除非是基于InnoDB表的主键索引扫描。</td>
+</tr>
+<tr>
+<td>Extra</td>
+<td>Using temporary</td>
+<td>表示需要创建临时表以满足需求，通常是因为GROUP BY的列没有索引，或者GROUP BY和ORDER BY的列不一样，也需要创建临时表，建议添加适当的索引。</td>
+</tr>
+<tr>
+<td></td>
+<td>Using filesort</td>
+<td>表示无法利用索引完成排序，也有可能是因为多表连接时，排序字段不是驱动表中的字段，因此也没办法利用索引完成排序，建议添加适当的索引。</td>
+</tr>
+<tr>
+<td></td>
+<td>Using where</td>
+<td>通常是因为全表扫描或全索引扫描时（type 列显示为 ALL 或 index），又加上了WHERE条件，建议添加适当的索引。</td>
+</tr>
+</tbody>
+</table>
+<h2 id="查询-优化影响结果集"><a href="#查询-优化影响结果集" class="headerlink" title="查询/优化影响结果集"></a>查询/优化影响结果集</h2><h3 id="查询"><a href="#查询" class="headerlink" title="查询"></a>查询</h3><ul>
+<li>通过 Explain 分析 SQL，查看 rows 列内容</li>
+<li>通过慢查询日志的Rows_examined: 后面的数字</li>
+</ul>
+<h3 id="优化"><a href="#优化" class="headerlink" title="优化"></a>优化</h3><p>核心：减少影响结果集数目</p>
+<ul>
+<li>基于影响结果集的理解去优化，不论从数据结构，代码，还是涉及产品策略上，都需要贯彻下去。</li>
+<li>涉及 limit $start,$num的搜索，如果$start巨大，则影响结果集巨大，搜索效率会非常难过低，尽量用其他方式改写为 limit 0,$num； 确系无法改写的情况下，先从索引结构中获得 limit $start,$num 或limit $start,1 ；再用in操作或基于索引序的 limit 0,$num 二次搜索。</li>
+<li>避免所有锁表的情况（比如 delete 操作无索引时）</li>
+</ul>
+<h3 id="案例"><a href="#案例" class="headerlink" title="案例"></a>案例</h3><h4 id="实时排行榜"><a href="#实时排行榜" class="headerlink" title="实时排行榜"></a>实时排行榜</h4><p><strong>背景：</strong> 用户提交游戏积分，显示实时排名。</p>
+<p><strong>原方案：</strong><br>设置积分区间，每个区间增加数据统计字段；每次都只 count 本区间的名次，再加上前面所有区间的总和。</p>
+<ol>
+<li>提交积分是插入记录，略，</li>
+<li>select count(*) from jifen where gameid=$gameid and fenshu&gt;$fenshu</li>
+</ol>
+<p><strong>问题与挑战：</strong><br>即便索引是 gameid+fenshu 复合索引，涉及count操作，当分数较低时，影响结果集巨大，查询效率缓慢，高峰期会导致连接过多。</p>
+<p><strong>优化思路：</strong><br>SQL 优化<br>减少影响结果集，又要取得实时数据，单纯从SQL上考虑，不太有方法。</p>
+<p><strong>方案1：</strong><br>逻辑优化</p>
+<ol>
+<li>将游戏积分预定义分成数个积分断点，然后分成积分区间，原始状态，每个区间设置一个统计数字项，初始为0。</li>
+<li>每次积分提交时，先确定该分数属于哪两个区间之间，这个操作非常简单，因为区间是预定义的，而且数量很少，只需遍历即可，找到最该分数符合的区间，该区间的统计数字项（独立字段，可用内存处理，异步回写数据库或文件）+1。 记录该区间上边界数字为$duandian。SQL:  select count(*) from jifen where gameid=$gameid and fenshu&gt;$fenshu and fenshu&lt;$duandian，如果处于第一区间，则无需$duandian，这样因为第一区间本身也是最好的成绩，影响结果集不会很多。 通过该SQL获得其在该区间的名次。获取前面区间的总数总和。（该数字是直接从上述提到的区间统计数字获取，不需要进行count操作）将区间内名次+前区间的统计数字和，获得总名次。</li>
+</ol>
+<p>该方法关键在于，积分区间需要合理定义，保证积分提交成绩能平均散落在不同区间。（如涉及较多其他条件，如日排行，总排行，以及其他独立用户去重等，请按照影响结果集思路自行发挥。）</p>
+<p><strong>方案2：</strong><br>Redis方案<br>Zset 有序数组结构，分两个子结构，第一是多层树形的存储结构，第二是每个树形节点的计数器，这样类似于前面的分段方式，可以理解为多层分段方式，所以查询效率更高，缺点是更新效率有所增加。</p>
+<h4 id="大数据量翻页"><a href="#大数据量翻页" class="headerlink" title="大数据量翻页"></a>大数据量翻页</h4><p><strong>背景</strong>：常见论坛帖子页 SQL: select * from post where tagid=$tagid order by lastpost limit $start, $end 翻页 。索引为 tagid+lastpost 复合索引</p>
+<p><strong>挑战</strong>：超级热帖，几万回帖，用户频频翻到末页，limit 25770,30 一个操作下来，影响结果集巨大(25770+30)，查询缓慢。</p>
+<p><strong>方案1：</strong><br>点击页码改为上下翻页；跳转页sql改为子查询或者内连接</p>
+<ul>
+<li><p>只涉及上下翻页情况<br>每次查询的时候将该页查询结果中最大的 $lastpost和最小的分别记录为 $minlastpost 和 $maxlastpost ，上翻页查询为 select <em> from post where tagid=$tagid and lastpost&lt;$minlastpost order by lastpost desc limit 30; 下翻页为 select </em> from post where tagid=$tagid and lastpost&gt;$maxlastpost order by lastpost limit 30; 使用这种方式，影响结果集只有30条，效率极大提升。</p>
+</li>
+<li><p>涉及跳转到任意页<br>互联网上常见的一个优化方案可以这样表述，select <em> from post where tagid=$tagid and lastpost&gt;=(select lastpost from post where tagid=$tagid order by lastpost limit $start,1) order by lastpost limit 30; 或者 select </em> from post where pid in (select pid from post where tagid=$tagid order by lastpost limit $start,30); (第2条S语法在新的mysql版本已经不支持，新版本mysql in的子语句不再支持limit条件，但可以分解为两条SQL实现，原理不变，不做赘述)</p>
+</li>
+</ul>
+<p>以上思路在于，子查询的影响结果集仍然是$start +30，但是数据获取的过程（Sending data状态）发生在索引文件中，而不是数据表文件，这样所需要的系统开销就比前一种普通的查询低一个数量级，而主查询的影响结果集只有30条，几乎无开销。但是切记，这里仍然涉及了太多的影响结果集操作。</p>
+<h2 id="常见杀手级SQL"><a href="#常见杀手级SQL" class="headerlink" title="常见杀手级SQL"></a>常见杀手级SQL</h2><ul>
+<li><p>SELECT * vs SELECT col1, col2<br>减少磁盘 io 和网络 io</p>
+</li>
+<li><p>ORDER BY RAND()<br><a href="http://imysql.com/2014/07/04/mysql-optimization-case-rand-optimize.shtml" rel="external nofollow noopener noreferrer" target="_blank">http://imysql.com/2014/07/04/mysql-optimization-case-rand-optimize.shtml</a></p>
+</li>
+<li><p>LIMIT huge_num, offset<br><a href="http://imysql.com/2015/04/02/mysql-optimization-case-discuz-hot-post-very-old-paging-optimizing.shtml" rel="external nofollow noopener noreferrer" target="_blank">http://imysql.com/2015/04/02/mysql-optimization-case-discuz-hot-post-very-old-paging-optimizing.shtml</a></p>
+</li>
+<li><p>SELECT COUNT(*) on InnoDB table</p>
+</li>
+<li><p>WHERE func(key_col) = ? – 无法使用索引</p>
+</li>
+<li><p>WHERE key_part2 =? AND key_part3 =? – 无法使用索引</p>
+</li>
+<li><p>WHERE key_part1 &gt; ? AND key_part2 =? – 只能用到部分索引</p>
+</li>
+<li><p>SELECT … WHERE key_col + ? = ? – 无法使用索引</p>
+</li>
+</ul>
+<h2 id="开启-分析慢查询"><a href="#开启-分析慢查询" class="headerlink" title="开启/分析慢查询"></a>开启/分析慢查询</h2><h3 id="开启"><a href="#开启" class="headerlink" title="开启"></a>开启</h3><p><strong>检查是否开启</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">show</span> <span class="keyword">variables</span> <span class="keyword">like</span> <span class="string">'%slow%'</span>; //0为未开启</span><br></pre></td></tr></table></figure>
+<p><strong>开启慢查询</strong><br><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">//my.cnf 添加</span><br><span class="line">[mysqld]</span><br><span class="line">log_slow_queries = 日志保存位置</span><br><span class="line">long_query_time=1 <span class="comment">#超过一秒的查询保存到日志</span></span><br><span class="line"><span class="built_in">log</span>-queries-not-using-indexes <span class="comment">#没有使用到索引的查询保存在日志</span></span><br><span class="line"><span class="built_in">log</span>-slow-admin-statements <span class="comment">#一些管理指令，也会被记录。比如OPTIMEZE TABLE, ALTER TABLE等等。</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><ol>
+<li><p><strong>mysqldumpslow</strong></p>
+<p>mysql自带,参数可–help查看</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"># -s：排序方式。c , t , l , r 表示记录次数、时间、查询时间的多少、返回的记录数排序；</span><br><span class="line"># ac , at , al , ar 表示相应的倒序；</span><br><span class="line"># -t：返回前面多少条的数据；</span><br><span class="line"># -g：包含什么，大小写不敏感的；</span><br></pre></td></tr></table></figure>
+<p>使用案例：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">mysqldumpslow -s r -t 10 /slowquery.log #slow记录最多的10个语句</span><br><span class="line">mysqldumpslow -s t -t 10 -g "left join" /slowquery.log #按照时间排序前10中含有"left join"的</span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>mysqlsla</strong></p>
+<p>github地址: <a href="https://github.com/daniel-nichter/hackmysql.com/tree/master/mysqlsla" rel="external nofollow noopener noreferrer" target="_blank">点此进入</a></p>
+<p>使用案例：</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">// mysqlsla会自动判断日志类型，为了方便可以建立一个配置文件“~/.mysqlsla”</span><br><span class="line">// 在文件里写上：top=100，这样会打印出前100条结果。</span><br><span class="line">mysqlsla /data/mysqldata/slow.log</span><br></pre></td></tr></table></figure>
+<p>结果说明</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">* queries total: 总查询次数</span><br><span class="line">* unique:去重后的sql数量</span><br><span class="line">* sorted by : 输出报表的内容排序最重大的慢sql统计信息, 包括平均执行时间, 等待锁时间, 结果行的总数, 扫描的行总数.</span><br><span class="line">* Count, sql的执行次数及占总的slow log数量的百分比.</span><br><span class="line">* Time, 执行时间, 包括总时间, 平均时间, 最小, 最大时间, 时间占到总慢sql时间的百分比.</span><br><span class="line">* 95% of Time, 去除最快和最慢的sql, 覆盖率占95%的sql的执行时间.</span><br><span class="line">* Lock Time, 等待锁的时间.</span><br><span class="line">* 95% of Lock , 95%的慢sql等待锁时间.</span><br><span class="line">* Rows sent, 结果行统计数量, 包括平均, 最小, 最大数量.</span><br><span class="line">* Rows examined, 扫描的行数量.</span><br><span class="line">* Database, 属于哪个数据库</span><br><span class="line">* Users, 哪个用户,IP, 占到所有用户执行的sql百分比</span><br><span class="line">* Query abstract, 抽象后的sql语句</span><br><span class="line">* Query sample, sql语句</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h2 id="优化索引"><a href="#优化索引" class="headerlink" title="优化索引"></a>优化索引</h2><ol>
+<li><p>定期检查并删除重复的索引<br>用 pt-duplicate-key-checker 工具<br>比如 index idx1(a, b) 索引已经涵盖了 index idx2(a)，就可以删除 idx2 索引了。</p>
+</li>
+<li><p>索引量<br>基于索引的条件过滤，如果优化器意识到总共需要扫描的数据量超过 <strong>30%</strong> 时，就会直接改变执行计划为全表扫描，不再使用索引。</p>
+</li>
+<li><p>联合索引<br>WHERE中过滤条件的字段顺序和索引 <strong>无需一致</strong><br>排序、分组则就 <strong>必须一致</strong></p>
+</li>
+<li><p>合理利用覆盖索引，但字段尽量不超过5个</p>
+</li>
+<li><p>合理利用最左索引（前缀索引/部分索引）</p>
+</li>
+<li><p>及时删除冗余索引</p>
+</li>
+<li><p>索引字段条件不使用函数</p>
+</li>
+<li><p>内存表(HEAP 表)使用HASH索引时，不能使用范围检索或者ORDER BY等，只能使用=或者!=</p>
+</li>
+<li><p>两个独立索引，其中一个用于检索，一个用于排序 – 只能用到其中一个索引，5.6以上有ICP特性<br>优化器判断使用哪个索引</p>
+</li>
+<li><p>表关联字段类型要一样（也包括长度一样），否则会有类型隐式转换</p>
+</li>
+</ol>
+<h1 id="数据库优化"><a href="#数据库优化" class="headerlink" title="数据库优化"></a>数据库优化</h1><h2 id="内存优化"><a href="#内存优化" class="headerlink" title="内存优化"></a>内存优化</h2><p>注意内存的使用优化：<a href="">系统与软件-&gt;内存使用考量</a></p>
+<h2 id="查看-分析资源消耗"><a href="#查看-分析资源消耗" class="headerlink" title="查看/分析资源消耗"></a>查看/分析资源消耗</h2><p><strong>SHOW PROFILE 和 SHOW PROFILES</strong></p>
+<h3 id="说明"><a href="#说明" class="headerlink" title="说明"></a>说明</h3><ol>
+<li>作用域是会话级；</li>
+<li>SHOW PROFILES显示最近发给服务器的多条语句，条数根据会话变量profiling_history_size定义，默认是15，最大值为100。设为0等价于关闭分析功能。</li>
+<li><strong>默认是关闭</strong>；其是否启用是根据会话级的变量profiling</li>
+<li>mysql5.7以后不建议使用SHOW PROFILE指令，或直接从INFORMATION_SCHEMA.PROFILING中查看，建议利用PERFORMANCE_SCHEMA中的几个视图查看。（因为会被废弃）</li>
+</ol>
+<h3 id="开启-1"><a href="#开启-1" class="headerlink" title="开启"></a>开启</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET profiling=1;或 SET profiling=on;</span><br></pre></td></tr></table></figure>
+<h3 id="关闭"><a href="#关闭" class="headerlink" title="关闭"></a>关闭</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mysql&gt; SET profiling=0;或 SET profiling=off;</span><br></pre></td></tr></table></figure>
+<h3 id="用法"><a href="#用法" class="headerlink" title="用法"></a>用法</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> PROFILE [<span class="keyword">type</span> [, <span class="keyword">type</span>] … ][<span class="keyword">FOR</span> <span class="keyword">QUERY</span> n][<span class="keyword">LIMIT</span> <span class="keyword">row_count</span> [<span class="keyword">OFFSET</span> <span class="keyword">offset</span>]]</span><br></pre></td></tr></table></figure>
+<p>type是可选的，取值范围可以如下：</p>
+<ul>
+<li>ALL 显示所有性能信息</li>
+<li>BLOCK IO 显示块IO操作的次数</li>
+<li>CONTEXT SWITCHES 显示上下文切换次数，不管是主动还是被动</li>
+<li>CPU 显示用户CPU时间、系统CPU时间</li>
+<li>IPC 显示发送和接收的消息数量</li>
+<li>MEMORY [暂未实现]</li>
+<li>PAGE FAULTS 显示页错误数量</li>
+<li>SOURCE 显示源码中的函数名称与位置</li>
+<li>SWAPS 显示SWAP的次数</li>
+</ul>
+<p>SHOW PROFILE FOR QUERY n，这里的n就是对应SHOW PROFILES输出中的Query_ID。<br>如果没有指定FOR QUERY，那么输出最近一条语句的信息。</p>
+<p><code>SHOW PROFILE ALL FOR QUERY 2</code> 的信息还可以通过<code>SELECT * FROM information_schema.profiling WHERE query_id = 2 ORDER BY seq;</code>获取。</p>
+<p>参考：<br><a href="http://dev.mysql.com/doc/refman/5.5/en/show-profile.html" rel="external nofollow noopener noreferrer" target="_blank">http://dev.mysql.com/doc/refman/5.5/en/show-profile.html</a></p>
+<h2 id="查看执行状态"><a href="#查看执行状态" class="headerlink" title="查看执行状态"></a>查看执行状态</h2><h3 id="查看命令"><a href="#查看命令" class="headerlink" title="查看命令"></a>查看命令</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">SHOW</span> [<span class="keyword">FULL</span>] <span class="keyword">PROCESSLIST</span></span><br></pre></td></tr></table></figure>
+<p>SHOW PROCESSLIST显示哪些线程正在运行。您也可以使用mysqladmin processlist语句得到此信息。如果您有SUPER权限，您可以看到所有线程。否则，您只能看到您自己的线程（也就是，与您正在使用的MySQL账户相关的线程）。如果您不使用FULL关键词，则只显示每个查询的前100个字符。</p>
+<h3 id="Command"><a href="#Command" class="headerlink" title="Command"></a>Command</h3><p>官方文档：<a href="https://dev.mysql.com/doc/refman/5.6/en/thread-commands.html" rel="external nofollow noopener noreferrer" target="_blank">https://dev.mysql.com/doc/refman/5.6/en/thread-commands.html</a></p>
+<ul>
+<li><p>Sleep<br>通常代表资源未释放，如果是通过连接池，sleep状态应该恒定在一定数量范围内</p>
+<p>实例:因前端数据输出时（特别是输出到用户终端）未及时关闭数据库连接，导致因网络连接速度产生大量sleep连接，在网速出现异常时，数据库 too many connections挂死。</p>
+<p>简单解读，数据查询和执行通常只需要不到0.01秒，而网络输出通常需要1秒左右甚至更长，原本数据连接在0.01秒即可释放，但是因为前端程序未执行close操作，直接输出结果，那么在 结果未展现在用户桌面前，该数据库连接一直维持在sleep状态！</p>
+</li>
+<li><p>Waiting for net / reading from net / writing to net<br>偶尔出现无妨，如大量出现，迅速检查数据库到前端的网络连接状态和流量<br>Reading from net 表示server端正通过网络读取客户端发送过来的请求建议：减小客户端发送数据包大小，提高网络带宽/质量<br>Writing to net通过网络传输数据</p>
+<p>案例: 因外挂程序，内网数据库大量读取，内网使用的百兆交换迅速爆满，导致大量连接阻塞在waiting for net，数据库连接过多崩溃</p>
+</li>
+<li><p>Locked<br>有更新操作锁定，通常使用innodb可以很好的减少locked状态的产生，但是切记，更新操作要正确使用索引，即便是低频次更新操作也不能疏忽。如上影响结果集范例所示。<br>在myisam的时代，locked是很多高并发应用的噩梦。所以mysql官方也开始倾向于推荐innodb。</p>
+</li>
+<li><p>Copy to tmp table<br>索引及现有结构无法涵盖查询条件，才会建立一个临时表来满足查询要求，产生巨大的恐怖的i/o压力。<br>很可怕的搜索语句会导致这样的情况，如果是数据分析，或者半夜的周期数据清理任务，偶尔出现，可以允许。频繁出现务必优化之。<br>执行ALTER TABLE修改表结构时建议：放在凌晨执行或者采用类似pt-osc工具<br>通常与连表查询有关，建议逐渐习惯不使用连表查询。</p>
+<p>实战范例：某社区数据库阻塞，求救，经查，其服务器存在多个数据库应用和网站，其中一个不常用的小网站数据库产生了一个恐怖的copy to tmp table 操作，导致整个硬盘i/o和cpu压力超载。Kill掉该操作一切恢复。</p>
+</li>
+<li><p>Copying to tmp table<br>拷贝数据到内存中的临时表，常见于GROUP BY操作时,建议：创建适当的索引</p>
+</li>
+<li><p>Copying to tmp table on disk<br>临时结果集太大，内存中放不下，需要将内存中的临时表拷贝到磁盘上，形成 <code>*sql.MYD</code>、<code>*sql.MYI</code>（在5.6及更高的版本，临时表可以改成InnoDB引擎了，可以参考选项default_tmp_storage_engine）建议：创建适当的索引，并且适当加大sort_buffer_size/tmp_table_size/max_heap_table_size</p>
+</li>
+<li><p>Creating sort index<br>当前的SELECT中需要用到临时表在进行ORDER BY排序，建议：创建适当的索引</p>
+</li>
+<li><p>Sending data<br>并不是发送数据，别被这个名字所欺骗，这是从物理磁盘获取数据的进程，如果你的影响结果集较多，那么就需要从不同的磁盘碎片去抽取数据，<br>偶尔出现该状态连接无碍。回到上面影响结果集的问题，一般而言，如果sending data连接过多，通常是某查询的影响结果集过大，也就是查询的索引项不够优化。<br>前文提到影响结果集对SQL查询效率线性相关，主要就是针对这个状态的系统开销。<br>如果出现大量相似的SQL语句出现在show proesslist列表中，并且都处于sending data状态，优化查询索引，记住用影响结果集的思路去思考。<br>从server端发送数据到客户端，也有可能是接收存储引擎层返回的数据，再发送给客户端，数据量很大时尤其经常能看见备注：Sending Data不是网络发送，是从硬盘读取，发送到网络是Writing to net</p>
+<p>建议：通过索引或加上LIMIT，减少需要扫描并且发送给客户端的数据量</p>
+</li>
+<li><p>Creating tmp table<br>创建基于内存或磁盘的临时表，当从内存转成磁盘的临时表时，状态会变成：Copying to tmp table on disk<br>建议：创建适当的索引，或者少用UNION、视图(VIEW)、子查询(SUBQUERY)之类的，确实需要用到临时表的时候，可以在session级临时适当调大 tmp_table_size/max_heap_table_size 的值</p>
+</li>
+<li><p>Storing result to query cache<br>出现这种状态，如果频繁出现，使用set profiling分析，如果存在资源开销在SQL整体开销的比例过大（即便是非常小的开销，看比例），则说明query cache碎片较多<br>使用flush query cache 可即时清理，也可以做成定时任务<br>Query cache参数可适当酌情设置。</p>
+</li>
+<li><p>Freeing items<br>理论上这玩意不会出现很多。偶尔出现无碍<br>如果大量出现，内存，硬盘可能已经出现问题。比如硬盘满或损坏。<br>i/o压力过大时，也可能出现Free items执行时间较长的情况。</p>
+</li>
+<li><p>Sorting for …<br>和Sending data类似，结果集过大，排序条件没有索引化，需要在内存里排序，甚至需要创建临时结构排序。</p>
+</li>
+<li><p>Sorting result<br>正在对结果进行排序，类似Creating sort index，不过是正常表，而不是在内存表中进行排序建议：创建适当的索引</p>
+</li>
+<li><p>statistics<br>进行数据统计以便解析执行计划，如果状态比较经常出现，有可能是磁盘IO性能很差建议：查看当前io性能状态，例如iowait</p>
+</li>
+<li><p>Waiting for global read lock<br>FLUSH TABLES WITH READ LOCK整等待全局读锁<br>建议：不要对线上业务数据库加上全局读锁，通常是备份引起，可以放在业务低谷期间执行或者放在slave服务器上执行备份</p>
+</li>
+<li><p>Waiting for tables,Waiting for table flush<br>FLUSH TABLES, ALTER TABLE, RENAME TABLE, REPAIR TABLE, ANALYZE TABLE, OPTIMIZE TABLE等需要刷新表结构并重新打开<br>建议：不要对线上业务数据库执行这些操作，可以放在业务低谷期间执行</p>
+</li>
+<li><p>Waiting for lock_type lock<br>等待各种类型的锁：</p>
+<ul>
+<li>Waiting for event metadata lock</li>
+<li>Waiting for global read lock</li>
+<li>Waiting for schema metadata lock</li>
+<li>Waiting for stored function metadata lock</li>
+<li>Waiting for stored procedure metadata lock</li>
+<li>Waiting for table level lock</li>
+<li>Waiting for table metadata lock</li>
+<li>Waiting for trigger metadata lock</li>
+</ul>
+<p>建议：比较常见的是上面提到的global read lock以及table metadata lock，建议不要对线上业务数据库执行这些操作，可以放在业务低谷期间执行。如果是table level lock，通常是因为还在使用MyISAM引擎表，赶紧转投InnoDB引擎吧，别再老顽固了</p>
+</li>
+</ul>
+<h3 id="State"><a href="#State" class="headerlink" title="State"></a>State</h3><p>官方文档:<a href="http://dev.mysql.com/doc/refman/5.6/en/general-thread-states.html" rel="external nofollow noopener noreferrer" target="_blank">http://dev.mysql.com/doc/refman/5.6/en/general-thread-states.html</a></p>
+<ul>
+<li><p>After create<br>当线程创建表（包括临时表）</p>
+</li>
+<li><p>Analyzing<br>线程正在分析MYISAM的key分布</p>
+</li>
+<li><p>checking permissions<br>线程正在检查执行语句的权限</p>
+</li>
+<li><p>Checking table<br>线程正在执行表check操作</p>
+</li>
+<li><p>Cleaning up<br>线程已经处理完一个命令然后开始准备释放内存和reset状态变量</p>
+</li>
+<li><p>Closing tables<br>线程把改变的表数据flush到磁盘然后关闭使用的表。这个操作应该是很快的，如果这个状态长时间出现，要留意检查磁盘的状态。</p>
+</li>
+<li><p>Converting HEAP to MyISAM<br>把一个内存中的临时表转换到磁盘上的MYISAM表</p>
+</li>
+<li><p>Copy to tmp table<br>线程执行alter table语句。这个状态出现在新的表结构已经创建但数据还在拷贝到新表之前。</p>
+</li>
+<li><p>Copying to group table<br>如果一个语句的group by和order by 条件不同，数据通过group by来排序然后拷贝到临时表</p>
+</li>
+<li><p>Copying to tmp table<br>拷贝到内存中的临时表</p>
+</li>
+<li><p>Copying to tmp table on disk<br>如果临时表过大，服务器要把内存中的临时表拷贝到磁盘。</p>
+</li>
+<li><p>Creating index<br>对一个MYISAM 执行ALTER TABLE … ENABLE KEYS</p>
+</li>
+<li><p>Creating sort index<br>线程通过执行一个临时表来执行select语句</p>
+</li>
+<li><p>Creating table<br>线程正在创建表（包括临时表）</p>
+</li>
+<li><p>Creating tmp table<br>创建临时表（在内存或者磁盘）上，如果表一开始在内存中到后面太大，临时表就会转换到磁盘上，而且状态也会变成Copying to tmp table on disk</p>
+</li>
+<li><p>deleting from main table<br>服务器正在执行一个多表delete语句的第一部分，也就是从第一张表删除数据，并且保留行以及偏移量数据以用来删除其他表中的数据。</p>
+</li>
+<li><p>deleting from reference tables<br>服务器正在执行一个多表delete语句的二部分</p>
+</li>
+<li><p>discard_or_import_tablespace<br>线程正在执行ALTER TABLE … DISCARD TABLESPACE 或者ALTER TABLE … IMPORT TABLESPACE 语句.</p>
+</li>
+<li><p>end<br>这个状态出现在ALTER TABLE, CREATE VIEW, DELETE, INSERT, SELECT, UPDATE语句结束之后，但在清理以前。</p>
+</li>
+<li><p>executing<br>线程开始执行一个语句</p>
+</li>
+<li><p>Execution of init_command<br>线程在init_command系统变量中执行语句</p>
+</li>
+<li><p>freeing items<br>线程已经执行命令。一些释放</p>
+</li>
+<li><p>Flushing tables<br>这个线程执行了FLUSH TABLES，而且等待所有的线程关闭表</p>
+</li>
+<li><p>FULLTEXT initialization<br>服务器准备执行文本搜索</p>
+</li>
+<li><p>Killed<br>发送了kill 语句给这个查询。这个语句在下次检查kill标志的时候，这个语句就应该放弃掉</p>
+</li>
+<li><p>Locked<br>查询被其他的查询锁住了</p>
+</li>
+<li><p>logging slow query<br>线程正在把慢sql写到慢查询log文件中</p>
+</li>
+<li><p>login<br>直到线程授权成功以前都是这个状态</p>
+</li>
+<li><p>manage keys<br>服务器正在管理表的索引</p>
+</li>
+<li><p>Opening tables, Opening table<br>线程正在打开表。这个操作是很快的，除非有其他原因阻止了打开操作，例如ALTER TABLE   LOCK TABLE</p>
+</li>
+<li><p>optimizing<br>服务器正在进行一个查询的初始阶段优化</p>
+</li>
+<li><p>preparing<br>正在进行查询优化</p>
+</li>
+<li><p>Purging old relay logs<br>线程删除不需要的relay log文件</p>
+</li>
+<li><p>query end<br>这个状态出现在处理完以后但在冻结item之前</p>
+</li>
+<li><p>Reading from net<br>服务器从网络读取包</p>
+</li>
+<li><p>Removing duplicates<br>查询使用了select distinct。mysq在发送数据到客户端之前需要一个额外的过程来删除重复的行</p>
+</li>
+<li><p>removing tmp table<br>在执行了select语句以后，线程正在删除内部的临时表</p>
+</li>
+<li><p>rename<br>线程正在重命名表</p>
+</li>
+<li><p>rename result table<br>线程正在执行一个alter table语句，而且已经创建了新表，对新表重命名来替换原始表。</p>
+</li>
+<li><p>Reopen tables<br>线程获取了一个表的锁。由于它已经得知它依赖的表结构已经发生了变化。线程需要释放锁、关闭表、然后尝试重新打开他。</p>
+</li>
+<li><p>Repair by sorting<br>修复代码通过排序来创建索引。</p>
+</li>
+<li><p>Repair done<br>线程完成了对一个myisam表的多线程修复。</p>
+</li>
+<li><p>Repair with keycache<br>修复代码正在通过key的缓存创建key。</p>
+</li>
+<li><p>Rolling back<br>线程正在回滚事物。</p>
+</li>
+<li><p>Saving state<br>myisam的analysis和repair操作中，线程会把表的一些信息例如表的行数、AUTO_INCREMENT的计数器以及key的分布都保存到.MYI文件的头部</p>
+</li>
+<li><p>Searching rows for update<br>语句执行的第一个阶段，找到所有满足条件的行记录</p>
+</li>
+<li><p>Sending data<br>线程在读取和处理SELECT语句，发送数据到客户端。由于语句需要大量的磁盘访问，这个状态会在语句的整个生命周期中占据最长的一个状态。</p>
+</li>
+<li><p>setup<br>线程开始进行ALTER TABLE 语句</p>
+</li>
+<li><p>Sorting for group<br>线程正在为group by 执行排序</p>
+</li>
+<li><p>Sorting for order<br>线程正在为order by 执行排序</p>
+</li>
+<li><p>Sorting index<br>在myisam表的优化操作中，进行索引页的排序以便获得更好的访问性能。</p>
+</li>
+<li><p>Sorting result<br>对结果进行排序</p>
+</li>
+<li><p>Statistics<br>服务器正在计算统计数据从而来生成一个执行计划。如果一个线程保留这个状态很长的时间，意味着服务器在执行其他的磁盘相关的工作。</p>
+</li>
+<li><p>System lock<br>线程正在请求和获取一个内部和外部锁。如果有这个状态</p>
+</li>
+<li><p>Table lock<br>System Lock后的另一个线程状态。线程已经获取了一个外部锁，然后接下来要去获取一个内部表锁。</p>
+</li>
+<li><p>update<br>线程已经准备好去更新</p>
+</li>
+<li><p>Updating<br>现在正在找或者正在更新行</p>
+</li>
+<li><p>updating main table<br>服务器正在执行一个多表update语句，正在更新第一张表，保存行和偏移量以用来更新其他表。</p>
+</li>
+<li><p>updating reference tables<br>服务器正在执行一个多表update语句的第二部分，正在从其他表更新行</p>
+</li>
+<li><p>User lock<br>请求或者等待获取一个锁</p>
+</li>
+<li><p>User sleep<br>线程sleep</p>
+</li>
+<li><p>Waiting for release of readlock<br>等待一个全局的读锁</p>
+</li>
+<li><p>Waiting for tables, Waiting for table<br>线程获得提示依赖的表结构发生了改变，线程需要重新打开表来获取新的结构。但是，重新打开表是需要等待其他的线程关闭表。</p>
+</li>
+<li><p>Waiting on cond<br>线程正在等条件变成true</p>
+</li>
+<li><p>Waiting to get readlock<br>线程用FLUSH TABLES WITH READ LOCK语句，所以要获得一个全局的读锁，这个状态表示正在等这个锁。</p>
+</li>
+<li><p>Writing to net<br>服务器把包写到网络</p>
+</li>
+</ul>
+<h2 id="查看mysql状态"><a href="#查看mysql状态" class="headerlink" title="查看mysql状态"></a>查看mysql状态</h2><h3 id="show-status-与-show-global-status-区别"><a href="#show-status-与-show-global-status-区别" class="headerlink" title="show status 与 show global status 区别"></a>show status 与 show global status 区别</h3><p>status：当前连接的状态（当前会话/连接）<br>global status：mysql 启动后到目前的状态（全局会话）</p>
+<h3 id="show-status-详解"><a href="#show-status-详解" class="headerlink" title="show status 详解"></a>show status 详解</h3><p>官方文档：<a href="http://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html" rel="external nofollow noopener noreferrer" target="_blank">http://dev.mysql.com/doc/refman/5.7/en/server-status-variables.html</a></p>
+<table>
+<thead>
+<tr>
+<th>状态名</th>
+<th>作用域</th>
+<th>详细解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aborted_clients</td>
+<td>Global</td>
+<td>由于客户端没有正确关闭连接导致客户端终止而中断的连接数</td>
+</tr>
+<tr>
+<td>Aborted_connects</td>
+<td>Global</td>
+<td>试图连接到MySQL服务器而失败的连接数</td>
+</tr>
+<tr>
+<td>Binlog_cache_disk_use</td>
+<td>Global</td>
+<td>使用临时二进制日志缓存但超过binlog_cache_size值并使用临时文件来保存事务中的语句的事务数量</td>
+</tr>
+<tr>
+<td>Binlog_cache_use</td>
+<td>Global</td>
+<td>使用临时二进制日志缓存的事务数量</td>
+</tr>
+<tr>
+<td>Bytes_received</td>
+<td>Both</td>
+<td>从所有客户端接收到的字节数。</td>
+</tr>
+<tr>
+<td>Bytes_sent</td>
+<td>Both</td>
+<td>发送给所有客户端的字节数。</td>
+</tr>
+<tr>
+<td>com*</td>
+<td></td>
+<td>各种数据库操作的数量</td>
+</tr>
+<tr>
+<td>Compression</td>
+<td>Session</td>
+<td>客户端与服务器之间只否启用压缩协议</td>
+</tr>
+<tr>
+<td>Connections</td>
+<td>Global</td>
+<td>试图连接到(不管是否成功)MySQL服务器的连接数</td>
+</tr>
+<tr>
+<td>Created_tmp_disk_tables</td>
+<td>Both</td>
+<td>服务器执行语句时在硬盘上自动创建的临时表的数量</td>
+</tr>
+<tr>
+<td>Created_tmp_files</td>
+<td>Global</td>
+<td>mysqld已经创建的临时文件的数量</td>
+</tr>
+<tr>
+<td>Created_tmp_tables</td>
+<td>Both</td>
+<td>服务器执行语句时自动创建的内存中的临时表的数量。如果Created_tmp_disk_tables较大，你可能要增加tmp_table_size值使临时表基于内存而不基于硬盘</td>
+</tr>
+<tr>
+<td>Delayed_errors</td>
+<td>Global</td>
+<td>用INSERT DELAYED写的出现错误的行数(可能为duplicate key)。</td>
+</tr>
+<tr>
+<td>Delayed_insert_threads</td>
+<td>Global</td>
+<td>使用的INSERT DELAYED处理器线程数。</td>
+</tr>
+<tr>
+<td>Delayed_writes</td>
+<td>Global</td>
+<td>写入的INSERT DELAYED行数</td>
+</tr>
+<tr>
+<td>Flush_commands</td>
+<td>Global</td>
+<td>执行的FLUSH语句数。</td>
+</tr>
+<tr>
+<td>Handler_commit</td>
+<td>Both</td>
+<td>内部提交语句数</td>
+</tr>
+<tr>
+<td>Handler_delete</td>
+<td>Both</td>
+<td>行从表中删除的次数。</td>
+</tr>
+<tr>
+<td>Handler_discover</td>
+<td>Both</td>
+<td>MySQL服务器可以问NDB CLUSTER存储引擎是否知道某一名字的表。这被称作发现。Handler_discover说明通过该方法发现的次数。</td>
+</tr>
+<tr>
+<td>Handler_prepare</td>
+<td>Both</td>
+<td>A counter for the prepare phase of two-phase commit operations.</td>
+</tr>
+<tr>
+<td>Handler_read_first</td>
+<td>Both</td>
+<td>索引中第一条被读的次数。如果较高，它建议服务器正执行大量全索引扫描；例如，SELECT col1 FROM foo，假定col1有索引。</td>
+</tr>
+<tr>
+<td>Handler_read_key</td>
+<td>Both</td>
+<td>根据键读一行的请求数。如果较高，说明查询和表的索引正确。</td>
+</tr>
+<tr>
+<td>Handler_read_next</td>
+<td>Both</td>
+<td>按照键顺序读下一行的请求数。如果你用范围约束或如果执行索引扫描来查询索引列，该值增加。</td>
+</tr>
+<tr>
+<td>Handler_read_prev</td>
+<td>Both</td>
+<td>按照键顺序读前一行的请求数。该读方法主要用于优化ORDER BY … DESC。</td>
+</tr>
+<tr>
+<td>Handler_read_rnd</td>
+<td>Both</td>
+<td>根据固定位置读一行的请求数。如果你正执行大量查询并需要对结果进行排序该值较高。你可能使用了大量需要MySQL扫描整个表的查询或你的连接没有正确使用键。</td>
+</tr>
+<tr>
+<td>Handler_read_rnd_next</td>
+<td>Both</td>
+<td>在数据文件中读下一行的请求数。如果你正进行大量的表扫描，该值较高。通常说明你的表索引不正确或写入的查询没有利用索引。</td>
+</tr>
+<tr>
+<td>Handler_rollback</td>
+<td>Both</td>
+<td>内部ROLLBACK语句的数量。</td>
+</tr>
+<tr>
+<td>Handler_savepoint</td>
+<td>Both</td>
+<td>在一个存储引擎放置一个保存点的请求数量。</td>
+</tr>
+<tr>
+<td>Handler_savepoint_rollback</td>
+<td>Both</td>
+<td>在一个存储引擎的要求回滚到一个保存点数目。</td>
+</tr>
+<tr>
+<td>Handler_update</td>
+<td>Both</td>
+<td>在表内更新一行的请求数。</td>
+</tr>
+<tr>
+<td>Handler_write</td>
+<td>Both</td>
+<td>在表内插入一行的请求数。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_data</td>
+<td>Global</td>
+<td>包含数据的页数(脏或干净)。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_dirty</td>
+<td>Global</td>
+<td>当前的脏页数。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_flushed</td>
+<td>Global</td>
+<td>要求清空的缓冲池页数</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_free</td>
+<td>Global</td>
+<td>空页数。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_latched</td>
+<td>Global</td>
+<td>在InnoDB缓冲池中锁定的页数。这是当前正读或写或由于其它原因不能清空或删除的页数。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_misc</td>
+<td>Global</td>
+<td>忙的页数，因为它们已经被分配优先用作管理，例如行锁定或适用的哈希索引。该值还可以计算为Innodb_buffer_pool_pages_total - Innodb_buffer_pool_pages_free - Innodb_buffer_pool_pages_data。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_pages_total</td>
+<td>Global</td>
+<td>缓冲池总大小（页数）。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_read_ahead_rnd</td>
+<td>Global</td>
+<td>InnoDB初始化的“随机”read-aheads数。当查询以随机顺序扫描表的一大部分时发生。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_read_ahead_seq</td>
+<td>Global</td>
+<td>InnoDB初始化的顺序read-aheads数。当InnoDB执行顺序全表扫描时发生。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_read_requests</td>
+<td>Global</td>
+<td>InnoDB已经完成的逻辑读请求数。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_reads</td>
+<td>Global</td>
+<td>不能满足InnoDB必须单页读取的缓冲池中的逻辑读数量。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_wait_free</td>
+<td>Global</td>
+<td>一般情况，通过后台向InnoDB缓冲池写。但是，如果需要读或创建页，并且没有干净的页可用，则它还需要先等待页面清空。该计数器对等待实例进行记数。如果已经适当设置缓冲池大小，该值应小。</td>
+</tr>
+<tr>
+<td>Innodb_buffer_pool_write_requests</td>
+<td>Global</td>
+<td>向InnoDB缓冲池的写数量。</td>
+</tr>
+<tr>
+<td>Innodb_data_fsyncs</td>
+<td>Global</td>
+<td>fsync()操作数。</td>
+</tr>
+<tr>
+<td>Innodb_data_pending_fsyncs</td>
+<td>Global</td>
+<td>当前挂起的fsync()操作数。</td>
+</tr>
+<tr>
+<td>Innodb_data_pending_reads</td>
+<td>Global</td>
+<td>当前挂起的读数。</td>
+</tr>
+<tr>
+<td>Innodb_data_pending_writes</td>
+<td>Global</td>
+<td>当前挂起的写数。</td>
+</tr>
+<tr>
+<td>Innodb_data_read</td>
+<td>Global</td>
+<td>至此已经读取的数据数量（字节）。</td>
+</tr>
+<tr>
+<td>Innodb_data_reads</td>
+<td>Global</td>
+<td>数据读总数量。</td>
+</tr>
+<tr>
+<td>Innodb_data_writes</td>
+<td>Global</td>
+<td>数据写总数量。</td>
+</tr>
+<tr>
+<td>Innodb_data_written</td>
+<td>Global</td>
+<td>至此已经写入的数据量（字节）。</td>
+</tr>
+<tr>
+<td>Innodb_dblwr_pages_written</td>
+<td>Global</td>
+<td>已经执行的双写操作数量</td>
+</tr>
+<tr>
+<td>Innodb_dblwr_writes</td>
+<td>Global</td>
+<td>双写操作已经写好的页数</td>
+</tr>
+<tr>
+<td>Innodb_log_waits</td>
+<td>Global</td>
+<td>我们必须等待的时间，因为日志缓冲区太小，我们在继续前必须先等待对它清空</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr>
+<td>Innodb_log_write_requests</td>
+<td>Global</td>
+<td>日志写请求数。</td>
+</tr>
+<tr>
+<td>Innodb_log_writes</td>
+<td>Global</td>
+<td>向日志文件的物理写数量。</td>
+</tr>
+<tr>
+<td>Innodb_os_log_fsyncs</td>
+<td>Global</td>
+<td>向日志文件完成的fsync()写数量。</td>
+</tr>
+<tr>
+<td>Innodb_os_log_pending_fsyncs</td>
+<td>Global</td>
+<td>挂起的日志文件fsync()操作数量。</td>
+</tr>
+<tr>
+<td>Innodb_os_log_pending_writes</td>
+<td>Global</td>
+<td>挂起的日志文件写操作</td>
+</tr>
+<tr>
+<td>Innodb_os_log_written</td>
+<td>Global</td>
+<td>写入日志文件的字节数。</td>
+</tr>
+<tr>
+<td>Innodb_page_size</td>
+<td>Global</td>
+<td>编译的InnoDB页大小(默认16KB)。许多值用页来记数；页的大小很容易转换为字节。</td>
+</tr>
+<tr>
+<td>Innodb_pages_created</td>
+<td>Global</td>
+<td>创建的页数。</td>
+</tr>
+<tr>
+<td>Innodb_pages_read</td>
+<td>Global</td>
+<td>读取的页数。</td>
+</tr>
+<tr>
+<td>Innodb_pages_written</td>
+<td>Global</td>
+<td>写入的页数。</td>
+</tr>
+<tr>
+<td>Innodb_row_lock_current_waits</td>
+<td>Global</td>
+<td>当前等待的待锁定的行数。</td>
+</tr>
+<tr>
+<td>Innodb_row_lock_time</td>
+<td>Global</td>
+<td>行锁定花费的总时间，单位毫秒。</td>
+</tr>
+<tr>
+<td>Innodb_row_lock_time_avg</td>
+<td>Global</td>
+<td>行锁定的平均时间，单位毫秒。</td>
+</tr>
+<tr>
+<td>Innodb_row_lock_time_max</td>
+<td>Global</td>
+<td>行锁定的最长时间，单位毫秒。</td>
+</tr>
+<tr>
+<td>Innodb_row_lock_waits</td>
+<td>Global</td>
+<td>一行锁定必须等待的时间数。</td>
+</tr>
+<tr>
+<td>Innodb_rows_deleted</td>
+<td>Global</td>
+<td>从InnoDB表删除的行数。</td>
+</tr>
+<tr>
+<td>Innodb_rows_inserted</td>
+<td>Global</td>
+<td>插入到InnoDB表的行数。</td>
+</tr>
+<tr>
+<td>Innodb_rows_read</td>
+<td>Global</td>
+<td>从InnoDB表读取的行数。</td>
+</tr>
+<tr>
+<td>Innodb_rows_updated</td>
+<td>Global</td>
+<td>InnoDB表内更新的行数。</td>
+</tr>
+<tr>
+<td>Key_blocks_not_flushed</td>
+<td>Global</td>
+<td>键缓存内已经更改但还没有清空到硬盘上的键的数据块数量。</td>
+</tr>
+<tr>
+<td>Key_blocks_unused</td>
+<td>Global</td>
+<td>键缓存内未使用的块数量。你可以使用该值来确定使用了多少键缓存</td>
+</tr>
+<tr>
+<td>Key_blocks_used</td>
+<td>Global</td>
+<td>键缓存内使用的块数量。该值为高水平线标记，说明已经同时最多使用了多少块。</td>
+</tr>
+<tr>
+<td>Key_read_requests</td>
+<td>Global</td>
+<td>从缓存读键的数据块的请求数。</td>
+</tr>
+<tr>
+<td>Key_reads</td>
+<td>Global</td>
+<td>从硬盘读取键的数据块的次数。如果Key_reads较大，则Key_buffer_size值可能太小。可以用Key_reads/Key_read_requests计算缓存损失率。</td>
+</tr>
+<tr>
+<td>Key_write_requests</td>
+<td>Global</td>
+<td>将键的数据块写入缓存的请求数。</td>
+</tr>
+<tr>
+<td>Key_writes</td>
+<td>Global</td>
+<td>向硬盘写入将键的数据块的物理写操作的次数。</td>
+</tr>
+<tr>
+<td>Last_query_cost</td>
+<td>Session</td>
+<td>用查询优化器计算的最后编译的查询的总成本。用于对比同一查询的不同查询方案的成本。默认值0表示还没有编译查询。默认值是0。Last_query_cost具有会话范围。</td>
+</tr>
+<tr>
+<td>Max_used_connections</td>
+<td>Global</td>
+<td>服务器启动后已经同时使用的连接的最大数量。</td>
+</tr>
+<tr>
+<td>ndb*</td>
+<td></td>
+<td>ndb集群相关</td>
+</tr>
+<tr>
+<td>Not_flushed_delayed_rows</td>
+<td>Global</td>
+<td>等待写入INSERT DELAY队列的行数。</td>
+</tr>
+<tr>
+<td>Open_files</td>
+<td>Global</td>
+<td>打开的文件的数目。</td>
+</tr>
+<tr>
+<td>Open_streams</td>
+<td>Global</td>
+<td>打开的流的数量(主要用于记录)。</td>
+</tr>
+<tr>
+<td>Open_table_definitions</td>
+<td>Global</td>
+<td>缓存的.frm文件数量</td>
+</tr>
+<tr>
+<td>Open_tables</td>
+<td>Both</td>
+<td>当前打开的表的数量。</td>
+</tr>
+<tr>
+<td>Opened_files</td>
+<td>Global</td>
+<td>文件打开的数量。不包括诸如套接字或管道其他类型的文件。 也不包括存储引擎用来做自己的内部功能的文件。</td>
+</tr>
+<tr>
+<td>Opened_table_definitions</td>
+<td>Both</td>
+<td>已经缓存的.frm文件数量</td>
+</tr>
+<tr>
+<td>Opened_tables</td>
+<td>Both</td>
+<td>已经打开的表的数量。如果Opened_tables较大，table_cache 值可能太小。</td>
+</tr>
+<tr>
+<td>Prepared_stmt_count</td>
+<td>Global</td>
+<td>当前的预处理语句的数量。(最大数为系统变量: max_prepared_stmt_count)</td>
+</tr>
+<tr>
+<td>Qcache_free_blocks</td>
+<td>Global</td>
+<td>查询缓存内自由内存块的数量。</td>
+</tr>
+<tr>
+<td>Qcache_free_memory</td>
+<td>Global</td>
+<td>用于查询缓存的自由内存的数量。</td>
+</tr>
+<tr>
+<td>Qcache_hits</td>
+<td>Global</td>
+<td>查询缓存被访问的次数。</td>
+</tr>
+<tr>
+<td>Qcache_inserts</td>
+<td>Global</td>
+<td>加入到缓存的查询数量。</td>
+</tr>
+<tr>
+<td>Qcache_lowmem_prunes</td>
+<td>Global</td>
+<td>由于内存较少从缓存删除的查询数量。</td>
+</tr>
+<tr>
+<td>Qcache_not_cached</td>
+<td>Global</td>
+<td>非缓存查询数(不可缓存，或由于query_cache_type设定值未缓存)。</td>
+</tr>
+<tr>
+<td>Qcache_queries_in_cache</td>
+<td>Global</td>
+<td>登记到缓存内的查询的数量。</td>
+</tr>
+<tr>
+<td>Qcache_total_blocks</td>
+<td>Global</td>
+<td>查询缓存内的总块数。</td>
+</tr>
+<tr>
+<td>Queries</td>
+<td>Both</td>
+<td>服务器执行的请求个数，包含存储过程中的请求。</td>
+</tr>
+<tr>
+<td>Questions</td>
+<td>Both</td>
+<td>已经发送给服务器的查询的个数。</td>
+</tr>
+<tr>
+<td>Rpl_status</td>
+<td>Global</td>
+<td>失败安全复制状态(还未使用)。</td>
+</tr>
+<tr>
+<td>Select_full_join</td>
+<td>Both</td>
+<td>没有使用索引的联接的数量。如果该值不为0,你应仔细检查表的索引</td>
+</tr>
+<tr>
+<td>Select_full_range_join</td>
+<td>Both</td>
+<td>在引用的表中使用范围搜索的联接的数量。</td>
+</tr>
+<tr>
+<td>Select_range</td>
+<td>Both</td>
+<td>在第一个表中使用范围的联接的数量。一般情况不是关键问题，即使该值相当大。</td>
+</tr>
+<tr>
+<td>Select_range_check</td>
+<td>Both</td>
+<td>在每一行数据后对键值进行检查的不带键值的联接的数量。如果不为0，你应仔细检查表的索引。</td>
+</tr>
+<tr>
+<td>Select_scan</td>
+<td>Both</td>
+<td>对第一个表进行完全扫描的联接的数量。</td>
+</tr>
+<tr>
+<td>Slave_heartbeat_period</td>
+<td>Global</td>
+<td>复制的心跳间隔</td>
+</tr>
+<tr>
+<td>Slave_open_temp_tables</td>
+<td>Global</td>
+<td>从服务器打开的临时表数量</td>
+</tr>
+<tr>
+<td>Slave_received_heartbeats</td>
+<td>Global</td>
+<td>从服务器心跳数</td>
+</tr>
+<tr>
+<td>Slave_retried_transactions</td>
+<td>Global</td>
+<td>本次启动以来从服务器复制线程重试次数</td>
+</tr>
+<tr>
+<td>Slave_running</td>
+<td>Global</td>
+<td>如果该服务器是连接到主服务器的从服务器，则该值为ON。</td>
+</tr>
+<tr>
+<td>Slow_launch_threads</td>
+<td>Both</td>
+<td>创建时间超过slow_launch_time秒的线程数。</td>
+</tr>
+<tr>
+<td>Slow_queries</td>
+<td>Both</td>
+<td>查询时间超过long_query_time秒的查询的个数。</td>
+</tr>
+<tr>
+<td>Sort_merge_passes</td>
+<td>Both</td>
+<td>排序算法已经执行的合并的数量。如果这个变量值较大，应考虑增加sort_buffer_size系统变量的值。</td>
+</tr>
+<tr>
+<td>Sort_range</td>
+<td>Both</td>
+<td>在范围内执行的排序的数量。</td>
+</tr>
+<tr>
+<td>Sort_rows</td>
+<td>Both</td>
+<td>已经排序的行数。</td>
+</tr>
+<tr>
+<td>Sort_scan</td>
+<td>Both</td>
+<td>通过扫描表完成的排序的数量。</td>
+</tr>
+<tr>
+<td>ssl＊</td>
+<td></td>
+<td>ssl连接相关</td>
+</tr>
+<tr>
+<td>Table_locks_immediate</td>
+<td>Global</td>
+<td>立即获得的表的锁的次数。</td>
+</tr>
+<tr>
+<td>Table_locks_waited</td>
+<td>Global</td>
+<td>不能立即获得的表的锁的次数。如果该值较高，并且有性能问题，你应首先优化查询，然后拆分表或使用复制。</td>
+</tr>
+<tr>
+<td>Threads_cached</td>
+<td>Global</td>
+<td>线程缓存内的线程的数量。</td>
+</tr>
+<tr>
+<td>Threads_connected</td>
+<td>Global</td>
+<td>当前打开的连接的数量。</td>
+</tr>
+<tr>
+<td>Threads_created</td>
+<td>Global</td>
+<td>创建用来处理连接的线程数。如果Threads_created较大，你可能要增加thread_cache_size值。缓存访问率的计算方法Threads_created/Connections。</td>
+</tr>
+<tr>
+<td>Threads_running</td>
+<td>Global</td>
+<td>激活的（非睡眠状态）线程数。</td>
+</tr>
+<tr>
+<td>Uptime</td>
+<td>Global</td>
+<td>服务器已经运行的时间（以秒为单位）。</td>
+</tr>
+<tr>
+<td>Uptime_since_flush_status</td>
+<td>Global</td>
+<td>最近一次使用FLUSH STATUS的时间（以秒为单位）。</td>
+</tr>
+</tbody>
+</table>
+<!--以下是脚注-->
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/mysql/">mysql</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/数据库/Mysql/性能优化/">
+            <time datetime="2017-11-17T14:20:00.000Z" itemprop="datePublished">2017-11-17</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
