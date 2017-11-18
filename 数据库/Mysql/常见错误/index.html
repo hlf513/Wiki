@@ -3,22 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2016/1 | 贺龙飞的知识库</title>
+    <title>常见错误 | 贺龙飞的知识库</title>
     
     
-        <meta name="keywords" content="贺龙飞的知识库">
+        <meta name="keywords" content="常见错误">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="知识管理，wiki，PKM">
-<meta property="og:type" content="website">
-<meta property="og:title" content="贺龙飞的知识库">
-<meta property="og:url" content="http://yoursite.com/archives/2016/01/index.html">
+    <meta name="description" content="ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction原因：select @@autocommit;+————–+| @@autocommit |+————–+| 0            |+————–+没有开启自动提交，导致update一直未commit。 解决：  查看是否有慢查SQL 查看inno">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常见错误">
+<meta property="og:url" content="http://yoursite.com/数据库/Mysql/常见错误/index.html">
 <meta property="og:site_name" content="贺龙飞的知识库">
-<meta property="og:description" content="知识管理，wiki，PKM">
+<meta property="og:description" content="ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction原因：select @@autocommit;+————–+| @@autocommit |+————–+| 0            |+————–+没有开启自动提交，导致update一直未commit。 解决：  查看是否有慢查SQL 查看inno">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-18T10:43:43.322Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贺龙飞的知识库">
-<meta name="twitter:description" content="知识管理，wiki，PKM">
+<meta name="twitter:title" content="常见错误">
+<meta name="twitter:description" content="ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction原因：select @@autocommit;+————–+| @@autocommit |+————–+| 0            |+————–+没有开启自动提交，导致update一直未commit。 解决：  查看是否有慢查SQL 查看inno">
     
 
     
@@ -181,20 +182,20 @@
                          <ul class="unstyled" id="tree">  <li class="file"><a href="/效率工具/mac/">MAC 必备软件</a></li>  </ul> 
                     </li> 
                     
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             数据库
                         </a>
                          <ul class="unstyled" id="tree"> 
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             Mysql
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file active"><a href="/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
                     </li> 
                      </ul> 
                     </li> 
@@ -332,95 +333,93 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar-o"></i></span>
-                <h1 class="title"><a href="/archives/2016/">2016</a></h1>
-            </div>
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title"><a href="/archives/2016/01/">2016-01</a><span class="archive-list-count">2</span></h1>
-            </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-数据库/Mysql/常见错误" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/数据库/">数据库</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/数据库/Mysql/">Mysql</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/数据库/Mysql/常见错误.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/开源软件简析/pandoc/">Pandoc</a>
+        <h1 class="article-title" itemprop="name">
+            常见错误
         </h1>
     
 
-                
-                <div class="article-meta">
-                    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ERROR-1205-HY000-Lock-wait-timeout-exceeded-try-restarting-transaction"><span class="toc-text">ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="ERROR-1205-HY000-Lock-wait-timeout-exceeded-try-restarting-transaction"><a href="#ERROR-1205-HY000-Lock-wait-timeout-exceeded-try-restarting-transaction" class="headerlink" title="ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction"></a>ERROR 1205 (HY000): Lock wait timeout exceeded; try restarting transaction</h1><p>原因：<br>select @@autocommit;<br>+————–+<br>| @@autocommit |<br>+————–+<br>| 0            |<br>+————–+<br>没有开启自动提交，导致update一直未commit。</p>
+<p>解决：</p>
+<ol>
+<li>查看是否有慢查SQL</li>
+<li>查看innodb的事务表INNODB_TRX是否有正在锁定的事务线程,有的话看看ID是否在show full processlist里面的sleep线程中，如果是，就证明这个sleep的线程事务一直没有commit或者rollback而是卡住了，我们需要手动kill掉</li>
+<li>开启自动提交: set global autocommit=1;</li>
+</ol>
+<!--以下是脚注-->
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+          </div>
+          <div style="float:right">
+            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/开源软件简析/pandoc/">
-            <time datetime="2016-01-04T00:00:00.000Z" itemprop="datePublished">2016-01-04</time>
+        <a href="/数据库/Mysql/常见错误/">
+            <time datetime="2017-11-18T10:36:00.000Z" itemprop="datePublished">2017-11-18</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/开源软件简析/">开源软件简析</a>
+          </div>
+        </footer>
     </div>
+</article>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/doc/">doc</a>, <a class="tag-link" href="/tags/markdown/">markdown</a>, <a class="tag-link" href="/tags/pandoc/">pandoc</a>, <a class="tag-link" href="/tags/ppt/">ppt</a>
-    </div>
 
-                </div>
-                
-            </div>
-        </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/GIT/git-flow/">GitFlow</a>
-        </h1>
     
 
-                
-                <div class="article-meta">
-                    
-    <div class="article-date">
-        <i class="fa fa-calendar"></i>
-        <a href="/GIT/git-flow/">
-            <time datetime="2016-01-02T09:06:00.000Z" itemprop="datePublished">2016-01-02</time>
-        </a>
-    </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/GIT/">GIT</a>
-    </div>
-
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/git/">git</a>
-    </div>
-
-                </div>
-                
-            </div>
-        </div>
     
-</div>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
 </section>
         </div>
         <footer id="footer">
