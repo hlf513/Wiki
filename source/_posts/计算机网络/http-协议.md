@@ -3,7 +3,7 @@ layout: post
 title: Http 协议
 date: '2017-12-08 19:04'
 toc: true
-tags: 
+tags:
 top: 9997
 ---
 
@@ -214,6 +214,27 @@ Websocket即web浏览器与web服务器之间全双工通信标准。2011年12�
 2. 不验证通信方身份，可能被伪装
 3. 无法证明报文的完整性，可能被篡改
 
+## SSL/TLS 协议
+最初是网景设计了 SSL（1.0~3.0）；后来 ITEF 在 SSL3.0 基础上设计了 TLS1.0，目前 TLS 最新版为1.3。
+
+**5次握手：**
+
+第一步，客户端给出协议版本号、一个客户端生成的随机数（Client random），以及客户端支持的加密方法。
+第二步，服务端确认双方使用的加密方法，并给出数字证书、以及一个服务器生成的随机数（Server random）。
+第三步，客户端确认数字证书有效，然后生成一个新的随机数（Premaster secret），并使用数字证书中的公钥，加密这个随机数，发给服务端。
+第四步，服务端使用自己的私钥，获取客户端发来的随机数（即Premaster secret）。
+第五步，客户端和服务端根据约定的加密方法，使用前面的三个随机数，生成"对话密钥"（session key），用来加密接下来的整个对话过程。
+
+整体握手是明文传输。
+
+**会话恢复：**
+
+1. session ID
+  每一次对话都有一个编号（session ID）。如果对话中断，下次重连的时候，只要客户端给出这个编号，且服务器有这个编号的记录，双方就可以重新使用已有的"对话密钥"，而不必重新生成一把。
+
+2. session ticket
+  客户端发送一个服务器在上一次对话中发送过来的session ticket。这个session ticket是加密的，只有服务器才能解密，其中包括本次对话的主要信息，比如对话密钥和加密方法。当服务器收到session ticket以后，解密后就不必重新生成对话密钥了。
+
 ## Https的组成
 > Http + 加密 + 认证 + 完整性保护 = Https
 
@@ -234,7 +255,7 @@ Http直接和TCP通信，Https先和SSL/TLS通信，再由SSL/TLS和TCP通信。
 3. 验证通过后，客户端和服务端使用公钥进行加密通信（对称加密）
 
 ### 完整性保护
-在通信过程中，应用层会发送MAC（Message Authentication Code）报文摘要；MAC可以查知报文是否被篡改。
+在通信过程中，应用层会发送MAC（Message Authentication Code）报文摘要（MD5等算法）；MAC可以查知报文是否被篡改。
 
 # HTTP2
 
@@ -292,5 +313,6 @@ Http2 通过发送RST_STREAM帧可终止当前传输的消息并重新发送一�
 * 《图解 HTTP》
 * [Http2协议](https://ye11ow.gitbooks.io/http2-explained/content/part6.html)
 * [HTTP2简介和基于HTTP2的Web优化](https://github.com/creeperyang/blog/issues/23)
+* [图解SSL/TLS协议](http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html)
 
 <!--以下是脚注-->
