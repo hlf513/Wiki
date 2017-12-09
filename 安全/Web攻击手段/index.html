@@ -3,22 +3,23 @@
 <head>
     <meta charset="utf-8">
     
-    <title>归档: 2015 | 贺龙飞的知识库</title>
+    <title>WEB 攻击手段 | 贺龙飞的知识库</title>
     
     
-        <meta name="keywords" content="贺龙飞的知识库">
+        <meta name="keywords" content="WEB 攻击手段">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="知识管理，wiki，PKM">
-<meta property="og:type" content="website">
-<meta property="og:title" content="贺龙飞的知识库">
-<meta property="og:url" content="http://yoursite.com/archives/2015/index.html">
+    <meta name="description" content="跨站脚本攻击(XSS)定义:在 web 网站上执行非法输入的 html 或 js。 攻击:  在输入框中输入 js 代码。 在输入框中输入 html 代码。  危害:  获取用户资料（信息、cooike） 嵌入非法数据等（图片）  防范:过滤用户输入字符；转义标签（js，html）。  php类库：htmlpurifier  SQL 注入定义：在 web 网站上执行非法注入的 SQL 攻击：url">
+<meta property="og:type" content="article">
+<meta property="og:title" content="WEB 攻击手段">
+<meta property="og:url" content="http://yoursite.com/安全/Web攻击手段/index.html">
 <meta property="og:site_name" content="贺龙飞的知识库">
-<meta property="og:description" content="知识管理，wiki，PKM">
+<meta property="og:description" content="跨站脚本攻击(XSS)定义:在 web 网站上执行非法输入的 html 或 js。 攻击:  在输入框中输入 js 代码。 在输入框中输入 html 代码。  危害:  获取用户资料（信息、cooike） 嵌入非法数据等（图片）  防范:过滤用户输入字符；转义标签（js，html）。  php类库：htmlpurifier  SQL 注入定义：在 web 网站上执行非法注入的 SQL 攻击：url">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-09T08:01:12.936Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贺龙飞的知识库">
-<meta name="twitter:description" content="知识管理，wiki，PKM">
+<meta name="twitter:title" content="WEB 攻击手段">
+<meta name="twitter:description" content="跨站脚本攻击(XSS)定义:在 web 网站上执行非法输入的 html 或 js。 攻击:  在输入框中输入 js 代码。 在输入框中输入 html 代码。  危害:  获取用户资料（信息、cooike） 嵌入非法数据等（图片）  防范:过滤用户输入字符；转义标签（js，html）。  php类库：htmlpurifier  SQL 注入定义：在 web 网站上执行非法注入的 SQL 攻击：url">
     
 
     
@@ -163,13 +164,13 @@
                      </ul> 
                     </li> 
                     
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             安全
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -341,52 +342,125 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main"><div class="timeline timeline-wrap">
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar-o"></i></span>
-                <h1 class="title"><a href="/archives/2015/">2015</a></h1>
-            </div>
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title"><a href="/archives/2015/12/">2015-12</a><span class="archive-list-count">1</span></h1>
-            </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+            <section id="main"><article id="post-安全/Web攻击手段" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/安全/">安全</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/安全/Web攻击手段.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/架构设计/web-servive/">Web Servive</a>
+        <h1 class="article-title" itemprop="name">
+            WEB 攻击手段
         </h1>
     
 
-                
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#跨站脚本攻击-XSS"><span class="toc-text">跨站脚本攻击(XSS)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#SQL-注入"><span class="toc-text">SQL 注入</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OS-命令攻击"><span class="toc-text">OS 命令攻击</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#跨站请求伪造-CSRF"><span class="toc-text">跨站请求伪造(CSRF)</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="跨站脚本攻击-XSS"><a href="#跨站脚本攻击-XSS" class="headerlink" title="跨站脚本攻击(XSS)"></a>跨站脚本攻击(XSS)</h1><p><strong>定义:</strong><br>在 web 网站上执行非法输入的 html 或 js。</p>
+<p><strong>攻击:</strong></p>
+<ol>
+<li>在输入框中输入 js 代码。</li>
+<li>在输入框中输入 html 代码。</li>
+</ol>
+<p><strong>危害:</strong></p>
+<ol>
+<li>获取用户资料（信息、cooike）</li>
+<li>嵌入非法数据等（图片）</li>
+</ol>
+<p><strong>防范:</strong><br>过滤用户输入字符；转义标签（js，html）。</p>
+<blockquote>
+<p>php类库：<a href="http://htmlpurifier.org/" rel="external nofollow noopener noreferrer" target="_blank">htmlpurifier</a></p>
+</blockquote>
+<h1 id="SQL-注入"><a href="#SQL-注入" class="headerlink" title="SQL 注入"></a>SQL 注入</h1><p><strong>定义：</strong><br>在 web 网站上执行非法注入的 SQL</p>
+<p><strong>攻击：</strong><br>url 上增加 sql</p>
+<p><strong>危害：</strong></p>
+<ol>
+<li>获取数据库数据</li>
+<li>篡改数据库数据</li>
+</ol>
+<p><strong>防范：</strong></p>
+<ol>
+<li>过滤用户输入字符</li>
+<li>使用 PDO 执行 SQL</li>
+</ol>
+<h1 id="OS-命令攻击"><a href="#OS-命令攻击" class="headerlink" title="OS 命令攻击"></a>OS 命令攻击</h1><p><strong>定义：</strong><br>在 Web 上执行非法输入的 OS 命令</p>
+<p><strong>攻击：</strong><br>输入框中输入 OS 命令</p>
+<p><strong>危害：</strong><br>获取服务器信息（<code>/etc/passwd</code>）</p>
+<p><strong>防范：</strong><br>过滤用户输入字符</p>
+<h1 id="跨站请求伪造-CSRF"><a href="#跨站请求伪造-CSRF" class="headerlink" title="跨站请求伪造(CSRF)"></a>跨站请求伪造(CSRF)</h1><p><strong>定义：</strong><br>攻击者盗用了你的身份，以你的名义发送恶意请求。</p>
+<p><strong>攻击：</strong><br>1.受害用户登录受信任网站A，并在本地生成Cookie。<br>2.受害用户在不登出A的情况下，访问危险网站B。</p>
+<p><strong>危害：</strong></p>
+<ol>
+<li>以你名义发送邮件，发消息（例：微博关注未知用户）</li>
+<li>盗取你的账号</li>
+</ol>
+<p><strong>防范：</strong><br>服务端预先生成 token，存在 session 中；客户端（浏览器）在 form 表单中增加请求 token，服务端接受到请求后验证请求 token。（保证用户发起的请求是在本站，而不是在第三方网站）</p>
+<!--以下是脚注-->
+
             </div>
-        </div>
-    
-            <div class="timeline-row timeline-row-major">
-                <span class="node"><i class="fa fa-calendar"></i></span>
-                <h1 class="title"><a href="/archives/2015/11/">2015-11</a><span class="archive-list-count">1</span></h1>
-            </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
-                
-    
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/中间件/MQ/activemq/">ActiveMQ</a>
-        </h1>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/安全/Web攻击手段/">
+            <time datetime="2017-12-09T07:09:00.000Z" itemprop="datePublished">2017-12-09</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
     
 
-                
-            </div>
-        </div>
+
+
     
-</div>
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
 </section>
         </div>
         <footer id="footer">
