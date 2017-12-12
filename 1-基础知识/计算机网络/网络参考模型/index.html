@@ -1,0 +1,562 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>网络参考模型 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="网络参考模型">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="OSI 参考模型 国际标准化组织(ISO) 和 国际电报电话咨询委员会(CCITT) 联合制定了 OSI（Open System Interconnect）  WHYOSI参考模型是计算机网路体系结构发展的产物；其目的是为异种计算机互连提供 一个共同的基础和标准框架 ，并为保持相关标准的一致性和兼容性提供共同的参考。 WHAT实现「开放系统互连」所建立的「通信功能」的「分层模型」；分七层：物理层、">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络参考模型">
+<meta property="og:url" content="http://yoursite.com/1-基础知识/计算机网络/网络参考模型/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="OSI 参考模型 国际标准化组织(ISO) 和 国际电报电话咨询委员会(CCITT) 联合制定了 OSI（Open System Interconnect）  WHYOSI参考模型是计算机网路体系结构发展的产物；其目的是为异种计算机互连提供 一个共同的基础和标准框架 ，并为保持相关标准的一致性和兼容性提供共同的参考。 WHAT实现「开放系统互连」所建立的「通信功能」的「分层模型」；分七层：物理层、">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/osi.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/osi-translate.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/osi-tcp-ip.png">
+<meta property="og:updated_time" content="2017-12-03T16:04:44.542Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络参考模型">
+<meta name="twitter:description" content="OSI 参考模型 国际标准化组织(ISO) 和 国际电报电话咨询委员会(CCITT) 联合制定了 OSI（Open System Interconnect）  WHYOSI参考模型是计算机网路体系结构发展的产物；其目的是为异种计算机互连提供 一个共同的基础和标准框架 ，并为保持相关标准的一致性和兼容性提供共同的参考。 WHAT实现「开放系统互连」所建立的「通信功能」的「分层模型」；分七层：物理层、">
+<meta name="twitter:image" content="http://yoursite.com/images/2017/11/osi.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            1-基础知识
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/1-基础知识/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/http-协议/">Http 协议</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2-开发技能
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/2-开发技能/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/2-开发技能/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/面向对象/uml/">UML</a></li>  <li class="file"><a href="/2-开发技能/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            3-基础架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-基础架构/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            4-大型架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-大型架构/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-大型架构/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            5-开源软件
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/5-开源软件/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/5-开源软件/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/5-开源软件/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/5-开源软件/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            6-效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/6-效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-1-基础知识/计算机网络/网络参考模型" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/1-基础知识/">1-基础知识</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/1-基础知识/计算机网络/">计算机网络</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/1-基础知识/计算机网络/网络参考模型.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            网络参考模型
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#OSI-参考模型"><span class="toc-text">OSI 参考模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WHY"><span class="toc-text">WHY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WHAT"><span class="toc-text">WHAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HOW"><span class="toc-text">HOW</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分层说明"><span class="toc-text">分层说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用层-Application"><span class="toc-text">应用层 (Application)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#表示层（Presentation-Layer）"><span class="toc-text">表示层（Presentation Layer）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#会话层（Session-Layer）"><span class="toc-text">会话层（Session Layer）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层-Transport"><span class="toc-text">传输层 (Transport)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络层-Network"><span class="toc-text">网络层 (Network)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#数据链路层-Link"><span class="toc-text">数据链路层 (Link)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#物理层（Physical-Layer）"><span class="toc-text">物理层（Physical Layer）</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-IP-参考模型"><span class="toc-text">TCP/IP 参考模型</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#WHY-1"><span class="toc-text">WHY</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#WHAT-1"><span class="toc-text">WHAT</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HOW-1"><span class="toc-text">HOW</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#分层说明-1"><span class="toc-text">分层说明</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#应用层"><span class="toc-text">应用层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#传输层"><span class="toc-text">传输层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络互联层"><span class="toc-text">网络互联层</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络接口层"><span class="toc-text">网络接口层</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#OSI-比对-TCP-IP"><span class="toc-text">OSI 比对 TCP/IP</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="OSI-参考模型"><a href="#OSI-参考模型" class="headerlink" title="OSI 参考模型"></a>OSI 参考模型</h1><blockquote>
+<p><strong>国际标准化组织(ISO)</strong> 和 <strong>国际电报电话咨询委员会(CCITT)</strong> 联合制定了 <strong>OSI（Open System Interconnect）</strong></p>
+</blockquote>
+<h2 id="WHY"><a href="#WHY" class="headerlink" title="WHY"></a>WHY</h2><p>OSI参考模型是计算机网路体系结构发展的产物；其目的是为异种计算机互连提供 <strong>一个共同的基础和标准框架</strong> ，并为保持相关标准的一致性和兼容性提供共同的参考。</p>
+<h2 id="WHAT"><a href="#WHAT" class="headerlink" title="WHAT"></a>WHAT</h2><p>实现「开放系统互连」所建立的「通信功能」的「分层模型」；分七层：物理层、数据链路层、网络层、传输层、会话层、表示层、应用层。</p>
+<h2 id="HOW"><a href="#HOW" class="headerlink" title="HOW"></a>HOW</h2><ul>
+<li>每一层的功能是独立的，利用下一层为上一层提供<strong>服务</strong>；</li>
+<li>同等层实体之间通信由该层的<strong>协议</strong>管理。</li>
+<li>除物理层之外，每层都会在原始数据前添加一串属于自己的<strong>协议头</strong>；接收端向上传递过程中会删除自己的协议头<blockquote>
+<p><strong>服务</strong>：下一层向上一层提供的「通信功能」和「层之间的会话规定」。<br><strong>协议</strong>：两个开放系统中的 <strong>同等层之间的通信规则和约定</strong><br>  1～4层协议称为<strong>下层协议</strong><br>  5～7层协议称为<strong>上层协议</strong></p>
+</blockquote>
+</li>
+</ul>
+<h2 id="分层说明"><a href="#分层说明" class="headerlink" title="分层说明"></a>分层说明</h2><h3 id="应用层-Application"><a href="#应用层-Application" class="headerlink" title="应用层 (Application)"></a>应用层 (Application)</h3><p>网络服务与最终用户的一个接口。<br>协议有：HTTP FTP TFTP SMTP SNMP DNS TELNET HTTPS POP3 DHCP</p>
+<h3 id="表示层（Presentation-Layer）"><a href="#表示层（Presentation-Layer）" class="headerlink" title="表示层（Presentation Layer）"></a>表示层（Presentation Layer）</h3><p>数据的表示、安全、压缩。（在五层模型里面已经合并到了应用层）<br>格式有，JPEG、ASCll、DECOIC、加密格式等</p>
+<h3 id="会话层（Session-Layer）"><a href="#会话层（Session-Layer）" class="headerlink" title="会话层（Session Layer）"></a>会话层（Session Layer）</h3><p>建立、管理、终止会话。（在五层模型里面已经合并到了应用层）<br>对应主机进程，指本地主机与远程主机正在进行的会话</p>
+<h3 id="传输层-Transport"><a href="#传输层-Transport" class="headerlink" title="传输层 (Transport)"></a>传输层 (Transport)</h3><p>定义传输数据的协议端口号，以及流控和差错校验。<br>协议有：TCP UDP，数据包一旦离开网卡即进入网络传输层</p>
+<h3 id="网络层-Network"><a href="#网络层-Network" class="headerlink" title="网络层 (Network)"></a>网络层 (Network)</h3><p>进行逻辑地址寻址，实现不同网络之间的路径选择。<br>协议有：ICMP IGMP IP（IPV4 IPV6） ARP RARP</p>
+<h3 id="数据链路层-Link"><a href="#数据链路层-Link" class="headerlink" title="数据链路层 (Link)"></a>数据链路层 (Link)</h3><p>建立逻辑连接、进行硬件地址寻址、差错校验等功能。（由底层网络定义协议）<br>将比特组合成字节进而组合成帧，用MAC地址访问介质，错误发现但不能纠正。</p>
+<h3 id="物理层（Physical-Layer）"><a href="#物理层（Physical-Layer）" class="headerlink" title="物理层（Physical Layer）"></a>物理层（Physical Layer）</h3><p>建立、维护、断开物理连接。（由底层网络定义协议）</p>
+<p><img src="/images/2017/11/osi.png" alt="OSI"></p>
+<h1 id="TCP-IP-参考模型"><a href="#TCP-IP-参考模型" class="headerlink" title="TCP/IP 参考模型"></a>TCP/IP 参考模型</h1><blockquote>
+<p>TCP/IP是先有了协议，才制定TCP/IP模型。目前是互联网的事实标准</p>
+</blockquote>
+<h2 id="WHY-1"><a href="#WHY-1" class="headerlink" title="WHY"></a>WHY</h2><p>ARPANET是由美国国防部DoD（U.S.Department of Defense）赞助的研究网络。逐渐地它通过租用的电话线连结了数百所大学和政府部门。当无线网络和卫星出现以后，现有的协议在和它们相连的时候出现了问题，所以需要一种新的参考体系结构。</p>
+<h2 id="WHAT-1"><a href="#WHAT-1" class="headerlink" title="WHAT"></a>WHAT</h2><p>由 TCP、IP 两个协议演进过来的，共分为四层：网络访问层、互联网层、传输层和应用层</p>
+<h2 id="HOW-1"><a href="#HOW-1" class="headerlink" title="HOW"></a>HOW</h2><p><img src="/images/2017/11/osi-translate.png" alt="osi-translate"></p>
+<h2 id="分层说明-1"><a href="#分层说明-1" class="headerlink" title="分层说明"></a>分层说明</h2><h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><p>为用户提供所需要的各种服务<br>协议有：HTTP、FTP、Telnet、DNS、SMTP等.</p>
+<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><p>为应用层提供端到端的通信功能<br>协议有：TCP、UDP</p>
+<h3 id="网络互联层"><a href="#网络互联层" class="headerlink" title="网络互联层"></a>网络互联层</h3><p>负责分配地址和传送二进制数据。<br>协议有：IP、IGMP、ICMP<br><strong>IP协议</strong>是网际互联层最重要的协议，它提供的是一个可靠、无连接的数据报传递服务。</p>
+<h3 id="网络接口层"><a href="#网络接口层" class="headerlink" title="网络接口层"></a>网络接口层</h3><p>负责监视数据在主机和网络之间的交换。<strong>事实上，TCP/IP本身并未定义该层的协议</strong>，所以其具体实现的方法随着网络类型的不同而不同。</p>
+<h1 id="OSI-比对-TCP-IP"><a href="#OSI-比对-TCP-IP" class="headerlink" title="OSI 比对 TCP/IP"></a>OSI 比对 TCP/IP</h1><p><img src="/images/2017/11/osi-tcp-ip.png" alt="OSI-TCP/IP"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li><a href="http://www.colasoft.com.cn/download/protocols_map.php" rel="external nofollow noopener noreferrer" target="_blank">科来协议图</a></li>
+<li><a href="https://baike.baidu.com/item/%E4%B8%83%E5%B1%82%E6%A8%A1%E5%9E%8B/1441391?fr=aladdin" rel="external nofollow noopener noreferrer" target="_blank">百科-七层模型</a></li>
+<li><a href="https://baike.baidu.com/item/TCP%2FIP%E5%8F%82%E8%80%83%E6%A8%A1%E5%9E%8B" rel="external nofollow noopener noreferrer" target="_blank">百科-TCP/IP参考模型</a></li>
+</ul>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/1-基础知识/计算机网络/网络参考模型/">
+            <time datetime="2017-11-10T18:52:00.000Z" itemprop="datePublished">2017-11-11</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>

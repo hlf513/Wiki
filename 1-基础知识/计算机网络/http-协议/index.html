@@ -1,0 +1,931 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Http 协议 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="Http 协议">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="Http 历史版本HTTP 是基于 TCP/IP 协议的应用层协议。主要规定了客户端和服务器之间的通信格式，默认使用80端口。 Http0.91991年发布，只有 GET，只能回应 html 格式的字符串。 请求示例：1GET /index.html 响应示例：123&amp;lt;html&amp;gt;  &amp;lt;body&amp;gt;Hello World&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; Ht">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Http 协议">
+<meta property="og:url" content="http://yoursite.com/1-基础知识/计算机网络/http-协议/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="Http 历史版本HTTP 是基于 TCP/IP 协议的应用层协议。主要规定了客户端和服务器之间的通信格式，默认使用80端口。 Http0.91991年发布，只有 GET，只能回应 html 格式的字符串。 请求示例：1GET /index.html 响应示例：123&amp;lt;html&amp;gt;  &amp;lt;body&amp;gt;Hello World&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; Ht">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="http://yoursite.com/images/2017/11/11/uri.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/报文结构.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/通用首部字段.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/请求首部字段.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/响应首部字段1.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/响应首部字段2.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/实体首部字段.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/状态码类别.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/spdy的设计.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/websocket通信.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/05/httpvshttps.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/08/http2.png">
+<meta property="og:image" content="http://yoursite.com/images/2017/12/08/flow-control.png">
+<meta property="og:updated_time" content="2017-12-08T18:43:01.093Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Http 协议">
+<meta name="twitter:description" content="Http 历史版本HTTP 是基于 TCP/IP 协议的应用层协议。主要规定了客户端和服务器之间的通信格式，默认使用80端口。 Http0.91991年发布，只有 GET，只能回应 html 格式的字符串。 请求示例：1GET /index.html 响应示例：123&amp;lt;html&amp;gt;  &amp;lt;body&amp;gt;Hello World&amp;lt;/body&amp;gt;&amp;lt;/html&amp;gt; Ht">
+<meta name="twitter:image" content="http://yoursite.com/images/2017/11/11/uri.png">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            1-基础知识
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/1-基础知识/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  <li class="file active"><a href="/1-基础知识/计算机网络/http-协议/">Http 协议</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2-开发技能
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/2-开发技能/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/2-开发技能/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/面向对象/uml/">UML</a></li>  <li class="file"><a href="/2-开发技能/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            3-基础架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-基础架构/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/3-基础架构/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            4-大型架构
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-大型架构/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-大型架构/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            5-开源软件
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/5-开源软件/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/5-开源软件/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/5-开源软件/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/5-开源软件/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            6-效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/6-效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-1-基础知识/计算机网络/http-协议" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/1-基础知识/">1-基础知识</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/1-基础知识/计算机网络/">计算机网络</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/1-基础知识/计算机网络/http-协议.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Http 协议
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Http-历史版本"><span class="toc-text">Http 历史版本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Http0-9"><span class="toc-text">Http0.9</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Http1-0"><span class="toc-text">Http1.0</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Http1-1"><span class="toc-text">Http1.1</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#URL-URI-URN"><span class="toc-text">URL / URI / URN</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Http-报文"><span class="toc-text">Http 报文</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通用首部字段"><span class="toc-text">通用首部字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#请求首部字段"><span class="toc-text">请求首部字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#响应首部字段"><span class="toc-text">响应首部字段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#实体首部字段"><span class="toc-text">实体首部字段</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Http-状态码"><span class="toc-text">Http 状态码</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1XX"><span class="toc-text">1XX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2XX"><span class="toc-text">2XX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3XX"><span class="toc-text">3XX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4XX"><span class="toc-text">4XX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5XX"><span class="toc-text">5XX</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP-追加协议"><span class="toc-text">HTTP 追加协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SPDY-协议"><span class="toc-text">SPDY 协议</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebSocket-协议"><span class="toc-text">WebSocket 协议</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Http的缺点"><span class="toc-text">Http的缺点</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSL-TLS-协议"><span class="toc-text">SSL/TLS 协议</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Https的组成"><span class="toc-text">Https的组成</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#加密"><span class="toc-text">加密</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#认证"><span class="toc-text">认证</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#完整性保护"><span class="toc-text">完整性保护</span></a></li></ol></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#HTTP2"><span class="toc-text">HTTP2</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP2的特性"><span class="toc-text">HTTP2的特性</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="Http-历史版本"><a href="#Http-历史版本" class="headerlink" title="Http 历史版本"></a>Http 历史版本</h1><p>HTTP 是基于 TCP/IP 协议的应用层协议。主要规定了客户端和服务器之间的通信格式，默认使用80端口。</p>
+<h2 id="Http0-9"><a href="#Http0-9" class="headerlink" title="Http0.9"></a>Http0.9</h2><p>1991年发布，只有 GET，只能回应 html 格式的字符串。</p>
+<p>请求示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">GET /index.html</span><br></pre></td></tr></table></figure></p>
+<p>响应示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;Hello World&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Http1-0"><a href="#Http1-0" class="headerlink" title="Http1.0"></a>Http1.0</h2><p>1996年5月发布，记载于 <a href="https://www.ietf.org/rfc/rfc1945.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC1945</a>；可以传输任何类型的内容（文本、图像、视频、二进制文件等）</p>
+<p>相对比<code>http0.9</code>增加了：</p>
+<ol>
+<li>POST、HEAD 等请求方法</li>
+<li>状态码</li>
+<li>MIME</li>
+<li>首部字段</li>
+<li>权限认证（Basic）</li>
+<li>字符集</li>
+<li>传输各类型内容</li>
+</ol>
+<p>详细内容请参考 <a href="https://www.ietf.org/rfc/rfc1945.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC1945</a></p>
+<p>请求示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">GET / HTTP/1.0</span><br><span class="line">User-Agent: Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_5)</span><br><span class="line">Accept: */*</span><br></pre></td></tr></table></figure></p>
+<p>响应示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">HTTP/1.0 200 OK</span><br><span class="line">Content-Type: text/plain</span><br><span class="line">Content-Length: 137582</span><br><span class="line">Expires: Thu, 05 Dec 1997 16:00:00 GMT</span><br><span class="line">Last-Modified: Wed, 5 August 1996 15:55:28 GMT</span><br><span class="line">Server: Apache 0.84</span><br><span class="line"></span><br><span class="line">&lt;html&gt;</span><br><span class="line">  &lt;body&gt;Hello World&lt;/body&gt;</span><br><span class="line">&lt;/html&gt;</span><br></pre></td></tr></table></figure></p>
+<p><strong>缺点:</strong><br>每个TCP连接只能发送一个请求。</p>
+<h1 id="Http1-1"><a href="#Http1-1" class="headerlink" title="Http1.1"></a>Http1.1</h1><p>1997年1月发布，最初版是 <a href="https://www.ietf.org/rfc/rfc2068.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC2068</a>；1999年6月发布的修订版 <a href="https://www.ietf.org/rfc/rfc2616.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC2616</a> 沿用至今。</p>
+<p>对比<code>http1.0</code>最大的变化是：</p>
+<ol>
+<li>默认持久连接（<code>keep-alive</code>）</li>
+<li>引入了 <code>pipelining</code>（同一个TCP连接发送多个请求），但是由于服务器是按照请求顺序进行响应，客户端无法确定最优请求顺序，所以未普及</li>
+<li>分块传输编码(<code>chunked</code>)，针对大数据传输操作，把数据切分为若干数据块<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。">[1]</span></a></sup>进行传输（流模式）</li>
+<li>增加了更多的请求方法：OPTIONS,PUT,DELETE,TRACE,CONNECT</li>
+<li>增加了更多的状态码</li>
+<li>可以范围取数据,可实现断点续传下载(<code>range</code>,<code>etag</code>)</li>
+<li>可追踪数据请求链(<code>via</code>)</li>
+<li>增加权限认证</li>
+<li>增加了<code>host</code>首部，使得一台服务器可以支持虚拟主机</li>
+</ol>
+<p><strong>缺点：</strong></p>
+<ol>
+<li>浏览器对同一域名下的持久连接并发有限制，通常是6个</li>
+<li>使用<code>pipelining</code>会造成 <code>Head of line blocking</code></li>
+<li>每次通信都需要传送<code>header</code>，多次请求时大部分请求首部字段不变，会增加传输成本</li>
+</ol>
+<h2 id="URL-URI-URN"><a href="#URL-URI-URN" class="headerlink" title="URL / URI / URN"></a>URL / URI / URN</h2><p><strong>定义</strong><br>uniform resource identifier（统一资源标识符） URI<br>uniform resource locator （统一资源定位符）URL<br>uniform resource name（统一资源名称）URN</p>
+<p><strong>区别</strong><br>URL、URN 是 URI 的子集</p>
+<blockquote>
+<p>URI可被视为定位符（URL），名称（URN）或两者兼备。统一资源名（URN）如同一个人的名称，而统一资源定位符（URL）代表一个人的住址。换言之，<strong>URN定义某事物的身份，而URL提供查找该事物的方法。</strong></p>
+</blockquote>
+<p><img src="/images/2017/11/11/uri.png" alt="URI"></p>
+<h2 id="Http-报文"><a href="#Http-报文" class="headerlink" title="Http 报文"></a>Http 报文</h2><p><img src="/images/2017/12/05/报文结构.png" alt="报文结构"></p>
+<h3 id="通用首部字段"><a href="#通用首部字段" class="headerlink" title="通用首部字段"></a>通用首部字段</h3><p><img src="/images/2017/12/05/通用首部字段.png" alt="通用首部字段"></p>
+<h3 id="请求首部字段"><a href="#请求首部字段" class="headerlink" title="请求首部字段"></a>请求首部字段</h3><p><img src="/images/2017/12/05/请求首部字段.png" alt="请求首部字段"></p>
+<h3 id="响应首部字段"><a href="#响应首部字段" class="headerlink" title="响应首部字段"></a>响应首部字段</h3><p><img src="/images/2017/12/05/响应首部字段1.png" alt="响应首部字段1"><br><img src="/images/2017/12/05/响应首部字段2.png" alt="响应首部字段2"></p>
+<h3 id="实体首部字段"><a href="#实体首部字段" class="headerlink" title="实体首部字段"></a>实体首部字段</h3><p><img src="/images/2017/12/05/实体首部字段.png" alt="实体首部字段"></p>
+<h2 id="Http-状态码"><a href="#Http-状态码" class="headerlink" title="Http 状态码"></a>Http 状态码</h2><p><img src="/images/2017/12/05/状态码类别.png" alt="状态码类别"></p>
+<h3 id="1XX"><a href="#1XX" class="headerlink" title="1XX"></a>1XX</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>100</td>
+<td>Continue</td>
+</tr>
+<tr>
+<td>101</td>
+<td>Switching Protocols</td>
+</tr>
+</tbody>
+</table>
+<h3 id="2XX"><a href="#2XX" class="headerlink" title="2XX"></a>2XX</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>200</td>
+<td>OK</td>
+<td></td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+<td></td>
+</tr>
+<tr>
+<td>202</td>
+<td>Accepted</td>
+<td></td>
+</tr>
+<tr>
+<td>203</td>
+<td>Non-Authoritative Information</td>
+<td></td>
+</tr>
+<tr>
+<td>204</td>
+<td>No Content</td>
+<td>响应报文中不含主体</td>
+</tr>
+<tr>
+<td>205</td>
+<td>Reset Content</td>
+<td></td>
+</tr>
+<tr>
+<td>206</td>
+<td>Parial Content</td>
+<td>范围请求；响应报文中含有content-range</td>
+</tr>
+</tbody>
+</table>
+<h3 id="3XX"><a href="#3XX" class="headerlink" title="3XX"></a>3XX</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>300</td>
+<td>Multiple Choices</td>
+<td></td>
+</tr>
+<tr>
+<td>301</td>
+<td>Moved Permanently</td>
+<td>永久重定向，丢失搜索引擎权重</td>
+</tr>
+<tr>
+<td>302</td>
+<td>Found</td>
+<td>临时重定向</td>
+</tr>
+<tr>
+<td>303</td>
+<td>See other</td>
+<td>有另外的URL，应使用GET去访问另一个URL</td>
+</tr>
+<tr>
+<td>304</td>
+<td>Not Modified</td>
+<td>没有满足客户端的条件请求的响应需要返回，不包含主体</td>
+</tr>
+<tr>
+<td>305</td>
+<td>Use Proxy</td>
+<td></td>
+</tr>
+<tr>
+<td>306</td>
+<td>(Unuesed)</td>
+<td></td>
+</tr>
+<tr>
+<td>307</td>
+<td>Temporary Redirect</td>
+<td>临时重定向，不会把POST改为GET</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4XX"><a href="#4XX" class="headerlink" title="4XX"></a>4XX</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>400</td>
+<td>Bad Request</td>
+<td>请求报文存在语法错误</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+<td>HTTP认证未通过</td>
+</tr>
+<tr>
+<td>402</td>
+<td>Payment Required</td>
+<td></td>
+</tr>
+<tr>
+<td>403</td>
+<td>Forbidden</td>
+<td>请求被拒绝</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+<td>未找到请求资源</td>
+</tr>
+<tr>
+<td>405</td>
+<td>Method NOt Allowed</td>
+<td></td>
+</tr>
+<tr>
+<td>406</td>
+<td>Not Acceptable</td>
+<td></td>
+</tr>
+<tr>
+<td>407</td>
+<td>Proxy Authentication Required</td>
+<td></td>
+</tr>
+<tr>
+<td>408</td>
+<td>Request Timeout</td>
+<td></td>
+</tr>
+<tr>
+<td>409</td>
+<td>Conflict</td>
+<td></td>
+</tr>
+<tr>
+<td>410</td>
+<td>Gone</td>
+<td>请求资源被永久性删除</td>
+</tr>
+<tr>
+<td>411</td>
+<td>Length Required</td>
+<td></td>
+</tr>
+<tr>
+<td>412</td>
+<td>Precondition Failed</td>
+<td></td>
+</tr>
+<tr>
+<td>413</td>
+<td>Request Entity Too Large</td>
+<td></td>
+</tr>
+<tr>
+<td>414</td>
+<td>Request-URI Too Long</td>
+<td></td>
+</tr>
+<tr>
+<td>415</td>
+<td>Unsupported Media Type</td>
+<td></td>
+</tr>
+<tr>
+<td>416</td>
+<td>Requested Range Not Satisfiable</td>
+<td></td>
+</tr>
+<tr>
+<td>417</td>
+<td>Expectation Failed</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h3 id="5XX"><a href="#5XX" class="headerlink" title="5XX"></a>5XX</h3><table>
+<thead>
+<tr>
+<th>状态码</th>
+<th>含义</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+<td>服务端在执行请求时发生错误</td>
+</tr>
+<tr>
+<td>501</td>
+<td>Not Implemented</td>
+<td></td>
+</tr>
+<tr>
+<td>502</td>
+<td>Bad Gateway</td>
+<td></td>
+</tr>
+<tr>
+<td>503</td>
+<td>Service Unavailable</td>
+<td>服务器超负载，暂时无法处理请求</td>
+</tr>
+<tr>
+<td>504</td>
+<td>Gateway Timeout</td>
+<td></td>
+</tr>
+<tr>
+<td>505</td>
+<td>Http Version Not Unsupported</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+<h2 id="HTTP-追加协议"><a href="#HTTP-追加协议" class="headerlink" title="HTTP 追加协议"></a>HTTP 追加协议</h2><h3 id="SPDY-协议"><a href="#SPDY-协议" class="headerlink" title="SPDY 协议"></a>SPDY 协议</h3><p>Google在2010年发布了 <a href="http://www.chromium.org/spdy" rel="external nofollow noopener noreferrer" target="_blank">SPDY协议</a>；希望在协议层面解决http的一些痛点：</p>
+<ol>
+<li>一条连接发送一条请求</li>
+<li>请求只能从客户端发起</li>
+<li>首部未经压缩</li>
+</ol>
+<p><img src="/images/2017/12/05/spdy的设计.png" alt="SPDY的设计"></p>
+<p><strong>SPDY协议的主要功能有：</strong></p>
+<ol>
+<li>多路复用流（单一TCP连接）</li>
+<li>请求优先级</li>
+<li>压缩Http首部</li>
+<li>支持服务端推送数据到客户端</li>
+<li>服务器主动提示客户端所需资源（过期）</li>
+</ol>
+<h3 id="WebSocket-协议"><a href="#WebSocket-协议" class="headerlink" title="WebSocket 协议"></a>WebSocket 协议</h3><p>Websocket即web浏览器与web服务器之间全双工通信标准。2011年12月11日记载于 <a href="https://www.ietf.org/rfc/rfc6455.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC6455</a>；</p>
+<p>为了实现Websocket通信，在HTTP连接建立之后，需要完成一次握手：</p>
+<p><img src="/images/2017/12/05/websocket通信.png" alt="Websocket通信"></p>
+<p><strong>Websocket的功能：</strong></p>
+<ol>
+<li>服务器推送</li>
+<li>减少通信量（websocket首部信息很小）</li>
+<li>js可调用 <a href="http://www.w3.org/TR/websockets" rel="external nofollow noopener noreferrer" target="_blank">Websocket API</a></li>
+</ol>
+<h1 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h1><p>2000年5月公布，发布于 <a href="https://www.ietf.org/rfc/rfc2818.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC2818</a>；默认端口443。因为有加密解密，所以访问会比http慢（可接受），并且会消耗服务器cpu资源。</p>
+<h2 id="Http的缺点"><a href="#Http的缺点" class="headerlink" title="Http的缺点"></a>Http的缺点</h2><ol>
+<li>通信使用明文，可能被窃听</li>
+<li>不验证通信方身份，可能被伪装</li>
+<li>无法证明报文的完整性，可能被篡改</li>
+</ol>
+<h2 id="SSL-TLS-协议"><a href="#SSL-TLS-协议" class="headerlink" title="SSL/TLS 协议"></a>SSL/TLS 协议</h2><p>最初是网景设计了 SSL（1.0~3.0）；后来 ITEF 在 SSL3.0 基础上设计了 TLS1.0，目前 TLS 最新版为1.3。</p>
+<p><strong>5次握手：</strong></p>
+<p>第一步，客户端给出协议版本号、一个客户端生成的随机数（Client random），以及客户端支持的加密方法。<br>第二步，服务端确认双方使用的加密方法，并给出数字证书、以及一个服务器生成的随机数（Server random）。<br>第三步，客户端确认数字证书有效，然后生成一个新的随机数（Premaster secret），并使用数字证书中的公钥，加密这个随机数，发给服务端。<br>第四步，服务端使用自己的私钥，获取客户端发来的随机数（即Premaster secret）。<br>第五步，客户端和服务端根据约定的加密方法，使用前面的三个随机数，生成”对话密钥”（session key），用来加密接下来的整个对话过程。</p>
+<p>整体握手是明文传输。</p>
+<p><strong>会话恢复：</strong></p>
+<ol>
+<li><p>session ID<br>每一次对话都有一个编号（session ID）。如果对话中断，下次重连的时候，只要客户端给出这个编号，且服务器有这个编号的记录，双方就可以重新使用已有的”对话密钥”，而不必重新生成一把。</p>
+</li>
+<li><p>session ticket<br>客户端发送一个服务器在上一次对话中发送过来的session ticket。这个session ticket是加密的，只有服务器才能解密，其中包括本次对话的主要信息，比如对话密钥和加密方法。当服务器收到session ticket以后，解密后就不必重新生成对话密钥了。</p>
+</li>
+</ol>
+<h2 id="Https的组成"><a href="#Https的组成" class="headerlink" title="Https的组成"></a>Https的组成</h2><blockquote>
+<p>Http + 加密 + 认证 + 完整性保护 = Https</p>
+</blockquote>
+<p>Http直接和TCP通信，Https先和SSL/TLS通信，再由SSL/TLS和TCP通信。<br><img src="/images/2017/12/05/httpvshttps.png" alt="HttpVsHttps"></p>
+<h3 id="加密"><a href="#加密" class="headerlink" title="加密"></a>加密</h3><p>采用「对称加密」<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="加密和解密使用同一个密钥；消耗资源少且快
+">[2]</span></a></sup>和「非对称加密」<sup id="fnref:3"><a href="#fn:3" rel="footnote"><span class="hint--top-right hint--error hint--large" aria-label="使用公钥进行加密（发送方），使用私钥进行解密（使用方）；消耗资源多且慢">[3]</span></a></sup>混合加密方式；交换密钥使用「非对称加密」，通信使用「对称加密」。</p>
+<h3 id="认证"><a href="#认证" class="headerlink" title="认证"></a>认证</h3><p>采用数字认证机构与其相关机关颁发的「公开密钥证书」进行认证。</p>
+<ol>
+<li>网站提交公钥给数字认证机构，机构制作为「公开密钥证书」（非对称加密）</li>
+<li>网站服务端把「公开密钥证书」发送给客户端，客户端利用浏览器内置的数字认证机构公钥进行验证（非对称加密）</li>
+<li>验证通过后，客户端和服务端使用公钥进行加密通信（对称加密）</li>
+</ol>
+<h3 id="完整性保护"><a href="#完整性保护" class="headerlink" title="完整性保护"></a>完整性保护</h3><p>在通信过程中，应用层会发送MAC（Message Authentication Code）报文摘要（MD5等算法）；MAC可以查知报文是否被篡改。</p>
+<h1 id="HTTP2"><a href="#HTTP2" class="headerlink" title="HTTP2"></a>HTTP2</h1><p>2015年5月，发布于 <a href="https://www.ietf.org/rfc/rfc7540.txt" rel="external nofollow noopener noreferrer" target="_blank">RFC7540</a>；基于<code>spdy3.0草案</code>；Http2 可以基于「明文」，也可以基于「TLS」进行通信。</p>
+<p>关于后续版本：<br>HTTP2后取消了小版本，后续的版本会是HTTP3。</p>
+<h2 id="HTTP2的特性"><a href="#HTTP2的特性" class="headerlink" title="HTTP2的特性"></a>HTTP2的特性</h2><p><strong>1. 二进制协议</strong><br><img src="/images/2017/12/08/http2.png" alt="http2"></p>
+<ul>
+<li>length 定义了整个frame（帧）的大小</li>
+<li>type定义frame的类型（一共10种）</li>
+<li>flags用bit位定义一些重要的参数</li>
+<li>stream id用作流控制</li>
+<li>frame payload就是request的正文。</li>
+</ul>
+<p><strong>2. 多路复用的流</strong></p>
+<p><strong>帧</strong>：HTTP2 数据通信的最小单位；例如请求和响应等，消息由一个或多个帧组成。</p>
+<p><strong>流</strong>：存在于连接中的一个虚拟通道。流可以承载双向消息，每个流都有一个唯一的整数ID。</p>
+<p>HTTP2 中，同域名下所有通信都在单个连接上完成，该连接可以承载任意数量的双向数据流（并发）。流的多路复用意味着在同一连接中来自各个流的数据包会被混合在一起，Stream Identifier将连接上传输的每个帧都关联到一个“流”。</p>
+<p><strong>3. 流的优先级和依赖性</strong><br>优先级：每个流都包含一个优先级（也就是“权重”），它被用来告诉对端哪个流更重要。<br>依赖性：借助于PRIORITY帧，客户端可以告知服务器当前的流依赖于其他哪个流。</p>
+<p><strong>4. header压缩</strong><br>HTTP2 对消息头采用 <a href="https://www.ietf.org/rfc/rfc7541.txt" rel="external nofollow noopener noreferrer" target="_blank">HPACK</a>（专为http/2头部设计的压缩格式）进行压缩传输，能够节省消息头占用的网络的流量。</p>
+<p>HTTP2 对这些首部采取了压缩策略：</p>
+<ol>
+<li>HTTP2 在客户端和服务器端使用“首部表”来跟踪和存储之前发送的键－值对，对于相同的数据，不再通过每次请求和响应发送；</li>
+<li>首部表在HTTP2 的连接存续期内始终存在，由客户端和服务器共同渐进地更新;</li>
+<li>每个新的首部键－值对要么被追加到当前表的末尾，要么替换表中之前的值。</li>
+</ol>
+<p><strong>5. 重置消息</strong><br>Http2 通过发送RST_STREAM帧可终止当前传输的消息并重新发送一个新的。</p>
+<p><strong>6. 服务器推送</strong><br>这个功能通常被称作“缓存推送”。主要的思想是：当一个客户端请求资源X，而服务器知道它很可能也需要资源Z的情况下，服务器可以在客户端发送请求前，主动将资源Z推送给客户端。这个功能帮助客户端将Z放进缓存以备将来之需。</p>
+<p>服务器推送需要客户端显式的允许服务器提供该功能。但即使如此，客户端依然能自主选择是否需要中断该推送的流。如果不需要的话，客户端可以通过发送一个RST_STREAM帧来中止。</p>
+<p><strong>7. 流量控制</strong><br>类似TCP协议通过sliding window的算法来做流量控制，http2 使用 WINDOW_UPDATE frame 来做流量控制。每个stream都有流量控制，这保证了数据接收方可以只让自己需要的数据被传输。</p>
+<p>只有数据帧会受到流量控制。</p>
+<p><img src="/images/2017/12/08/flow-control.png" alt="Flow Control"></p>
+<h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ul>
+<li>《图解 HTTP》</li>
+<li><a href="https://ye11ow.gitbooks.io/http2-explained/content/part6.html" rel="external nofollow noopener noreferrer" target="_blank">Http2协议</a></li>
+<li><a href="https://github.com/creeperyang/blog/issues/23" rel="external nofollow noopener noreferrer" target="_blank">HTTP2简介和基于HTTP2的Web优化</a></li>
+<li><a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html" rel="external nofollow noopener noreferrer" target="_blank">图解SSL/TLS协议</a></li>
+</ul>
+<!--以下是脚注-->
+<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">每个非空的数据块之前，会有一个16进制的数值，表示这个块的长度。最后是一个大小为0的块，就表示本次回应的数据发送完了。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">加密和解密使用同一个密钥；消耗资源少且快<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">使用公钥进行加密（发送方），使用私钥进行解密（使用方）；消耗资源多且慢<a href="#fnref:3" rev="footnote"> ↩</a></span></li></ol></div></div>
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/1-基础知识/计算机网络/http-协议/">
+            <time datetime="2017-12-08T11:04:00.000Z" itemprop="datePublished">2017-12-08</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
