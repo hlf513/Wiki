@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Atom 编辑器 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="atom">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="安装插件 markdown-preview-enhanced ：增强版 md 预览 markdown-writer ：写博客必备利器 tool-bar ：工具栏基类 tool-bar-markdown-writer ： md-writer的工具栏 vim-mode-plus ：vim 插件 markdown-table-editor ：表格编辑工具 atom-terminal ：终端  tool-">
+<meta name="keywords" content="atom">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Atom 编辑器">
+<meta property="og:url" content="http://yoursite.com/4-开源软件/atom/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="安装插件 markdown-preview-enhanced ：增强版 md 预览 markdown-writer ：写博客必备利器 tool-bar ：工具栏基类 tool-bar-markdown-writer ： md-writer的工具栏 vim-mode-plus ：vim 插件 markdown-table-editor ：表格编辑工具 atom-terminal ：终端  tool-">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-11-08T16:01:35.580Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Atom 编辑器">
+<meta name="twitter:description" content="安装插件 markdown-preview-enhanced ：增强版 md 预览 markdown-writer ：写博客必备利器 tool-bar ：工具栏基类 tool-bar-markdown-writer ： md-writer的工具栏 vim-mode-plus ：vim 插件 markdown-table-editor ：表格编辑工具 atom-terminal ：终端  tool-">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            1-基础知识
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/1-基础知识/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/http-协议/">Http 协议</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            2-开发技能
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/2-开发技能/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/2-开发技能/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/面向对象/uml/">UML</a></li>  <li class="file"><a href="/2-开发技能/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            3-架构设计
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-架构设计/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-架构设计/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            4-开源软件
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-开源软件/blog/">Blog 系统之 Hexo</a></li>  <li class="file active"><a href="/4-开源软件/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/4-开源软件/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/4-开源软件/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            5-效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/5-效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-4-开源软件/atom" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/4-开源软件/">4-开源软件</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/4-开源软件/atom.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Atom 编辑器
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#安装插件"><span class="toc-text">安装插件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Simiki-配置"><span class="toc-text">Simiki 配置</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Hexo-配置"><span class="toc-text">Hexo 配置</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="安装插件"><a href="#安装插件" class="headerlink" title="安装插件"></a>安装插件</h1><ul>
+<li>markdown-preview-enhanced ：增强版 md 预览</li>
+<li>markdown-writer ：写博客必备利器</li>
+<li>tool-bar ：工具栏基类</li>
+<li>tool-bar-markdown-writer ： md-writer的工具栏</li>
+<li>vim-mode-plus ：vim 插件</li>
+<li>markdown-table-editor ：表格编辑工具</li>
+<li>atom-terminal ：终端</li>
+</ul>
+<p><strong>tool-bar-markdown-writer</strong></p>
+<p>修改文件 <code>~/.atom/packages/tool-bar-markdown-writer/lib/tool-bar-markdown-writer.coffee</code> 增加如下功能：</p>
+<ul>
+<li>增加 publish-draft</li>
+<li>Preview markdown 增加支持 <code>markdown-preview-enhanced</code></li>
+</ul>
+<p>新增的配置如下：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="string">'icon'</span>: <span class="string">'content-duplicate'</span></span><br><span class="line">  <span class="string">'tooltip'</span>: <span class="string">'Publish Draft'</span></span><br><span class="line">  <span class="string">'callback'</span>: <span class="string">'markdown-writer:publish-draft'</span></span><br><span class="line">&#125;</span><br><span class="line">&#123;</span><br><span class="line">  <span class="string">'icon'</span>: <span class="string">'markdown'</span></span><br><span class="line">  <span class="string">'tooltip'</span>: <span class="string">'Preview Markdown'</span></span><br><span class="line">  <span class="string">'data'</span>: [<span class="string">'markdown-preview-enhanced'</span>, <span class="string">'markdown-preview-plus'</span>,<span class="string">'markdown-preview'</span>]</span><br><span class="line">  <span class="string">'visible'</span>: (data) -&gt;</span><br><span class="line">    pkg = data.find (pkg) -&gt; !!atom.packages.getLoadedPackage(pkg)</span><br><span class="line">    <span class="string">"#&#123;pkg&#125;:toggle"</span> <span class="keyword">if</span> pkg</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><strong>Atom 配置文件</strong><br><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"*"</span><span class="string">:</span></span><br><span class="line"><span class="attr">  core:</span></span><br><span class="line"><span class="attr">    packagesWithKeymapsDisabled:</span> <span class="string">[</span></span><br><span class="line">      <span class="string">"markdown-preview"</span></span><br><span class="line">    <span class="string">]</span></span><br><span class="line"><span class="attr">    telemetryConsent:</span> <span class="string">"no"</span></span><br><span class="line"><span class="attr">  "exception-reporting":</span></span><br><span class="line"><span class="attr">    userId:</span> <span class="string">"5a8289c3-5832-4d26-af7b-3235427b72da"</span></span><br><span class="line"><span class="attr">  "markdown-preview-enhanced":</span></span><br><span class="line"><span class="attr">    enableExtendedTableSyntax:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">    imageDropAction:</span> <span class="string">"copy to image folder"</span></span><br><span class="line"><span class="attr">    mathRenderingOption:</span> <span class="string">"MathJax"</span></span><br><span class="line"><span class="attr">  "markdown-writer":</span></span><br><span class="line"><span class="attr">    fileExtension:</span> <span class="string">".md"</span></span><br><span class="line"><span class="attr">    renameImageOnCopy:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  "tool-bar":</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">  "tool-bar-markdown-writer":</span> <span class="string">&#123;&#125;</span></span><br><span class="line"><span class="attr">  "vim-mode-plus":</span></span><br><span class="line"><span class="attr">    notifiedCoffeeScriptNoLongerSupportedToExtendVMP:</span> <span class="literal">true</span></span><br><span class="line"><span class="attr">  welcome:</span></span><br><span class="line"><span class="attr">    showOnStartup:</span> <span class="literal">false</span></span><br></pre></td></tr></table></figure></p>
+<h1 id="Simiki-配置"><a href="#Simiki-配置" class="headerlink" title="Simiki 配置"></a>Simiki 配置</h1><blockquote>
+<p>主要使用的是 md-writer</p>
+</blockquote>
+<p>生成项目专用的配置文件：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击 packages -&gt; markdown-writer -&gt; configurations -&gt; create project configs</span><br></pre></td></tr></table></figure>
+<p>最终在项目的根目录下生成 <code>_mdwriter.cson</code></p>
+<p>修改如下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># Directory to drafts from siteLocalDir</span></span><br><span class="line"><span class="attr">siteDraftsDir:</span> <span class="string">"content/"</span></span><br><span class="line"><span class="comment"># Directory to posts from siteLocalDir</span></span><br><span class="line"><span class="attr">sitePostsDir:</span> <span class="string">"content/"</span></span><br><span class="line"><span class="comment"># Directory to images from siteLocalDir</span></span><br><span class="line"><span class="comment"># - E.g. to use the current filename directory, can use &#123;directory&#125;</span></span><br><span class="line"><span class="attr">siteImagesDir:</span> <span class="string">"attach/img/&#123;year&#125;/&#123;month&#125;/"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Filename format of new drafts created</span></span><br><span class="line"><span class="attr">newDraftFileName:</span> <span class="string">"&#123;slug&#125;&#123;extension&#125;"</span></span><br><span class="line"><span class="comment"># Filename format of new posts created</span></span><br><span class="line"><span class="attr">newPostFileName:</span> <span class="string">"&#123;slug&#125;&#123;extension&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Front matter date format, determines the &#123;date&#125; in frontMatter</span></span><br><span class="line"><span class="attr">frontMatterDate:</span> <span class="string">"&#123;year&#125;-&#123;month&#125;-&#123;day&#125; &#123;hour&#125;:&#123;minute&#125;"</span></span><br><span class="line"><span class="comment"># Front matter template</span></span><br><span class="line"><span class="attr">frontMatter:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">title: "</span><span class="string">&#123;title&#125;"</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">"&#123;date&#125;"</span></span><br><span class="line"><span class="attr">layout:</span> <span class="string">"page"</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"></span><br><span class="line"><span class="string">[TOC]</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># File extension of posts/drafts</span></span><br><span class="line"><span class="string">fileExtension: "</span><span class="string">.md"</span></span><br><span class="line"><span class="comment"># File slug separator</span></span><br><span class="line"><span class="attr">slugSeparator:</span> <span class="string">"-"</span></span><br><span class="line"></span><br><span class="line"><span class="attr">tableExtraPipes:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+<h1 id="Hexo-配置"><a href="#Hexo-配置" class="headerlink" title="Hexo 配置"></a>Hexo 配置</h1><blockquote>
+<p>主要使用的是 md-writer</p>
+</blockquote>
+<p>生成项目专用的配置文件：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">点击 packages -&gt; markdown-writer -&gt; configurations -&gt; create project configs</span><br></pre></td></tr></table></figure>
+<p>最终在项目的根目录下生成 <code>_mdwriter.cson</code></p>
+<p>修改如下配置：</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="attr">siteEngine:</span> <span class="string">"hexo"</span></span><br><span class="line"><span class="comment"># Website URL of your blog</span></span><br><span class="line"><span class="attr">siteUrl:</span> <span class="string">"http://www.helongfei.com"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Directory to drafts from siteLocalDir</span></span><br><span class="line"><span class="attr">siteDraftsDir:</span> <span class="string">"source/_drafts/"</span></span><br><span class="line"><span class="comment"># Directory to posts from siteLocalDir</span></span><br><span class="line"><span class="attr">sitePostsDir:</span> <span class="string">"source/_posts/&#123;year&#125;/"</span></span><br><span class="line"><span class="comment"># Directory to images from siteLocalDir</span></span><br><span class="line"><span class="comment"># - E.g. to use the current filename directory, can use &#123;directory&#125;</span></span><br><span class="line"><span class="attr">siteImagesDir:</span> <span class="string">"source/images/&#123;year&#125;/&#123;month&#125;/"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># Filename format of new drafts created</span></span><br><span class="line"><span class="attr">newDraftFileName:</span> <span class="string">"&#123;slug&#125;&#123;extension&#125;"</span></span><br><span class="line"><span class="comment"># Filename format of new posts created</span></span><br><span class="line"><span class="attr">newPostFileName:</span> <span class="string">"&#123;slug&#125;&#123;extension&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Front matter date format, determines the &#123;date&#125; in frontMatter</span></span><br><span class="line"><span class="attr">frontMatterDate:</span> <span class="string">"&#123;year&#125;-&#123;month&#125;-&#123;day&#125; &#123;hour&#125;:&#123;minute&#125;"</span></span><br><span class="line"><span class="comment"># Front matter template</span></span><br><span class="line"><span class="attr">frontMatter:</span> <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">---</span></span><br><span class="line"><span class="string">layout: "</span><span class="string">&#123;layout&#125;"</span></span><br><span class="line"><span class="attr">title:</span> <span class="string">"&#123;title&#125;"</span></span><br><span class="line"><span class="attr">date:</span> <span class="string">"&#123;date&#125;"</span></span><br><span class="line"><span class="meta">---</span></span><br><span class="line"><span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string"># File extension of posts/drafts</span></span><br><span class="line"><span class="string">fileExtension: "</span><span class="string">.md"</span></span><br><span class="line"><span class="comment"># File slug separator</span></span><br><span class="line"><span class="attr">slugSeparator:</span> <span class="string">"-"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Table row continuation</span></span><br><span class="line"><span class="comment"># - Enable to auto insert table columns when you press enter in a table row</span></span><br><span class="line"><span class="attr">tableNewLineContinuation:</span> <span class="literal">true</span></span><br></pre></td></tr></table></figure>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/atom/">atom</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/4-开源软件/atom/">
+            <time datetime="2017-11-04T21:51:00.000Z" itemprop="datePublished">2017-11-05</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
