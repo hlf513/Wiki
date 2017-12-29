@@ -48,7 +48,6 @@ frontMatterDate: "{year}-{month}-{day} {hour}:{minute}"
 # Front matter template
 frontMatter: """
 ---
-layout: "{layout}"
 title: "{title}"
 date: "{date}"
 toc: true
