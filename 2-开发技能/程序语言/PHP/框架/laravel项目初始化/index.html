@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="utf-8">
+    
+    <title>Laravel项目初始化 | 贺龙飞的知识库</title>
+    
+    
+        <meta name="keywords" content="php,Laravel">
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="description" content="配置 PHPSTORM 安装 ide-helper : https://github.com/barryvdh/laravel-ide-helper 安装 phpstorm 的 tools 进入设置 Preferences | Tools | Command Line Tool Support 选择 tool bases on Symfony console    生产环境监控Sentry ：ht">
+<meta name="keywords" content="php,Laravel">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Laravel项目初始化">
+<meta property="og:url" content="http://yoursite.com/2-开发技能/程序语言/PHP/框架/laravel项目初始化/index.html">
+<meta property="og:site_name" content="贺龙飞的知识库">
+<meta property="og:description" content="配置 PHPSTORM 安装 ide-helper : https://github.com/barryvdh/laravel-ide-helper 安装 phpstorm 的 tools 进入设置 Preferences | Tools | Command Line Tool Support 选择 tool bases on Symfony console    生产环境监控Sentry ：ht">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2017-12-29T16:57:54.627Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Laravel项目初始化">
+<meta name="twitter:description" content="配置 PHPSTORM 安装 ide-helper : https://github.com/barryvdh/laravel-ide-helper 安装 phpstorm 的 tools 进入设置 Preferences | Tools | Command Line Tool Support 选择 tool bases on Symfony console    生产环境监控Sentry ：ht">
+    
+
+    
+        <link rel="alternate" href="/atom.xml" title="贺龙飞的知识库" type="application/atom+xml">
+    
+
+    
+        <link rel="icon" href="/images/favicon.ico">
+    
+
+    <link rel="stylesheet" href="/libs/font-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/libs/open-sans/styles.css">
+    <link rel="stylesheet" href="/libs/source-code-pro/styles.css">
+
+    <link rel="stylesheet" href="/css/style.css">
+    <script src="/libs/jquery/2.1.3/jquery.min.js"></script>
+    <script src="/libs/jquery/plugins/cookie/1.4.1/jquery.cookie.js"></script>
+    
+    
+        <link rel="stylesheet" href="/libs/lightgallery/css/lightgallery.min.css">
+    
+    
+        <link rel="stylesheet" href="/libs/justified-gallery/justifiedGallery.min.css">
+    
+    
+    
+    
+
+
+</head>
+</html>
+<body>
+    <div id="container">
+        <header id="header">
+    <div id="header-main" class="header-inner">
+        <div class="outer">
+            <a href="/" id="logo">
+                <i class="logo"></i>
+                <span class="site-title">贺龙飞的知识库</span>
+            </a>
+            <nav id="main-nav">
+                
+            </nav>
+            
+            <div id="search-form-wrap">
+
+    <form class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+        <button type="submit" class="search-form-submit"></button>
+    </form>
+    <div class="ins-search">
+    <div class="ins-search-mask"></div>
+    <div class="ins-search-container">
+        <div class="ins-input-wrapper">
+            <input type="text" class="ins-search-input" placeholder="想要查找什么...">
+            <span class="ins-close ins-selectable"><i class="fa fa-times-circle"></i></span>
+        </div>
+        <div class="ins-section-wrapper">
+            <div class="ins-section-container"></div>
+        </div>
+    </div>
+</div>
+<script>
+(function (window) {
+    var INSIGHT_CONFIG = {
+        TRANSLATION: {
+            POSTS: '文章',
+            PAGES: '页面',
+            CATEGORIES: '分类',
+            TAGS: '标签',
+            UNTITLED: '(未命名)',
+        },
+        ROOT_URL: '/',
+        CONTENT_URL: '/content.json',
+    };
+    window.INSIGHT_CONFIG = INSIGHT_CONFIG;
+})(window);
+</script>
+<script src="/js/insight.js"></script>
+
+</div>
+        </div>
+    </div>
+    <div id="main-nav-mobile" class="header-sub header-inner">
+        <table class="menu outer">
+            <tr>
+                
+                <td>
+                    
+    <div class="search-form">
+        <input type="text" class="ins-search-input search-form-input" placeholder="搜索">
+    </div>
+
+                </td>
+            </tr>
+        </table>
+    </div>
+</header>
+
+        <div class="outer">
+            
+            
+                <aside id="sidebar">
+   
+        
+    <div class="widget-wrap" id="categories">
+        <h3 class="widget-title">
+            <span>分类</span>
+            &nbsp;
+            <a id="allExpand" href="#">
+                <i class="fa fa-angle-double-down fa-2x"></i>
+            </a>
+        </h3>
+        
+        
+        
+         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            1-基础知识
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            计算机网络
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/1-基础知识/计算机网络/网络参考模型/">网络参考模型</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/tcp-ip-协议/">TCP/IP 协议</a></li>  <li class="file"><a href="/1-基础知识/计算机网络/http-协议/">Http 协议</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            2-开发技能
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            GIT
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/GIT/git/">Git 常用命令</a></li>  <li class="file"><a href="/2-开发技能/GIT/git-flow/">GitFlow</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            安全
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/安全/Web攻击手段/">WEB 攻击手段</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            数据库
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            Mysql
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/数据库/Mysql/基础知识/">基础知识</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/架构与表设计/"> 架构与表设计</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/分析问题/">分析问题</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/性能优化/">性能优化</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/运维指南/">运维指南</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常见错误/">常见错误</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常用Sql/">常用SQL</a></li>  <li class="file"><a href="/2-开发技能/数据库/Mysql/常用函数/">常用函数</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            权限控制
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/权限控制/rbac/">RBAC</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            测试
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/测试/codeception/">Codeception 之验收测试</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            程序语言
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            PHP
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory open">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder-open"></i>
+                            &nbsp;
+                            框架
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/程序语言/PHP/框架/lumen项目初始化/">Lumen项目初始化</a></li>  <li class="file active"><a href="/2-开发技能/程序语言/PHP/框架/laravel项目初始化/">Laravel项目初始化</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/2-开发技能/程序语言/PHP/yar/">YAR</a></li>  <li class="file"><a href="/2-开发技能/程序语言/PHP/php-psr/">PSR</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            面向对象
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/2-开发技能/面向对象/uml/">UML</a></li>  <li class="file"><a href="/2-开发技能/面向对象/oo-principle/">设计原则</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            3-架构设计
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            中间件
+                        </a>
+                         <ul class="unstyled" id="tree"> 
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            MQ
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-架构设计/中间件/MQ/activemq/">ActiveMQ</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            架构设计
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/3-架构设计/架构设计/web-servive/">Web Servive</a></li>  </ul> 
+                    </li> 
+                     </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            4-开源软件
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/4-开源软件/blog/">Blog 系统之 Hexo</a></li>  <li class="file"><a href="/4-开源软件/atom/">Atom 编辑器</a></li>  <li class="file"><a href="/4-开源软件/wiki/">Wiki 系统之 Simiki</a></li>  <li class="file"><a href="/4-开源软件/pandoc/">Pandoc</a></li>  </ul> 
+                    </li> 
+                    
+                    <li class="directory">
+                        <a href="#" data-role="directory">
+                            <i class="fa fa-folder"></i>
+                            &nbsp;
+                            5-效率工具
+                        </a>
+                         <ul class="unstyled" id="tree">  <li class="file"><a href="/5-效率工具/mac/">MAC 必备软件</a></li>  </ul> 
+                    </li> 
+                     <li class="file"><a href="/index/">欢迎来到贺龙飞的知识库！</a></li>  </ul> 
+    </div>
+    <script>
+        $(document).ready(function() {
+            var iconFolderOpenClass  = 'fa-folder-open';
+            var iconFolderCloseClass = 'fa-folder';
+            var iconAllExpandClass = 'fa-angle-double-down';
+            var iconAllPackClass = 'fa-angle-double-up';
+            // Handle directory-tree expansion:
+            // 左键单独展开目录
+            $(document).on('click', '#categories a[data-role="directory"]', function (event) {
+                event.preventDefault();
+
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var subtree = $(this).siblings('ul');
+                icon.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if (expanded) {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideUp({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderCloseClass);
+                } else {
+                    if (typeof subtree != 'undefined') {
+                        subtree.slideDown({ duration: 100 });
+                    }
+                    icon.addClass(iconFolderOpenClass);
+                }
+            });
+            // 右键展开下属所有目录
+            $('#categories a[data-role="directory"]').bind("contextmenu", function(event){
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconFolderOpenClass);
+                var listNode = $(this).siblings('ul');
+                var subtrees = $.merge(listNode.find('li ul'), listNode);
+                var icons = $.merge(listNode.find('.fa'), icon);
+                icons.removeClass(iconFolderOpenClass).removeClass(iconFolderCloseClass);
+                if(expanded) {
+                    subtrees.slideUp({ duration: 100 });
+                    icons.addClass(iconFolderCloseClass);
+                } else {
+                    subtrees.slideDown({ duration: 100 });
+                    icons.addClass(iconFolderOpenClass);
+                }
+            })
+            // 展开关闭所有目录按钮
+            $(document).on('click', '#allExpand', function (event) {
+                event.preventDefault();
+                
+                var icon = $(this).children('.fa');
+                var expanded = icon.hasClass(iconAllExpandClass);
+                icon.removeClass(iconAllExpandClass).removeClass(iconAllPackClass);
+                if(expanded) {
+                    $('#sidebar .fa.fa-folder').removeClass('fa-folder').addClass('fa-folder-open')
+                    $('#categories li ul').slideDown({ duration: 100 });
+                    icon.addClass(iconAllPackClass);
+                } else {
+                    $('#sidebar .fa.fa-folder-open').removeClass('fa-folder-open').addClass('fa-folder')
+                    $('#categories li ul').slideUp({ duration: 100 });
+                    icon.addClass(iconAllExpandClass);
+                }
+            });  
+        });
+    </script>
+
+    
+    <div id="toTop" class="fa fa-angle-up"></div>
+</aside>
+            
+            <section id="main"><article id="post-2-开发技能/程序语言/PHP/框架/laravel项目初始化" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/2-开发技能/">2-开发技能</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/2-开发技能/程序语言/">程序语言</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/2-开发技能/程序语言/PHP/">PHP</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/2-开发技能/程序语言/PHP/框架/">框架</a>
+    </div>
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/2-开发技能/程序语言/PHP/框架/laravel项目初始化.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
+                
+    
+        <h1 class="article-title" itemprop="name">
+            Laravel项目初始化
+        </h1>
+    
+
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#配置-PHPSTORM"><span class="toc-text">配置 PHPSTORM</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#生产环境监控"><span class="toc-text">生产环境监控</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#修改时区"><span class="toc-text">修改时区</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Web-应用"><span class="toc-text">Web 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#调试"><span class="toc-text">调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#RBAC"><span class="toc-text">RBAC</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#Api-应用"><span class="toc-text">Api 应用</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#调试-1"><span class="toc-text">调试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#开启-SQL-日志"><span class="toc-text">开启 SQL 日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#关闭-Cookie"><span class="toc-text">关闭 Cookie</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Helper-函数"><span class="toc-text">Helper 函数</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#错误码"><span class="toc-text">错误码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常处理"><span class="toc-text">异常处理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#增加邮件模板"><span class="toc-text">增加邮件模板</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改-env"><span class="toc-text">修改.env</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#自定义权限验证"><span class="toc-text">自定义权限验证</span></a></li></ol></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="配置-PHPSTORM"><a href="#配置-PHPSTORM" class="headerlink" title="配置 PHPSTORM"></a>配置 PHPSTORM</h1><ol>
+<li>安装 ide-helper : <a href="https://github.com/barryvdh/laravel-ide-helper" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/barryvdh/laravel-ide-helper</a></li>
+<li>安装 phpstorm 的 tools<ol>
+<li>进入设置 Preferences | Tools | Command Line Tool Support</li>
+<li>选择 tool bases on Symfony console</li>
+</ol>
+</li>
+</ol>
+<h1 id="生产环境监控"><a href="#生产环境监控" class="headerlink" title="生产环境监控"></a>生产环境监控</h1><p>Sentry ：<a href="https://sentry.io/for/laravel/" rel="external nofollow noopener noreferrer" target="_blank">https://sentry.io/for/laravel/</a></p>
+<h1 id="修改时区"><a href="#修改时区" class="headerlink" title="修改时区"></a>修改时区</h1><p>修改 <code>config/app.php</code> 中 <code>&#39;timezone&#39; =&gt; &#39;Asia/Shanghai&#39;,</code></p>
+<h1 id="Web-应用"><a href="#Web-应用" class="headerlink" title="Web 应用"></a>Web 应用</h1><h2 id="调试"><a href="#调试" class="headerlink" title="调试"></a>调试</h2><p>php-debuger : <a href="https://github.com/barryvdh/laravel-debugbar" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/barryvdh/laravel-debugbar</a></p>
+<h2 id="RBAC"><a href="#RBAC" class="headerlink" title="RBAC"></a>RBAC</h2><p>entrust: <a href="https://github.com/Zizaco/entrust" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/Zizaco/entrust</a></p>
+<h1 id="Api-应用"><a href="#Api-应用" class="headerlink" title="Api 应用"></a>Api 应用</h1><h2 id="调试-1"><a href="#调试-1" class="headerlink" title="调试"></a>调试</h2><p>clockwork : <a href="https://github.com/itsgoingd/clockwork" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/itsgoingd/clockwork</a></p>
+<h2 id="开启-SQL-日志"><a href="#开启-SQL-日志" class="headerlink" title="开启 SQL 日志"></a>开启 SQL 日志</h2><p>写入：<code>AppServiceProvider-&gt;boot()</code></p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 监听运行的sql,写入到log中</span></span><br><span class="line"><span class="keyword">if</span> (<span class="keyword">$this</span>-&gt;app-&gt;environment() !== <span class="string">'production'</span>) &#123;</span><br><span class="line">    \DB::listen(</span><br><span class="line">        <span class="function"><span class="keyword">function</span> <span class="params">($sql)</span> </span>&#123;</span><br><span class="line">            <span class="keyword">foreach</span> ($sql-&gt;bindings <span class="keyword">as</span> $i =&gt; $binding) &#123;</span><br><span class="line">                <span class="keyword">if</span> ($binding <span class="keyword">instanceof</span> \DateTime) &#123;</span><br><span class="line">                    $sql-&gt;bindings[$i] = $binding-&gt;format(<span class="string">'\'Y-m-d H:i:s\''</span>);</span><br><span class="line">                &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                    <span class="keyword">if</span> (is_string($binding)) &#123;</span><br><span class="line">                        $sql-&gt;bindings[$i] = <span class="string">"'$binding'"</span>;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// Insert bindings into query</span></span><br><span class="line">            $query = str_replace(<span class="keyword">array</span>(<span class="string">'%'</span>, <span class="string">'?'</span>), <span class="keyword">array</span>(<span class="string">'%%'</span>, <span class="string">'%s'</span>), $sql-&gt;sql);</span><br><span class="line">            $query = vsprintf($query, $sql-&gt;bindings);</span><br><span class="line">            <span class="comment">// Save the query to Log file</span></span><br><span class="line">            \Log::debug(<span class="string">'SQL'</span>, [$query]);</span><br><span class="line">        &#125;</span><br><span class="line">    );</span><br><span class="line">&#125; <span class="comment">// end_if</span></span><br></pre></td></tr></table></figure>
+<h2 id="关闭-Cookie"><a href="#关闭-Cookie" class="headerlink" title="关闭 Cookie"></a>关闭 Cookie</h2><blockquote>
+<p>api 应用时使用。</p>
+</blockquote>
+<p>注释以下文件中的 cookie 相关：</p>
+<ol>
+<li>app/Http/Kernel.php</li>
+<li>config/app.php</li>
+</ol>
+<h2 id="Helper-函数"><a href="#Helper-函数" class="headerlink" title="Helper 函数"></a>Helper 函数</h2><p><code>app/Common/Helper.php</code>：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 响应成功</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $data</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> \Illuminate\Http\JsonResponse</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">success</span><span class="params">(array $data)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	$json = [</span><br><span class="line">		<span class="string">'statusCode'</span> =&gt; \App\Common\Status::Success,</span><br><span class="line">		<span class="string">'message'</span>    =&gt; <span class="string">'ok'</span>,</span><br><span class="line">		<span class="string">'data'</span>       =&gt; $data,</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> response()-&gt;json($json);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 响应失败</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> array $errData</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> mixed $detail</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> \Illuminate\Http\JsonResponse</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">fail</span><span class="params">(array $errData, $detail = null)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">if</span> ( ! <span class="keyword">isset</span>($errData[<span class="string">'errCode'</span>]) <span class="keyword">or</span> ! <span class="keyword">isset</span>($errData[<span class="string">'errMsg'</span>])) &#123;</span><br><span class="line">		fail(\App\Common\Status::SystemError[<span class="string">'codeException'</span>]);</span><br><span class="line">	&#125;</span><br><span class="line">	$json = [</span><br><span class="line">		<span class="string">'statusCode'</span> =&gt; $errData[<span class="string">'errCode'</span>],</span><br><span class="line">		<span class="string">'message'</span>    =&gt; $errData[<span class="string">'errMsg'</span>],</span><br><span class="line">	];</span><br><span class="line">	<span class="keyword">if</span> (App::environment() != <span class="string">'production'</span>) &#123;</span><br><span class="line">		$json[<span class="string">'detail'</span>] = $detail;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> response()-&gt;json($json);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="错误码"><a href="#错误码" class="headerlink" title="错误码"></a>错误码</h2><p><code>app/Common/Status.php</code>：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Common</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Status</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">const</span> Success = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 100 + 001</span></span><br><span class="line">	<span class="keyword">const</span> SystemError = [</span><br><span class="line">		<span class="string">'codeException'</span> =&gt; [</span><br><span class="line">			<span class="string">'errCode'</span> =&gt; <span class="number">100001</span>,</span><br><span class="line">			<span class="string">'errMsg'</span>  =&gt; <span class="string">'The format of errorCode was error'</span></span><br><span class="line">		]</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 101 + 001</span></span><br><span class="line">	<span class="keyword">const</span> ClientError = [</span><br><span class="line">		<span class="string">'paramException'</span> =&gt; [</span><br><span class="line">			<span class="string">'errCode'</span> =&gt; <span class="number">101001</span>,</span><br><span class="line">			<span class="string">'errMsg'</span>  =&gt; <span class="string">'The given data was invalid'</span></span><br><span class="line">		],</span><br><span class="line">	];</span><br><span class="line"></span><br><span class="line">	<span class="comment">// 102 + 001</span></span><br><span class="line">	<span class="keyword">const</span> Access = [</span><br><span class="line">		<span class="string">'fail'</span>        =&gt; [</span><br><span class="line">			<span class="string">'errCode'</span> =&gt; <span class="number">102001</span>,</span><br><span class="line">			<span class="string">'errMsg'</span>  =&gt; <span class="string">'No access'</span></span><br><span class="line">		],</span><br><span class="line">		<span class="string">'noLogin'</span>     =&gt; [</span><br><span class="line">			<span class="string">'errCode'</span> =&gt; <span class="number">102002</span>,</span><br><span class="line">			<span class="string">'errMsg'</span>  =&gt; <span class="string">'Please login first'</span></span><br><span class="line">		],</span><br><span class="line">		<span class="string">'unknownUser'</span> =&gt; [</span><br><span class="line">			<span class="string">'errCode'</span> =&gt; <span class="number">102003</span>,</span><br><span class="line">			<span class="string">'errMsg'</span>  =&gt; <span class="string">'The user is not exist'</span></span><br><span class="line">		],</span><br><span class="line">	];</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="异常处理"><a href="#异常处理" class="headerlink" title="异常处理"></a>异常处理</h2><p>注册两个异常类：</p>
+<ul>
+<li>NormalException # 错误信息封装为json</li>
+<li>EmailException  # 发送邮件</li>
+</ul>
+<p><code>NormalException</code>:<br><code>php artisan make:exception NormalException</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Exceptions</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Common</span>\<span class="title">Status</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Exception</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Throwable</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">NormalException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> $exception;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * ResponseException constructor.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> array           $message</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> int             $code</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> \Throwable|null $previous</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array $message, int $code = <span class="number">0</span>, \Throwable $previous = null)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ( ! <span class="keyword">isset</span>($message[<span class="string">'errMsg'</span>]) <span class="keyword">or</span> ! <span class="keyword">isset</span>($message[<span class="string">'errCode'</span>])) &#123;</span><br><span class="line">			<span class="keyword">return</span> fail(Status::SystemError[<span class="string">'codeException'</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;exception = $message;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">parent</span>::__construct(<span class="keyword">$this</span>-&gt;exception[<span class="string">'errMsg'</span>], <span class="keyword">$this</span>-&gt;exception[<span class="string">'errCode'</span>], $previous);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 自定义异常响应</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> $request</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> \Illuminate\Http\JsonResponse</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span><span class="params">($request)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fail(<span class="keyword">$this</span>-&gt;exception);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>EmailException</code>:<br><code>php artisan make:exception EmailException</code><br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Exceptions</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">App</span>\<span class="title">Common</span>\<span class="title">Status</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Exception</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Cache</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Mail</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Support</span>\<span class="title">Facades</span>\<span class="title">Redis</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Throwable</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">EmailException</span> <span class="keyword">extends</span> <span class="title">Exception</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">protected</span> $exception;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * ResponseException constructor.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> array           $message</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> int             $code</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> \Throwable|null $previous</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">(array $message, int $code = <span class="number">0</span>, \Throwable $previous = null)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">if</span> ( ! <span class="keyword">isset</span>($message[<span class="string">'errMsg'</span>]) <span class="keyword">or</span> ! <span class="keyword">isset</span>($message[<span class="string">'errCode'</span>])) &#123;</span><br><span class="line">			<span class="keyword">return</span> fail(Status::SystemError[<span class="string">'codeException'</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;exception = $message;</span><br><span class="line"></span><br><span class="line">		<span class="keyword">parent</span>::__construct(<span class="keyword">$this</span>-&gt;exception[<span class="string">'errMsg'</span>], <span class="keyword">$this</span>-&gt;exception[<span class="string">'errCode'</span>], $previous);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * 自定义异常响应</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> $request</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> \Illuminate\Http\JsonResponse</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">render</span><span class="params">($request)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> fail(<span class="keyword">$this</span>-&gt;exception);</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">report</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="comment">// 相同错误码一定间隔内只发送一次</span></span><br><span class="line">		<span class="keyword">if</span> (Cache::lock(<span class="keyword">$this</span>-&gt;getCode(), env(<span class="string">'EXCEPTION_MAIL_INTERVAL'</span>, <span class="number">3600</span>))-&gt;get()) &#123;</span><br><span class="line">			$tos = explode(<span class="string">','</span>, env(<span class="string">'MAIL_TOS'</span>));</span><br><span class="line">			$message = (<span class="keyword">new</span> \App\Mail\<span class="keyword">Exception</span>(</span><br><span class="line">				<span class="keyword">$this</span>-&gt;getCode(),</span><br><span class="line">				<span class="keyword">$this</span>-&gt;getMessage(),</span><br><span class="line">				<span class="keyword">$this</span>-&gt;getTraceAsString()</span><br><span class="line">			))-&gt;onConnection(<span class="string">'redis'</span>)-&gt;onQueue(<span class="string">'email'</span>);</span><br><span class="line">			Mail::to($tos)-&gt;queue($message);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>Http/Exceptions/Handler.php</code> 中增加：</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 处理未授权帐号</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">unauthenticated</span><span class="params">($request, AuthenticationException $exception)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">return</span> fail(Status::Access[<span class="string">'unknownUser'</span>]);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 处理参数校验失败</span></span><br><span class="line"><span class="keyword">protected</span> <span class="function"><span class="keyword">function</span> <span class="title">convertValidationExceptionToResponse</span><span class="params">(ValidationException $e, $request)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	$detail = $e-&gt;validator-&gt;getMessageBag()-&gt;getMessages();</span><br><span class="line"></span><br><span class="line">	<span class="keyword">return</span> fail(Status::ClientError[<span class="string">'paramException'</span>], $detail);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="增加邮件模板"><a href="#增加邮件模板" class="headerlink" title="增加邮件模板"></a>增加邮件模板</h2><p><code>php artisan make:mail Exception --markdown=emails.exception</code></p>
+<p>修改 <code>app/Mail/Exception.php</code>:</p>
+<figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;?php</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">namespace</span> <span class="title">App</span>\<span class="title">Mail</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Bus</span>\<span class="title">Queueable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Mail</span>\<span class="title">Mailable</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Queue</span>\<span class="title">SerializesModels</span>;</span><br><span class="line"><span class="keyword">use</span> <span class="title">Illuminate</span>\<span class="title">Contracts</span>\<span class="title">Queue</span>\<span class="title">ShouldQueue</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Exception</span> <span class="keyword">extends</span> <span class="title">Mailable</span></span></span><br><span class="line"><span class="class"></span>&#123;</span><br><span class="line">	<span class="keyword">use</span> <span class="title">Queueable</span>, <span class="title">SerializesModels</span>;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">protected</span> $code;</span><br><span class="line">	<span class="keyword">protected</span> $message;</span><br><span class="line">	<span class="keyword">protected</span> $trace;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Create a new message instance.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * 参数不能是对象，否则不能设置队列发送</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> $code</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> $message</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@param</span> $trace</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">__construct</span><span class="params">($code, $message, $trace)</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;code = $code;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;message = $message;</span><br><span class="line">		<span class="keyword">$this</span>-&gt;trace = $trace;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="comment">/**</span></span><br><span class="line"><span class="comment">	 * Build the message.</span></span><br><span class="line"><span class="comment">	 *</span></span><br><span class="line"><span class="comment">	 * <span class="doctag">@return</span> $this</span></span><br><span class="line"><span class="comment">	 */</span></span><br><span class="line">	<span class="keyword">public</span> <span class="function"><span class="keyword">function</span> <span class="title">build</span><span class="params">()</span></span></span><br><span class="line"><span class="function">	</span>&#123;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">$this</span>-&gt;markdown(<span class="string">'emails.exception'</span>)</span><br><span class="line">			-&gt;with([</span><br><span class="line">				<span class="string">'errCode'</span> =&gt; <span class="keyword">$this</span>-&gt;code,</span><br><span class="line">				<span class="string">'errMsg'</span>  =&gt; <span class="keyword">$this</span>-&gt;message,</span><br><span class="line">				<span class="string">'trace'</span>   =&gt; <span class="keyword">$this</span>-&gt;trace,</span><br><span class="line">			]);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>修改 <code>resources/views/emails/exception.blade.php</code>:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">@component(&apos;mail::message&apos;)</span><br><span class="line"># xxxx-报警邮件</span><br><span class="line"></span><br><span class="line">错误码：&#123;&#123; $errCode &#125;&#125;</span><br><span class="line">错误信息：&#123;&#123; $errMsg &#125;&#125;</span><br><span class="line"></span><br><span class="line">------</span><br><span class="line"></span><br><span class="line">&#123;&#123; $trace &#125;&#125;</span><br><span class="line"></span><br><span class="line">Thanks,&lt;br&gt;</span><br><span class="line">&#123;&#123; config(&apos;app.name&apos;) &#125;&#125;</span><br><span class="line">@endcomponent</span><br></pre></td></tr></table></figure>
+<h2 id="修改-env"><a href="#修改-env" class="headerlink" title="修改.env"></a>修改.env</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">CACHE_DRIVER=redis</span><br><span class="line">QUEUE_DRIVER=redis</span><br><span class="line"></span><br><span class="line">MAIL_FROM_ADDRESS=</span><br><span class="line">MAIL_FROM_NAME=</span><br><span class="line">MAIL_TOS=</span><br><span class="line">EXCEPTION_MAIL_INTERVAL=3600</span><br></pre></td></tr></table></figure>
+<h2 id="自定义权限验证"><a href="#自定义权限验证" class="headerlink" title="自定义权限验证"></a>自定义权限验证</h2><p>见：<a href="http://www.helongfei.com/2017/laravel%E8%87%AA%E5%AE%9A%E4%B9%89%E7%94%A8%E6%88%B7%E6%9D%83%E9%99%90%E6%A0%A1%E9%AA%8C/" rel="external nofollow noopener noreferrer" target="_blank">laravel自定义用户权限校验</a></p>
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/Laravel/">Laravel</a>, <a class="tag-link" href="/tags/php/">php</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
+    <div class="article-date">
+        <i class="fa fa-calendar"></i>
+        <a href="/2-开发技能/程序语言/PHP/框架/laravel项目初始化/">
+            <time datetime="2017-12-29T15:10:00.000Z" itemprop="datePublished">2017-12-29</time>
+        </a>
+    </div>
+
+
+          </div>
+        </footer>
+    </div>
+</article>
+
+
+    
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
+</section>
+        </div>
+        <footer id="footer">
+    <div class="outer">
+        <div id="footer-info" class="inner">
+          Copyright © 2017 贺龙飞. Powered by <a href="http://hexo.io/" target="_blank" rel="external nofollow noopener noreferrer">Hexo</a>. Theme - <a href="https://github.com/zthxxx/hexo-theme-Wikitten" rel="external nofollow noopener noreferrer" target="_blank">wikitten</a>
+          <p>
+        本作品采用<a rel="external nofollow noopener noreferrer" href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议</a>进行许可。
+        </p>
+        <p style="display:none">
+        <script type="text/javascript">var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");document.write(unescape("%3Cspan id='cnzz_stat_icon_1267343220'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s22.cnzz.com/z_stat.php%3Fid%3D1267343220%26show%3Dpic' type='text/javascript'%3E%3C/script%3E"));</script>
+        </p>
+        </div>
+    </div>
+</footer>
+
+        
+
+    
+        <script src="/libs/lightgallery/js/lightgallery.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-thumbnail.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-pager.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-autoplay.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-fullscreen.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-zoom.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-hash.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-share.min.js"></script>
+        <script src="/libs/lightgallery/js/lg-video.min.js"></script>
+    
+    
+        <script src="/libs/justified-gallery/jquery.justifiedGallery.min.js"></script>
+    
+    
+        <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true,
+            TeX: {
+                equationNumbers: {
+                  autoNumber: 'AMS'
+                }
+            }
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script async src="//cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    
+
+
+
+<!-- Custom Scripts -->
+<script src="/js/main.js"></script>
+
+    </div>
+</body>
