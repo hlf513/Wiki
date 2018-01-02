@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2018-01-01T17:02:40.804Z</updated>
+  <updated>2018-01-02T16:47:48.196Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,62 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>源码编译安装</title>
+    <link href="http://yoursite.com/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux/%E6%BA%90%E7%A0%81%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/1-基础知识/Linux/源码编译安装/</id>
+    <published>2018-01-02T16:28:00.000Z</published>
+    <updated>2018-01-02T16:47:48.196Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通常需要三步：</p><ol><li>检查依赖并根据系统环境和参数生成对应的 makefile</li><li>编译生成设定的目标</li><li>把目标文件安装至系统</li></ol><h1 id="make-解析"><a href="#make-解析" class="headerlink" title="make 解析"></a>make 解析</h1><p>以下是常规的 make 命令：</p><p><strong> make all </strong><br>产生我们设定的目标（例：可执行文件、动态库等）；只输入<code>make</code>默认是<code>make all</code>。</p><p><strong> make clean </strong><br>清除编译产生的可执行文件及目标文件(object file，*.o)。</p><p><strong> make install </strong><br>将程序安装至系统中。如果原始码编译无误，且执行结果正确，便可以把程序安装至系统预设的可执行文件存放路径。如果用bin_PROGRAMS宏的话，程序会被安装至/usr/local/bin这个目录。</p><p><strong> make dist </strong><br>将程序和相关的档案包装成一个压缩文件以供发布。执行完在目录下会产生一个以 PACKAGE-VERSION.tar.gz 为名称的文件。 PACKAGE和VERSION这两个变数是根据 configure.ini 文件中 AM_INIT_AUTOMAKE(PACKAGE，VERSION) 的定义。</p><p><strong> make distcheck </strong><br>和<code>make dist</code>类似，但是加入检查包装后的压缩文件是否正常。这个目标除了把程序和相关文件包装成 tar.gz 文件外，还会自动把这个压缩文件解开，执行 <code>configure</code>，并且进行 <code>make all</code> 的动作，确认编译无误后，会显示这个 tar.gz 文件可供发布了。这个检查非常有用，检查过关的包，基本上可以给任何一个具备GNU开发环境-的人去重新编译。</p><p><strong> make distclean </strong><br>除了清除可执行文件和目标文件外，把<code>configure</code>所产生的 Makefile 也清除掉。</p><!--以下是脚注-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;概述&quot;&gt;&lt;a href=&quot;#概述&quot; class=&quot;headerli
+      
+    
+    </summary>
+    
+      <category term="1-基础知识" scheme="http://yoursite.com/categories/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="Linux" scheme="http://yoursite.com/categories/1-%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/Linux/"/>
+    
+    
+      <category term="linux" scheme="http://yoursite.com/tags/linux/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>编译安装</title>
+    <link href="http://yoursite.com/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/%E7%BC%96%E8%AF%91%E5%AE%89%E8%A3%85/"/>
+    <id>http://yoursite.com/2-开发技能/程序语言/PHP/编译安装/</id>
+    <published>2018-01-02T15:35:00.000Z</published>
+    <updated>2018-01-02T16:47:35.300Z</updated>
+    
+    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="下载源码"><a href="#下载源码" class="headerlink" title="下载源码"></a>下载源码</h1><p><a href="https://secure.php.net/downloads.php" rel="external nofollow noopener noreferrer" target="_blank">https://secure.php.net/downloads.php</a></p><h1 id="安装步骤"><a href="#安装步骤" class="headerlink" title="安装步骤"></a>安装步骤</h1><h2 id="检查依赖并生成-makefile-文件"><a href="#检查依赖并生成-makefile-文件" class="headerlink" title="检查依赖并生成 makefile 文件"></a>检查依赖并生成 makefile 文件</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># php7.2.0</span></span><br><span class="line"></span><br><span class="line">./configure  --prefix=/data/soft/php-7.2.0 --with-pdo-mysql=mysqlnd --with-mysqli=mysqlnd --with-openssl --<span class="built_in">enable</span>-mbstring --with-freetype-dir --with-jpeg-dir --with-png-dir --with-zlib --with-curl --with-gd=/usr/<span class="built_in">local</span>/gd --with-gettext --with-libxml-dir=/usr --<span class="built_in">enable</span>-xml --<span class="built_in">enable</span>-sockets --<span class="built_in">enable</span>-fpm --<span class="built_in">enable</span>-zip --<span class="built_in">enable</span>-soap --with-mhash=/usr/<span class="built_in">local</span>/include --with-config-file-path=/data/soft/php-7.2.0/etc --with-config-file-scan-dir=/data/soft/php-7.2.0/etc/php.d --with-bz2</span><br></pre></td></tr></table></figure><p>具体的参数可以通过 <code>./configure --help</code> 查看；根据你的实际应用选择不同的参数。</p><h2 id="编译源码"><a href="#编译源码" class="headerlink" title="编译源码"></a>编译源码</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">make</span><br></pre></td></tr></table></figure><h2 id="安装到系统"><a href="#安装到系统" class="headerlink" title="安装到系统"></a>安装到系统</h2><figure class="highlight sh"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#需要一定权限</span></span><br><span class="line">sudo make install</span><br></pre></td></tr></table></figure><h1 id="初始化配置"><a href="#初始化配置" class="headerlink" title="初始化配置"></a>初始化配置</h1><p>配置文件存在于下载的源码的根目录下；有两个：</p><ul><li>php.ini-production</li><li>php.ini-development</li></ul><p><strong>两个配置文件的区别：（基于7.2.0源码）</strong></p><table><thead><tr><th>development</th><th>production</th><th>说明</th></tr></thead><tbody><tr><td>error_reporting = E_ALL</td><td>error_reporting = E_ALL &amp; ~E_DEPRECATED &amp; ~E_STRICT</td><td>显示除去E_STRICT、E_DEPRECATED外的所有错误</td></tr><tr><td>display_errors = On</td><td>display_errors = Off</td><td>是否显示错误</td></tr><tr><td>display_startup_errors = On</td><td>display_startup_errors = Off</td><td>是否显示 PHP 启动时的错误</td></tr><tr><td>mysqlnd.collect_memory_statistics = On</td><td>mysqlnd.collect_memory_statistics = Off</td><td>是否启用mysql内存访问统计，可以通过下列函数获取信息mysqli_get_client_stats(), mysqli_get_connection_stats(), mysqli_get_cache_stats()</td></tr><tr><td>zend.assertions = 1</td><td>zend.assertions = -1</td><td>与assert()函数相关：<br> 1 - 生成和执行代码 (开发模式) <br> 0 - 生成代码，但在执行时跳过它 <br> -1 - 不生成代码 (生产环境)</td></tr></tbody></table><!--以下是脚注-->]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;下载源码&quot;&gt;&lt;a href=&quot;#下载源码&quot; class=&quot;head
+      
+    
+    </summary>
+    
+      <category term="2-开发技能" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/"/>
+    
+      <category term="程序语言" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/"/>
+    
+      <category term="PHP" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/"/>
+    
+    
+      <category term="php" scheme="http://yoursite.com/tags/php/"/>
+    
+  </entry>
   
   <entry>
     <title>线性表</title>
@@ -510,62 +566,6 @@
       
     
     </summary>
-    
-    
-  </entry>
-  
-  <entry>
-    <title>YAR</title>
-    <link href="http://yoursite.com/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/yar/"/>
-    <id>http://yoursite.com/2-开发技能/程序语言/PHP/yar/</id>
-    <published>2017-11-07T14:35:00.000Z</published>
-    <updated>2017-12-03T16:04:44.535Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="What"><a href="#What" class="headerlink" title="What"></a>What</h1><p>一个轻量级可并行的 RPC 框架，支持三种打包协议（msgpack,json,php）,传输协议支持 http（tcp/unix以后会支持）<br>​</p><blockquote><p>github 地址：<a href="https://github.com/laruence/yar" rel="external nofollow noopener noreferrer" target="_blank">https://github.com/laruence/yar</a><br>php 官网：<a href="http://php.net/manual/zh/book.yar.php" rel="external nofollow noopener noreferrer" target="_blank">http://php.net/manual/zh/book.yar.php</a></p></blockquote><h1 id="Why"><a href="#Why" class="headerlink" title="Why"></a>Why</h1><p>鸟哥举了两个场景(传统 web 应用)：  </p><ol><li><p>一个进程，一个请求，但是涉及到多个没有依赖性的数据源，只能串行处理（依次等待所有数据源处理）完毕后才能响应；  </p><blockquote><p>yar 可以并行处理，减少时间开销</p></blockquote></li><li><p>一个应用系统随着业务的增加，人员流失，只做加法，等到不可维护性的时候，只能重构</p><blockquote><p>yar 可以给系统进行解耦（实际上是 soa 思想）</p></blockquote></li></ol><h1 id="How"><a href="#How" class="headerlink" title="How"></a>How</h1><h2 id="server"><a href="#server" class="headerlink" title="server"></a>server</h2><p>放置在 web 服务器上，通过 http 访问(默认get访问会输出 doc 信息)</p><h2 id="client"><a href="#client" class="headerlink" title="client"></a>client</h2><ol><li>串行调用</li><li>并行调用（yar 内部使用 libcurl + epoll ）</li></ol><h1 id="高级进阶"><a href="#高级进阶" class="headerlink" title="高级进阶"></a>高级进阶</h1><h2 id="Yar-协议分析"><a href="#Yar-协议分析" class="headerlink" title="Yar 协议分析"></a>Yar 协议分析</h2><p>Yar整个协议由82字节长度的yar_header + 8字节的数据打包协议(MSGPACK、JSON、PHP)  + N字节的Body组成。</p><h2 id="安全性"><a href="#安全性" class="headerlink" title="安全性"></a>安全性</h2><blockquote><p>未验证</p></blockquote><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">typedef struct _yar_header &#123;</span><br><span class="line">  unsigned int   id;            // transaction id</span><br><span class="line">  unsigned short version;       // protocl version</span><br><span class="line">  unsigned int   magic_num;     // default is: 0x80DFEC60</span><br><span class="line">  unsigned int   reserved;</span><br><span class="line">  unsigned char  provider[32];  // reqeust from who</span><br><span class="line">  unsigned char  token[32];     // request token, used for authentication</span><br><span class="line">  unsigned int   body_len;      // request body len</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><blockquote><p>struct <code>_yar_header</code>中需要注意的是magic_num值。该值在Client与Server都应该保持一致。否则视为不合法的数据。我们可以通过修改这个值，定制一个yar框架，防止其他人恶意请求。</p></blockquote><h2 id="跨语言"><a href="#跨语言" class="headerlink" title="跨语言"></a>跨语言</h2><blockquote><p>利用 yar 可以接收 struct 实现</p></blockquote><ul><li>client</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">array(</span><br><span class="line">  &quot;i&quot; =&gt; &apos;&apos;, // transaction id</span><br><span class="line">  &quot;m&quot; =&gt; &apos;&apos;,  // the method which being called</span><br><span class="line">  &quot;p&quot; =&gt; array(), // parameters</span><br><span class="line">)</span><br></pre></td></tr></table></figure><ul><li>server</li></ul><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">array(</span><br><span class="line">   &quot;i&quot; =&gt; &apos;&apos;,</span><br><span class="line">   &quot;s&quot; =&gt; &apos;&apos;, //status</span><br><span class="line">   &quot;r&quot; =&gt; &apos;&apos;, //return value</span><br><span class="line">   &quot;o&quot; =&gt; &apos;&apos;, //output</span><br><span class="line">   &quot;e&quot; =&gt; &apos;&apos;, //error or exception</span><br><span class="line">)</span><br></pre></td></tr></table></figure><h1 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h1><ol><li><a href="http://www.laruence.com/2012/09/15/2779.html" rel="external nofollow noopener noreferrer" target="_blank">Yar – 并行的RPC框架(Concurrent RPC framework)</a></li><li><a href="http://www.searchtb.com/2013/10/yar-%E5%B9%B6%E8%A1%8Crpc%E6%A1%86%E6%9E%B6%E7%A0%94%E7%A9%B6.html" rel="external nofollow noopener noreferrer" target="_blank">YAR 并行RPC框架研究</a></li><li><a href="http://blog.weixinhost.com/wei-ming-ming/" rel="external nofollow noopener noreferrer" target="_blank">Yar协议分析与跨语言实现</a></li></ol>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;What&quot;&gt;&lt;a href=&quot;#What&quot; class=&quot;head
-      
-    
-    </summary>
-    
-      <category term="2-开发技能" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/"/>
-    
-      <category term="程序语言" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/"/>
-    
-      <category term="PHP" scheme="http://yoursite.com/categories/2-%E5%BC%80%E5%8F%91%E6%8A%80%E8%83%BD/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/PHP/"/>
-    
-    
-      <category term="php" scheme="http://yoursite.com/tags/php/"/>
-    
-      <category term="yar" scheme="http://yoursite.com/tags/yar/"/>
-    
-      <category term="php_ext" scheme="http://yoursite.com/tags/php-ext/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MAC 必备软件</title>
-    <link href="http://yoursite.com/5-%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/mac/"/>
-    <id>http://yoursite.com/5-效率工具/mac/</id>
-    <published>2017-11-06T15:25:00.000Z</published>
-    <updated>2017-11-16T13:18:31.583Z</updated>
-    
-    <content type="html"><![CDATA[<link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="系统"><a href="#系统" class="headerlink" title="系统"></a>系统</h1><ul><li><a href="http://matthewpalmer.net/vanilla/" rel="external nofollow noopener noreferrer" target="_blank">Vanilla</a>：隐藏菜单栏</li><li><a href="https://www.spectacleapp.com/" rel="external nofollow noopener noreferrer" target="_blank">Spectacle</a>：窗口分屏</li><li><a href="https://coffitivity.com/" rel="external nofollow noopener noreferrer" target="_blank">Coffitivity</a>：白噪音</li><li><a href="https://www.enpass.io/" rel="external nofollow noopener noreferrer" target="_blank">Enpass</a>：密码管理工具</li><li><a href="https://www.teamviewer.com/zhCN/" rel="external nofollow noopener noreferrer" target="_blank">TeamViewer</a>：远程控制</li><li><a href="http://www.yingdev.com/projects/tickeys" rel="external nofollow noopener noreferrer" target="_blank">Tickeys</a>：打字音效</li><li><a href="https://getlantern.org/" rel="external nofollow noopener noreferrer" target="_blank">Lantern</a>：出国工具</li><li>Irvue：自动切换壁纸</li><li>OmniDiskSweeper: 查看磁盘占用工具</li></ul><h1 id="学习"><a href="#学习" class="headerlink" title="学习"></a>学习</h1><ul><li><a href="https://apps.ankiweb.net/" rel="external nofollow noopener noreferrer" target="_blank">Anki</a>：复习工具</li><li><a href="https://www.yinxiang.com/" rel="external nofollow noopener noreferrer" target="_blank">Evernote</a>：收集资料</li><li><a href="https://leanote.com/" rel="external nofollow noopener noreferrer" target="_blank">Leanote</a>：笔记</li><li><a href="https://marginnote.com/" rel="external nofollow noopener noreferrer" target="_blank">MarginNote Pro</a>：学习 pdf 神器（收费）</li><li><a href="https://mindnode.com/" rel="external nofollow noopener noreferrer" target="_blank">MindNode</a>：思维导图（收费）</li><li><a href="http://wiki.kiwix.org/wiki/Main_Page/zh-cn" rel="external nofollow noopener noreferrer" target="_blank">kiwix</a>：离线维基百科</li></ul><h1 id="工作"><a href="#工作" class="headerlink" title="工作"></a>工作</h1><ul><li><a href="https://atom.io/" rel="external nofollow noopener noreferrer" target="_blank">Atom</a>：编辑器</li><li><a href="https://www.charlesproxy.com/" rel="external nofollow noopener noreferrer" target="_blank">Charles</a>：抓包工具（收费）</li><li><a href="https://kapeli.com/dash" rel="external nofollow noopener noreferrer" target="_blank">Dash</a>：文档（收费）</li><li><a href="http://www.iterm2.com/" rel="external nofollow noopener noreferrer" target="_blank">iTerm 2</a>：终端</li><li><a href="https://www.jetbrains.com/phpstorm/" rel="external nofollow noopener noreferrer" target="_blank">PhpStorm</a>：PHP 的 IDE</li><li><a href="http://www.sequelpro.com/" rel="external nofollow noopener noreferrer" target="_blank">Sequel Pro</a>：Mysql 客户端</li><li><a href="https://www.sourcetreeapp.com/" rel="external nofollow noopener noreferrer" target="_blank">SourceTree</a>：Git 客户端</li><li><a href="http://www.sublimetext.com/" rel="external nofollow noopener noreferrer" target="_blank">Sublime Text</a>：轻量可定制编辑器</li><li><a href="https://www.typora.io/" rel="external nofollow noopener noreferrer" target="_blank">Typora</a>：MD 编辑器</li></ul>]]></content>
-    
-    <summary type="html">
-    
-      
-      
-        &lt;link rel=&quot;stylesheet&quot; type=&quot;text/css&quot; href=&quot;https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css&quot;&gt;&lt;h1 id=&quot;系统&quot;&gt;&lt;a href=&quot;#系统&quot; class=&quot;headerli
-      
-    
-    </summary>
-    
-      <category term="5-效率工具" scheme="http://yoursite.com/categories/5-%E6%95%88%E7%8E%87%E5%B7%A5%E5%85%B7/"/>
     
     
   </entry>

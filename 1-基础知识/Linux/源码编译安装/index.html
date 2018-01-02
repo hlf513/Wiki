@@ -3,22 +3,24 @@
 <head>
     <meta charset="utf-8">
     
-    <title>标签: Codeception | 贺龙飞的知识库</title>
+    <title>源码编译安装 | 贺龙飞的知识库</title>
     
     
-        <meta name="keywords" content="贺龙飞的知识库">
+        <meta name="keywords" content="linux">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <meta name="description" content="知识管理，wiki，PKM">
-<meta property="og:type" content="website">
-<meta property="og:title" content="贺龙飞的知识库">
-<meta property="og:url" content="http://yoursite.com/tags/Codeception/index.html">
+    <meta name="description" content="概述通常需要三步：  检查依赖并根据系统环境和参数生成对应的 makefile 编译生成设定的目标 把目标文件安装至系统  make 解析以下是常规的 make 命令：  make all 产生我们设定的目标（例：可执行文件、动态库等）；只输入make默认是make all。  make clean 清除编译产生的可执行文件及目标文件(object file，*.o)。  make install">
+<meta name="keywords" content="linux">
+<meta property="og:type" content="article">
+<meta property="og:title" content="源码编译安装">
+<meta property="og:url" content="http://yoursite.com/1-基础知识/Linux/源码编译安装/index.html">
 <meta property="og:site_name" content="贺龙飞的知识库">
-<meta property="og:description" content="知识管理，wiki，PKM">
+<meta property="og:description" content="概述通常需要三步：  检查依赖并根据系统环境和参数生成对应的 makefile 编译生成设定的目标 把目标文件安装至系统  make 解析以下是常规的 make 命令：  make all 产生我们设定的目标（例：可执行文件、动态库等）；只输入make默认是make all。  make clean 清除编译产生的可执行文件及目标文件(object file，*.o)。  make install">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2018-01-02T16:47:48.196Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="贺龙飞的知识库">
-<meta name="twitter:description" content="知识管理，wiki，PKM">
+<meta name="twitter:title" content="源码编译安装">
+<meta name="twitter:description" content="概述通常需要三步：  检查依赖并根据系统环境和参数生成对应的 makefile 编译生成设定的目标 把目标文件安装至系统  make 解析以下是常规的 make 命令：  make all 产生我们设定的目标（例：可执行文件、动态库等）；只输入make默认是make all。  make clean 清除编译产生的可执行文件及目标文件(object file，*.o)。  make install">
     
 
     
@@ -136,20 +138,20 @@
         
         
          <ul class="unstyled" id="tree"> 
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             1-基础知识
                         </a>
                          <ul class="unstyled" id="tree"> 
-                    <li class="directory">
+                    <li class="directory open">
                         <a href="#" data-role="directory">
-                            <i class="fa fa-folder"></i>
+                            <i class="fa fa-folder-open"></i>
                             &nbsp;
                             Linux
                         </a>
-                         <ul class="unstyled" id="tree">  <li class="file"><a href="/1-基础知识/Linux/源码编译安装/">源码编译安装</a></li>  </ul> 
+                         <ul class="unstyled" id="tree">  <li class="file active"><a href="/1-基础知识/Linux/源码编译安装/">源码编译安装</a></li>  </ul> 
                     </li> 
                     
                     <li class="directory">
@@ -395,50 +397,104 @@
     <div id="toTop" class="fa fa-angle-up"></div>
 </aside>
             
-            <section id="main">
-<div class="timeline timeline-wrap">
-    <div class="timeline-row timeline-row-major">
-        <span class="node"><i class="fa fa-tag"></i></span>
-        <h1 class="title">Codeception</h1>
+            <section id="main"><article id="post-1-基础知识/Linux/源码编译安装" class="article article-type-post" itemscope="" itemprop="blogPost">
+    <div class="article-inner">
+        
+        
+            <header class="article-header">
+                
+                    <div class="article-meta">
+                        
+    <div class="article-category">
+    	<i class="fa fa-folder"></i>
+        <a class="article-category-link" href="/categories/1-基础知识/">1-基础知识</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/1-基础知识/Linux/">Linux</a>
     </div>
-    
-        <div class="timeline-row">
-            <span class="node"></span>
-            <div class="content">
+
+                        
+                            <div class="article-meta-button">
+                                <a href="https://github.com/hlf513/wiki/commits/master/source/_posts/1-基础知识/Linux/源码编译安装.md" rel="external nofollow noopener noreferrer" target="_blank"> History </a>
+                            </div>
+                        
+                    </div>
+                
                 
     
-        <h1 itemprop="name">
-            <a class="timeline-article-title" href="/2-开发技能/测试/codeception/">Codeception 之验收测试</a>
+        <h1 class="article-title" itemprop="name">
+            源码编译安装
         </h1>
     
 
-                <div class="article-meta">
-                    
+            </header>
+        
+        
+        <div class="article-entry" itemprop="articleBody">
+        
+        
+            
+                <div id="toc" class="toc-article">
+                <strong class="toc-title">文章目录</strong>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#make-解析"><span class="toc-text">make 解析</span></a></li></ol>
+                </div>
+            
+        
+        
+            <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h1><p>通常需要三步：</p>
+<ol>
+<li>检查依赖并根据系统环境和参数生成对应的 makefile</li>
+<li>编译生成设定的目标</li>
+<li>把目标文件安装至系统</li>
+</ol>
+<h1 id="make-解析"><a href="#make-解析" class="headerlink" title="make 解析"></a>make 解析</h1><p>以下是常规的 make 命令：</p>
+<p><strong> make all </strong><br>产生我们设定的目标（例：可执行文件、动态库等）；只输入<code>make</code>默认是<code>make all</code>。</p>
+<p><strong> make clean </strong><br>清除编译产生的可执行文件及目标文件(object file，*.o)。</p>
+<p><strong> make install </strong><br>将程序安装至系统中。如果原始码编译无误，且执行结果正确，便可以把程序安装至系统预设的可执行文件存放路径。如果用bin_PROGRAMS宏的话，程序会被安装至/usr/local/bin这个目录。</p>
+<p><strong> make dist </strong><br>将程序和相关的档案包装成一个压缩文件以供发布。执行完在目录下会产生一个以 PACKAGE-VERSION.tar.gz 为名称的文件。 PACKAGE和VERSION这两个变数是根据 configure.ini 文件中 AM_INIT_AUTOMAKE(PACKAGE，VERSION) 的定义。</p>
+<p><strong> make distcheck </strong><br>和<code>make dist</code>类似，但是加入检查包装后的压缩文件是否正常。这个目标除了把程序和相关文件包装成 tar.gz 文件外，还会自动把这个压缩文件解开，执行 <code>configure</code>，并且进行 <code>make all</code> 的动作，确认编译无误后，会显示这个 tar.gz 文件可供发布了。这个检查非常有用，检查过关的包，基本上可以给任何一个具备GNU开发环境-的人去重新编译。</p>
+<p><strong> make distclean </strong><br>除了清除可执行文件和目标文件外，把<code>configure</code>所产生的 Makefile 也清除掉。</p>
+<!--以下是脚注-->
+
+            </div>
+        
+        <footer class="article-footer">
+          <div style="float:left">
+            
+    <div class="article-tag">
+        <i class="fa fa-tag"></i>
+        <a class="tag-link" href="/tags/linux/">linux</a>
+    </div>
+
+          </div>
+          <div style="float:right">
+            
     <div class="article-date">
         <i class="fa fa-calendar"></i>
-        <a href="/2-开发技能/测试/codeception/">
-            <time datetime="2016-05-02T07:38:09.000Z" itemprop="datePublished">2016-05-02</time>
+        <a href="/1-基础知识/Linux/源码编译安装/">
+            <time datetime="2018-01-02T16:28:00.000Z" itemprop="datePublished">2018-01-03</time>
         </a>
     </div>
 
 
-                    
-    <div class="article-category">
-    	<i class="fa fa-folder"></i>
-        <a class="article-category-link" href="/categories/2-开发技能/">2-开发技能</a><i class="fa fa-angle-right"></i><a class="article-category-link" href="/categories/2-开发技能/测试/">测试</a>
+          </div>
+        </footer>
     </div>
+</article>
 
-                    
-    <div class="article-tag">
-        <i class="fa fa-tag"></i>
-        <a class="tag-link" href="/tags/Codeception/">Codeception</a>, <a class="tag-link" href="/tags/php/">php</a>
-    </div>
 
-                </div>
-            </div>
-        </div>
     
-</div>
+
+
+
+    
+    
+
+
+
+
+<!-- baidu url auto push script -->
+<script type="text/javascript">
+    !function(){var e=/([http|https]:\/\/[a-zA-Z0-9\_\.]+\.baidu\.com)/gi,r=window.location.href,o=document.referrer;if(!e.test(r)){var n="//api.share.baidu.com/s.gif";o?(n+="?r="+encodeURIComponent(document.referrer),r&&(n+="&l="+r)):r&&(n+="?l="+r);var t=new Image;t.src=n}}(window);
+</script>
+
 </section>
         </div>
         <footer id="footer">
