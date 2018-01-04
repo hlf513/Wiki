@@ -32,7 +32,7 @@
 <meta property="og:image" content="http://yoursite.com/images/2018/01/02/线性表-链式存储-双向链表-非空链表.png">
 <meta property="og:image" content="http://yoursite.com/images/2018/01/02/线性表-链式存储-双向链表-插入.png">
 <meta property="og:image" content="http://yoursite.com/images/2018/01/02/线性表-链式存储-双向链表-删除.png">
-<meta property="og:updated_time" content="2018-01-04T16:45:02.721Z">
+<meta property="og:updated_time" content="2018-01-04T17:08:40.572Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="线性表">
 <meta name="twitter:description" content="定义 线性表是零个或多个具有相同类型的数据元素的有限序列。  抽象数据类型12345678910111213ADT 线性表(list)Data  线性表的数据对象集合为&amp;#123;a1....an&amp;#125;，每个元素的类型均为 DataType。其中，除第一个元素 a1 外，每一个元素有且只有一个前驱元素，除了最后一个元素 an 外，每个元素有且只有一个直接后继元素。数据元素之间的关系是一对一的">
@@ -498,7 +498,7 @@
 <li>已知固定长度</li>
 <li>不经常更新（新增、删除）</li>
 </ul>
-<h2 id="链式存储结构"><a href="#链式存储结构" class="headerlink" title="链式存储结构"></a>链式存储结构</h2><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p><strong>结点：</strong> 数据域 + 指针域<br><strong>头指针：</strong> 链表中第一个结点的存储位置<br><strong>头结点：</strong> 链表的第一个结点前附设的一个结点<br><strong>前驱结点：</strong> 当前结点的前一个结点<br><strong>后继结点：</strong> 当前结点的下一个结点</p>
+<h2 id="链式存储结构"><a href="#链式存储结构" class="headerlink" title="链式存储结构"></a>链式存储结构</h2><h3 id="术语"><a href="#术语" class="headerlink" title="术语"></a>术语</h3><p><strong>结点：</strong> 数据域 + 指针域<br><strong>头指针：</strong> 链表中第一个结点的存储位置，通常作为链表名称；链表的必要元素<br><strong>头结点：</strong> 链表的第一个结点前附设的一个结点，数据域一般为空，也可存放公共数据；存在的作用是使对第一个结点的操作和其他的结点保持一致<br><strong>前驱结点：</strong> 当前结点的前一个结点<br><strong>后继结点：</strong> 当前结点的下一个结点</p>
 <p><img src="/images/2018/01/01/头指针与头结点.png" alt="头指针与头结点"></p>
 <h3 id="单链表"><a href="#单链表" class="headerlink" title="单链表"></a>单链表</h3><blockquote>
 <p>n 个结点链接成一个链表，每个结点只有一个指针域</p>
