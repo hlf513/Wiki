@@ -1,10 +1,11 @@
 ---
-title: PSR
+title: 编码规范-PSR
 date: '2016-04-03 00:45'
 tag:
   - php
   - PSR
 toc: true
+top: 9998
 ---
 
 # PSR
