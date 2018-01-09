@@ -1,6 +1,6 @@
 ---
-title: 编码规范-PSR
-date: '2016-04-03 00:45'
+title: PHP Standards Recommendations
+date: '2018-01-09'
 tag:
   - php
   - PSR
@@ -11,13 +11,19 @@ top: 9998
 # PSR
 >PSR 来自 PHP FIG(框架协同工作组)
 
+官网：http://www.php-fig.org/psr/
+
 现有规范
 
 - PSR-0/PSR-4 自动加载（2014.10.21起弃用，请使用 PSR-4）
 - PSR-1 基本规范
 - PSR-2 代码风格
 - PSR-3 日志接口
-
+- PSR-6 Caching Interface
+- PSR-7 HTTP Message Interface
+- PSR-11 Container Interface
+- PSR-13 Hypermedia Links
+- PSR-16 Simple Cache
 
 ## PSR-0/PSR-4
 
@@ -221,17 +227,6 @@ PHP项目体检工具，根据你设定的标准（如单一文件代码体积�
 ## [PHP Code Sniffer](http://pear.php.net/package/PHP_CodeSniffer)
 
 ## [PHPLint](http://www.icosaedro.it/phplint/)
-
-# 持续集成
-
-## [jenkins](http://jenkins-php.org/)
-
-把上述工具以plugins形式整合起来
-
-## [xinc+phing](http://code.google.com/p/xinc/)
-
-跟上述工具集成起来做持续集成后的自动化打包发布
-
 
 # 参考资料
 
