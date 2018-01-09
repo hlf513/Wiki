@@ -1,5 +1,5 @@
 ---
-title: PHP Standards Recommendations
+title: PHP 规范
 date: '2018-01-09'
 tag:
   - php
@@ -8,7 +8,7 @@ toc: true
 top: 9998
 ---
 
-# PSR
+# PHP Standards Recommendations
 >PSR 来自 PHP FIG(框架协同工作组)
 
 官网：http://www.php-fig.org/psr/
