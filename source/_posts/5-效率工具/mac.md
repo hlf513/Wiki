@@ -24,6 +24,7 @@ toc: true
 * [MarginNote Pro](https://marginnote.com/)：学习 pdf 神器（收费）
 * [MindNode](https://mindnode.com/)：思维导图（收费）
 * [kiwix](http://wiki.kiwix.org/wiki/Main_Page/zh-cn)：离线维基百科
+* [Mweb](http://zh.mweb.im/): markdown 编辑器（支持目录+发布）（收费）
 
 # 工作
 
