@@ -1,13 +1,10 @@
 ---
-layout: "post"
 title: "Openssl替换mcrypt加解密"
 date: "2018-01-16 14:15"
-tags:
+tag:
   - php
   - openssl
   - mcrypt
-categories:
-  - PHP
 ---
 
 # 背景
@@ -58,5 +55,3 @@ $ret = $crypto->decryptMsg($ret['msg_signature'], $timestamp, $nonce, $ret['encr
 # 参考资料
 
 * [php7.1微信公众平台消息安全模式的加密及解密](http://blog.csdn.net/sapperlab/article/details/56672443)
-
-
