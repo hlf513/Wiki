@@ -13,8 +13,10 @@ toc: true
 * [TeamViewer](https://www.teamviewer.com/zhCN/)：远程控制
 * [Tickeys](http://www.yingdev.com/projects/tickeys)：打字音效
 * [Lantern](https://getlantern.org/)：出国工具
-* Irvue：自动切换壁纸
-* OmniDiskSweeper: 查看磁盘占用工具
+* [Irvue](https://itunes.apple.com/cn/app/irvue-unsplash-wallpapers/id1039633667?mt=12)：自动切换壁纸
+* [OmniDiskSweeper](https://www.omnigroup.com/more): 查看磁盘占用工具
+* [Snipaste](https://www.snipaste.com/) 截图工具
+* [Tadam](http://tadamapp.com/) 可自定义时间的番茄钟
 
 # 学习
 
@@ -24,7 +26,7 @@ toc: true
 * [MarginNote Pro](https://marginnote.com/)：学习 pdf 神器（收费）
 * [MindNode](https://mindnode.com/)：思维导图（收费）
 * [kiwix](http://wiki.kiwix.org/wiki/Main_Page/zh-cn)：离线维基百科
-* [Mweb](http://zh.mweb.im/): markdown 编辑器（支持目录+发布）（收费）
+* [Mweb](http://zh.mweb.im/) 带目录/可生成静态网站的 Markdown 编辑器（收费）
 
 # 工作
 
@@ -36,4 +38,6 @@ toc: true
 * [Sequel Pro](http://www.sequelpro.com/)：Mysql 客户端
 * [SourceTree](https://www.sourcetreeapp.com/)：Git 客户端
 * [Sublime Text](http://www.sublimetext.com/)：轻量可定制编辑器
-* [Typora](https://www.typora.io/)：MD 编辑器
+* [Typora](https://www.typora.io/)：Markdown 编辑器
+
+
