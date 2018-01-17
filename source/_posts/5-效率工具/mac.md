@@ -17,6 +17,7 @@ toc: true
 * [OmniDiskSweeper](https://www.omnigroup.com/more): 查看磁盘占用工具
 * [Snipaste](https://www.snipaste.com/) 截图工具
 * [Tadam](http://tadamapp.com/) 可自定义时间的番茄钟
+* [Go2Shell](http://zipzapmac.com/Go2Shell) 在 Finder 打开终端，并切换到当前路径
 
 # 学习
 
@@ -39,5 +40,3 @@ toc: true
 * [SourceTree](https://www.sourcetreeapp.com/)：Git 客户端
 * [Sublime Text](http://www.sublimetext.com/)：轻量可定制编辑器
 * [Typora](https://www.typora.io/)：Markdown 编辑器
-
-
